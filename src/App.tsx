@@ -12,6 +12,7 @@ import { ProjectModal } from './components/ProjectModal';
 import { ResumeModal } from './components/ResumeModal';
 import type { Project } from './data/portfolio';
 import resumePdf from './assets/Adarsh_A.pdf';
+import { Analytics } from '@vercel/analytics/react';
 
 function App() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -108,6 +109,9 @@ function App() {
         onClose={() => setIsResumeModalOpen(false)}
         pdfUrl={resumeUrl}
       />
+
+      {/* Vercel Analytics */}
+      <Analytics />
     </div>
   );
 }
