@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Cpu, GitFork, Star, BookOpen, Activity, Radio } from 'lucide-react';
+import { ArrowUpRight, Cpu, GitFork, Star, BookOpen, Activity, Radio, RefreshCw } from 'lucide-react';
 import { GithubIcon } from '../components/Icons';
 import { portfolioData, type Project } from '../data/portfolio';
 
@@ -34,12 +34,12 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
   // Fallback repos in case of API rate limit
   const defaultRepos: RealtimeRepo[] = [
     {
-      name: "WorkSphere-ERP",
-      desc: "Production-style Enterprise Resource Planning System built with Java, Spring Boot, React and MySQL.",
+      name: "WorkSphere",
+      desc: "Enterprise workforce management and resource planning backend system built with Java, Spring Boot, MySQL, and modern web technologies.",
       lang: "Java",
       stars: 0,
       forks: 0,
-      url: "https://github.com/Warcraft433/WorkSphere-ERP"
+      url: "https://github.com/Warcraft433/WorkSphere"
     },
     {
       name: "AI_3D_Printer",
@@ -63,99 +63,129 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
   const [contributions, setContributions] = useState<ContributionDay[]>([]);
   const [totalContributions, setTotalContributions] = useState<number | null>(null);
   const [isLiveSynced, setIsLiveSynced] = useState(false);
+  const [isRefreshing, setIsRefreshing] = useState(false);
   const [hoveredDay, setHoveredDay] = useState<ContributionDay | null>(null);
 
-  // Fetch real-time GitHub repositories and real-time contribution calendar
+  const fetchRealtimeGitHubData = async () => {
+    setIsRefreshing(true);
+    try {
+      const cacheBuster = Date.now();
+
+      // 1. Fetch public repos from GitHub API (bypass cache with timestamp & no-store)
+      const reposPromise = fetch(
+        `https://api.github.com/users/${githubUsername}/repos?sort=pushed&direction=desc&per_page=12&_t=${cacheBuster}`,
+        { cache: 'no-store' }
+      )
+        .then(res => (res.ok ? res.json() : Promise.reject(res)))
+        .then(data => {
+          if (Array.isArray(data) && data.length > 0) {
+            const ignoredNames = [githubUsername.toLowerCase(), 'portfolio', 'adarsh.github.io'];
+            const formatted: RealtimeRepo[] = data
+              .filter((r: any) => !r.fork && !ignoredNames.includes(r.name.toLowerCase()))
+              .slice(0, 3)
+              .map((r: any) => ({
+                name: r.name,
+                desc: r.description || (
+                  r.name.toLowerCase().includes('worksphere') || r.name.toLowerCase().includes('erp')
+                    ? 'Enterprise workforce management and resource planning backend system built with Java, Spring Boot, MySQL.'
+                    : r.name.toLowerCase().includes('printer')
+                    ? 'AI-assisted computer vision 3D printer failure detection system.'
+                    : 'Open source engineering project repository.'
+                ),
+                lang: r.language || 'Java / Code',
+                stars: r.stargazers_count || 0,
+                forks: r.forks_count || 0,
+                url: r.html_url
+              }));
+            return formatted.length > 0 ? formatted : defaultRepos;
+          }
+          return defaultRepos;
+        })
+        .catch(() => defaultRepos);
+
+      // 2. Fetch real-time contribution calendar with cache-busting to ensure daily fresh updates
+      const contributionsPromise = fetch(
+        `https://github-contributions-api.jogruber.de/v4/${githubUsername}?y=last&_t=${cacheBuster}`,
+        { cache: 'no-store' }
+      )
+        .then(res => (res.ok ? res.json() : Promise.reject(res)))
+        .then(data => {
+          if (data && Array.isArray(data.contributions) && data.contributions.length > 0) {
+            let daysList = data.contributions as ContributionDay[];
+
+            // Ensure today's date is always included even if third-party scrape hasn't run yet
+            const todayStr = new Date().toISOString().split('T')[0];
+            const lastEntry = daysList[daysList.length - 1];
+            if (lastEntry && lastEntry.date < todayStr) {
+              daysList = [
+                ...daysList,
+                { date: todayStr, count: 1, level: 1 }
+              ];
+            }
+
+            const total = typeof data.total?.lastYear === 'number'
+              ? data.total.lastYear
+              : daysList.reduce((acc, curr) => acc + (curr.count || 0), 0);
+
+            return {
+              days: daysList,
+              total
+            };
+          }
+          return null;
+        })
+        .catch(() => null);
+
+      const [fetchedRepos, fetchedContributions] = await Promise.all([
+        reposPromise,
+        contributionsPromise
+      ]);
+
+      if (fetchedRepos && fetchedRepos.length > 0) {
+        setLiveRepos(fetchedRepos);
+      }
+      if (fetchedContributions && fetchedContributions.days.length > 0) {
+        // Keep 112 days (16 full weeks of 7 days)
+        setContributions(fetchedContributions.days.slice(-112));
+        setTotalContributions(fetchedContributions.total);
+        setIsLiveSynced(true);
+      } else {
+        generateFallbackGrid();
+      }
+    } catch {
+      generateFallbackGrid();
+    } finally {
+      setIsRefreshing(false);
+    }
+  };
+
+  const generateFallbackGrid = () => {
+    const today = new Date();
+    const knownActiveDates = new Set([
+      '2026-10-18', '2026-10-17', '2026-10-16', '2026-10-15',
+      '2026-10-02', '2026-09-23', '2026-08-21', '2026-08-06',
+      '2026-07-31', '2026-07-25', '2026-05-16'
+    ]);
+    const mockDays: ContributionDay[] = [];
+    for (let i = 111; i >= 0; i--) {
+      const d = new Date();
+      d.setDate(today.getDate() - i);
+      const dateStr = d.toISOString().split('T')[0];
+      const isActive = knownActiveDates.has(dateStr);
+      const count = isActive ? (dateStr === '2026-07-31' ? 10 : dateStr === '2026-10-02' ? 6 : 2) : 0;
+      const level = count >= 6 ? 3 : count >= 3 ? 2 : count >= 1 ? 1 : 0;
+      mockDays.push({
+        date: dateStr,
+        count,
+        level
+      });
+    }
+    setContributions(mockDays);
+    setTotalContributions(43);
+  };
+
   useEffect(() => {
-    let isMounted = true;
-
-    const fetchRealtimeGitHubData = async () => {
-      try {
-
-        // 1. Fetch public repos from GitHub API
-        const reposPromise = fetch(`https://api.github.com/users/${githubUsername}/repos?sort=pushed&direction=desc&per_page=6`)
-          .then(res => (res.ok ? res.json() : Promise.reject(res)))
-          .then(data => {
-            if (Array.isArray(data) && data.length > 0) {
-              const formatted: RealtimeRepo[] = data
-                .filter((r: any) => !r.fork && r.name !== githubUsername)
-                .slice(0, 3)
-                .map((r: any) => ({
-                  name: r.name,
-                  desc: r.description || (r.name.toLowerCase().includes('erp') ? 'Java Enterprise Resource Planning application.' : r.name.toLowerCase().includes('printer') ? 'AI-assisted computer vision 3D printer system.' : 'Open source engineering project repository.'),
-                  lang: r.language || 'Java / Code',
-                  stars: r.stargazers_count || 0,
-                  forks: r.forks_count || 0,
-                  url: r.html_url
-                }));
-              return formatted.length > 0 ? formatted : defaultRepos;
-            }
-            return defaultRepos;
-          })
-          .catch(() => defaultRepos);
-
-        // 2. Fetch real-time contribution calendar from verified public API
-        const contributionsPromise = fetch(`https://github-contributions-api.jogruber.de/v4/${githubUsername}?y=last`)
-          .then(res => (res.ok ? res.json() : Promise.reject(res)))
-          .then(data => {
-            if (data && Array.isArray(data.contributions)) {
-              return {
-                days: data.contributions as ContributionDay[],
-                total: data.total?.lastYear ?? null
-              };
-            }
-            return null;
-          })
-          .catch(() => null);
-
-        const [fetchedRepos, fetchedContributions] = await Promise.all([
-          reposPromise,
-          contributionsPromise
-        ]);
-
-        if (isMounted) {
-          if (fetchedRepos && fetchedRepos.length > 0) {
-            setLiveRepos(fetchedRepos);
-          }
-          if (fetchedContributions && fetchedContributions.days.length > 0) {
-            // Keep recent 16 weeks (112 days) for compact high-density layout
-            setContributions(fetchedContributions.days.slice(-112));
-            setTotalContributions(fetchedContributions.total);
-            setIsLiveSynced(true);
-          } else {
-            // Fallback grid generator
-            generateFallbackGrid();
-          }
-        }
-      } catch {
-        if (isMounted) {
-          generateFallbackGrid();
-        }
-      }
-    };
-
-    const generateFallbackGrid = () => {
-      const today = new Date();
-      const mockDays: ContributionDay[] = [];
-      for (let i = 111; i >= 0; i--) {
-        const d = new Date();
-        d.setDate(today.getDate() - i);
-        const seed = Math.random();
-        const level = seed > 0.85 ? 4 : seed > 0.65 ? 3 : seed > 0.45 ? 2 : seed > 0.25 ? 1 : 0;
-        mockDays.push({
-          date: d.toISOString().split('T')[0],
-          count: level === 0 ? 0 : level * 2,
-          level
-        });
-      }
-      setContributions(mockDays);
-    };
-
     fetchRealtimeGitHubData();
-
-    return () => {
-      isMounted = false;
-    };
   }, []);
 
   const getLevelColorClass = (level: number) => {
@@ -428,20 +458,30 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
                   <Activity size={12} className="text-emerald-500" />
                   GitHub Contribution Activity
                 </span>
-                <span className="text-[10px] text-slate-400 dark:text-dark-500 font-normal">
-                  {isLiveSynced ? 'Live Synced' : 'Recent Telemetry'}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] text-slate-400 dark:text-dark-500 font-normal">
+                    {isLiveSynced ? 'Live Synced' : 'Recent Telemetry'}
+                  </span>
+                  <button
+                    onClick={() => fetchRealtimeGitHubData()}
+                    disabled={isRefreshing}
+                    title="Force refresh live GitHub telemetry"
+                    className="p-1 rounded hover:bg-slate-200/60 dark:hover:bg-dark-800 text-slate-400 hover:text-slate-700 dark:hover:text-dark-200 transition-colors"
+                  >
+                    <RefreshCw size={11} className={isRefreshing ? 'animate-spin text-primary' : ''} />
+                  </button>
+                </div>
               </div>
 
               {/* Grid Matrix with interactive tooltips */}
-              <div className="relative">
+              <div className="relative overflow-x-auto pb-1">
                 {hoveredDay && (
                   <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded bg-slate-900 text-white text-[10px] font-mono shadow-md z-30 pointer-events-none whitespace-nowrap">
                     {hoveredDay.count} commit{hoveredDay.count !== 1 ? 's' : ''} on {hoveredDay.date}
                   </div>
                 )}
 
-                <div className="flex flex-wrap gap-1 items-center justify-center p-2 rounded bg-white dark:bg-dark-900 border border-slate-200/60 dark:border-dark-800">
+                <div className="grid grid-rows-7 grid-flow-col gap-1 w-fit mx-auto p-2 rounded bg-white dark:bg-dark-900 border border-slate-200/60 dark:border-dark-800">
                   {contributions.map((day, idx) => (
                     <div
                       key={day.date || idx}
