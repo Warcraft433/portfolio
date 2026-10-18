@@ -11,7 +11,7 @@ import { Footer } from './sections/Footer';
 import { ProjectModal } from './components/ProjectModal';
 import { ResumeModal } from './components/ResumeModal';
 import type { Project } from './data/portfolio';
-import resumePdf from './assets/Adarsh_A.pdf';
+import resumePdf from './assets/Adarsh_A-Resume.pdf';
 import { Analytics } from '@vercel/analytics/react';
 
 function App() {
