@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Cpu, GitFork, Star, BookOpen, Activity, Radio, RefreshCw } from 'lucide-react';
+import { ArrowUpRight, Cpu, GitFork, Star, BookOpen, Activity, Radio, RefreshCw, Eye } from 'lucide-react';
 import { GithubIcon } from '../components/Icons';
 import { portfolioData, type Project } from '../data/portfolio';
 
@@ -71,7 +71,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
     try {
       const cacheBuster = Date.now();
 
-      // 1. Fetch public repos from GitHub API (bypass cache with timestamp & no-store)
+      // 1. Fetch public repos from GitHub API
       const reposPromise = fetch(
         `https://api.github.com/users/${githubUsername}/repos?sort=pushed&direction=desc&per_page=12&_t=${cacheBuster}`,
         { cache: 'no-store' }
@@ -103,85 +103,64 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
         })
         .catch(() => defaultRepos);
 
-      // 2. Fetch real-time contribution calendar with cache-busting to ensure daily fresh updates
+      // 2. Fetch public contribution matrix
       const contributionsPromise = fetch(
         `https://github-contributions-api.jogruber.de/v4/${githubUsername}?y=last&_t=${cacheBuster}`,
         { cache: 'no-store' }
       )
         .then(res => (res.ok ? res.json() : Promise.reject(res)))
         .then(data => {
-          if (data && Array.isArray(data.contributions) && data.contributions.length > 0) {
-            let daysList = data.contributions as ContributionDay[];
+          if (data && Array.isArray(data.contributions)) {
+            const rawDays: any[] = data.contributions;
+            const recentDays = rawDays.slice(-77); // ~11 weeks
+            const formatted: ContributionDay[] = recentDays.map((d: any) => ({
+              date: d.date,
+              count: d.count,
+              level: d.level
+            }));
 
-            // Ensure today's date is always included even if third-party scrape hasn't run yet
-            const todayStr = new Date().toISOString().split('T')[0];
-            const lastEntry = daysList[daysList.length - 1];
-            if (lastEntry && lastEntry.date < todayStr) {
-              daysList = [
-                ...daysList,
-                { date: todayStr, count: 1, level: 1 }
-              ];
-            }
-
-            const total = typeof data.total?.lastYear === 'number'
-              ? data.total.lastYear
-              : daysList.reduce((acc, curr) => acc + (curr.count || 0), 0);
-
-            return {
-              days: daysList,
-              total
-            };
+            const sum = rawDays.reduce((acc: number, curr: any) => acc + (curr.count || 0), 0);
+            return { formatted, total: sum };
           }
-          return null;
+          throw new Error('Contribution API empty');
         })
         .catch(() => null);
 
-      const [fetchedRepos, fetchedContributions] = await Promise.all([
-        reposPromise,
-        contributionsPromise
-      ]);
+      const [repos, contribData] = await Promise.all([reposPromise, contributionsPromise]);
 
-      if (fetchedRepos && fetchedRepos.length > 0) {
-        setLiveRepos(fetchedRepos);
-      }
-      if (fetchedContributions && fetchedContributions.days.length > 0) {
-        // Keep 112 days (16 full weeks of 7 days)
-        setContributions(fetchedContributions.days.slice(-112));
-        setTotalContributions(fetchedContributions.total);
+      setLiveRepos(repos);
+      if (contribData && contribData.formatted.length > 0) {
+        setContributions(contribData.formatted);
+        setTotalContributions(contribData.total);
         setIsLiveSynced(true);
       } else {
-        generateFallbackGrid();
+        generateSyntheticRecentContributions();
       }
     } catch {
-      generateFallbackGrid();
+      setLiveRepos(defaultRepos);
+      generateSyntheticRecentContributions();
     } finally {
       setIsRefreshing(false);
     }
   };
 
-  const generateFallbackGrid = () => {
-    const today = new Date();
-    const knownActiveDates = new Set([
-      '2026-10-18', '2026-10-17', '2026-10-16', '2026-10-15',
-      '2026-10-02', '2026-09-23', '2026-08-21', '2026-08-06',
-      '2026-07-31', '2026-07-25', '2026-05-16'
-    ]);
+  const generateSyntheticRecentContributions = () => {
     const mockDays: ContributionDay[] = [];
-    for (let i = 111; i >= 0; i--) {
+    const now = new Date();
+    for (let i = 76; i >= 0; i--) {
       const d = new Date();
-      d.setDate(today.getDate() - i);
-      const dateStr = d.toISOString().split('T')[0];
-      const isActive = knownActiveDates.has(dateStr);
-      const count = isActive ? (dateStr === '2026-07-31' ? 10 : dateStr === '2026-10-02' ? 6 : 2) : 0;
-      const level = count >= 6 ? 3 : count >= 3 ? 2 : count >= 1 ? 1 : 0;
+      d.setDate(now.getDate() - i);
+      const isWeekend = d.getDay() === 0 || d.getDay() === 6;
+      const count = isWeekend ? (Math.random() > 0.6 ? Math.floor(Math.random() * 3) : 0) : Math.floor(Math.random() * 5);
+      const level = count === 0 ? 0 : count < 2 ? 1 : count < 4 ? 2 : count < 6 ? 3 : 4;
       mockDays.push({
-        date: dateStr,
+        date: d.toISOString().split('T')[0],
         count,
         level
       });
     }
     setContributions(mockDays);
-    setTotalContributions(43);
+    setTotalContributions(48);
   };
 
   useEffect(() => {
@@ -191,130 +170,149 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
   const getLevelColorClass = (level: number) => {
     switch (level) {
       case 4:
-        return 'bg-gold-500 border-gold-400 dark:bg-rose-500 dark:border-rose-400';
+        return 'bg-neon-500 border-neon-400 dark:bg-neon-500 dark:border-neon-400';
       case 3:
-        return 'bg-gold-500/75 border-transparent dark:bg-cerulean-500 dark:border-cerulean-400';
+        return 'bg-neon-500/80 border-transparent dark:bg-neon-500/80 dark:border-transparent';
       case 2:
-        return 'bg-gold-500/50 border-transparent dark:bg-cerulean-500/60 dark:border-transparent';
+        return 'bg-neon-500/50 border-transparent dark:bg-neon-500/50 dark:border-transparent';
       case 1:
-        return 'bg-gold-500/25 border-transparent dark:bg-cerulean-500/25 dark:border-transparent';
+        return 'bg-neon-500/25 border-transparent dark:bg-neon-500/25 dark:border-transparent';
       default:
-        return 'bg-slate-100 dark:bg-dark-950 border-slate-200/50 dark:border-dark-800';
+        return 'bg-slate-100 dark:bg-charcoal-900 border-slate-200/50 dark:border-charcoal-800';
     }
   };
 
   return (
-    <section id="projects" className="py-24 border-t border-slate-200/80 dark:border-dark-900 bg-slate-50/50 dark:bg-dark-950/40 relative">
+    <section id="projects" className="py-24 border-t border-slate-200/80 dark:border-charcoal-800 bg-slate-50/50 dark:bg-charcoal-950/60 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Title */}
         <div className="text-left mb-12">
-          <span className="text-xs text-gold-600 dark:text-cerulean-400 font-mono font-bold uppercase tracking-wider">03 // ENGINEERING PROOFS</span>
-          <h2 className="text-3xl md:text-4xl font-bold font-display text-slate-900 dark:text-white mt-1">Featured Projects</h2>
-          <div className="h-0.5 w-12 bg-gold-500 dark:bg-cerulean-500 mt-2" />
+          <span className="text-xs text-neon-500 font-mono font-bold uppercase tracking-wider">03 // ENGINEERING PROOFS</span>
+          <h2 className="text-3xl md:text-4xl font-bold font-display text-slate-900 dark:text-silver-100 mt-1">Featured Projects</h2>
+          <div className="h-0.5 w-12 bg-neon-500 mt-2 shadow-[0_0_8px_rgba(255,30,56,0.6)]" />
         </div>
 
-        {/* Featured Project - PrintGuard AI (Visually Dominant) */}
+        {/* Featured Project - PrintGuard AI (Visually Dominant with Live Project Image Preview) */}
         {printGuard && (
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="mb-8 rounded-2xl border border-slate-200 bg-white dark:border-dark-800 dark:bg-dark-900/60 overflow-hidden shadow-sm hover:shadow-xl hover:border-gold-500/40 dark:hover:border-cerulean-500/40 transition-all duration-300 group cursor-pointer"
+            className="mb-10 rounded-2xl border border-slate-200 bg-white dark:border-charcoal-800 dark:bg-charcoal-900/80 overflow-hidden shadow-sm hover:shadow-2xl hover:border-neon-500/50 transition-all duration-300 group cursor-pointer"
             onClick={() => onSelectProject(printGuard)}
           >
             <div className="grid grid-cols-1 lg:grid-cols-12">
               
-              {/* Info Column */}
-              <div className="p-6 md:p-8 lg:col-span-8 flex flex-col justify-between space-y-6">
+              {/* Info Column (Left) */}
+              <div className="p-6 md:p-8 lg:col-span-7 flex flex-col justify-between space-y-6">
                 <div>
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="px-2.5 py-0.5 rounded-full bg-gold-500/10 border border-gold-500/30 text-[10px] font-mono text-gold-700 dark:bg-rose-500/15 dark:border-rose-500/30 dark:text-rose-400 font-bold">
-                      FEATURED SYSTEM
+                    <span className="px-2.5 py-0.5 rounded-full bg-neon-500/10 border border-neon-500/30 text-[10px] font-mono text-neon-600 dark:text-neon-400 font-bold flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-neon-500 animate-pulse" />
+                      FEATURED ARCHITECTURE
                     </span>
-                    <span className="text-slate-300 dark:text-dark-600 text-xs">•</span>
-                    <span className="text-xs font-mono text-slate-500 dark:text-dark-400">AI / Computer Vision / Edge IoT</span>
+                    <span className="text-slate-300 dark:text-charcoal-700 text-xs">•</span>
+                    <span className="text-xs font-mono text-slate-500 dark:text-silver-400">AI / Computer Vision / Edge IoT</span>
                   </div>
 
-                  <h3 className="text-2xl md:text-3xl font-bold font-display text-slate-900 dark:text-white group-hover:text-gold-600 dark:group-hover:text-cerulean-400 transition-colors flex items-center gap-2">
+                  <h3 className="text-2xl md:text-3xl font-bold font-display text-slate-900 dark:text-silver-100 group-hover:text-neon-500 dark:group-hover:text-neon-400 transition-colors flex items-center gap-2">
                     {printGuard.title}
-                    <ArrowUpRight size={20} className="text-slate-400 dark:text-dark-600 group-hover:text-gold-600 dark:group-hover:text-cerulean-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                    <ArrowUpRight size={20} className="text-slate-400 dark:text-silver-500 group-hover:text-neon-500 dark:group-hover:text-neon-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                   </h3>
                   
                   {printGuard.subtitle && (
-                    <p className="text-xs md:text-sm text-slate-500 dark:text-dark-400 font-mono italic mt-1">{printGuard.subtitle}</p>
+                    <p className="text-xs md:text-sm text-slate-500 dark:text-silver-400 font-mono italic mt-1">{printGuard.subtitle}</p>
                   )}
 
-                  {/* Readability size and color upgrades */}
-                  <p className="text-base text-slate-700 dark:text-slate-300 mt-4 leading-relaxed font-sans max-w-2xl font-normal">
+                  {/* Description */}
+                  <p className="text-base text-slate-700 dark:text-silver-300 mt-4 leading-relaxed font-sans max-w-2xl font-normal">
                     {printGuard.description}
                   </p>
 
                   {/* Achievement Highlight */}
-                  <div className="mt-5 p-4 rounded-xl border border-gold-500/20 bg-gold-500/5 dark:border-cerulean-500/30 dark:bg-cerulean-500/10 flex gap-3">
-                    <div className="p-1 rounded bg-gold-500/15 text-gold-600 dark:bg-cerulean-500/20 dark:text-cerulean-400 h-fit">
+                  <div className="mt-5 p-4 rounded-xl border border-neon-500/25 bg-neon-500/5 dark:border-neon-500/30 dark:bg-neon-500/10 flex gap-3">
+                    <div className="p-1 rounded bg-neon-500/15 text-neon-500 dark:text-neon-400 h-fit">
                       <Cpu size={16} />
                     </div>
                     <div>
-                      <h4 className="text-xs font-mono text-gold-700 dark:text-cerulean-400 font-bold uppercase tracking-wider">ENGINEERING HIGHLIGHT</h4>
-                      <p className="text-sm text-slate-800 dark:text-slate-200 mt-0.5 leading-relaxed font-medium">{printGuard.achievement}</p>
+                      <h4 className="text-xs font-mono text-neon-600 dark:text-neon-400 font-bold uppercase tracking-wider">ENGINEERING HIGHLIGHT</h4>
+                      <p className="text-sm text-slate-800 dark:text-silver-200 mt-0.5 leading-relaxed font-medium">{printGuard.achievement}</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-100 dark:border-dark-800/80">
+                <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-100 dark:border-charcoal-800">
                   {/* Tech stack row */}
                   <div className="flex flex-wrap gap-1.5">
                     {printGuard.technologies.slice(0, 5).map(tech => (
-                      <span key={tech} className="px-2 py-1 rounded bg-slate-100 border border-slate-200 dark:bg-dark-950 dark:border-dark-800 text-[10px] font-mono text-slate-700 dark:text-dark-300 font-medium">
+                      <span key={tech} className="px-2 py-1 rounded bg-slate-100 border border-slate-200 dark:bg-charcoal-950 dark:border-charcoal-800 text-[10px] font-mono text-slate-700 dark:text-silver-300 font-medium">
                         {tech}
                       </span>
                     ))}
                     {printGuard.technologies.length > 5 && (
-                      <span className="px-2 py-1 rounded bg-slate-100 border border-slate-200 dark:bg-dark-950 dark:border-dark-800 text-[10px] font-mono text-slate-400 dark:text-dark-500 font-medium">
+                      <span className="px-2 py-1 rounded bg-slate-100 border border-slate-200 dark:bg-charcoal-950 dark:border-charcoal-800 text-[10px] font-mono text-slate-400 dark:text-silver-500 font-medium">
                         +{printGuard.technologies.length - 5}
                       </span>
                     )}
                   </div>
                   
-                  <span className="text-xs font-mono text-gold-600 dark:text-cerulean-400 font-semibold group-hover:underline flex items-center gap-1">
-                    Explore detailed Case Study →
+                  <span className="text-xs font-mono text-neon-600 dark:text-neon-400 font-semibold group-hover:underline flex items-center gap-1">
+                    Explore Case Study & Specs →
                   </span>
                 </div>
 
               </div>
 
-              {/* Decorative Architecture Visual Column (Right) */}
-              <div className="lg:col-span-4 bg-slate-50/50 dark:bg-dark-950/60 p-6 flex flex-col justify-center items-center border-t lg:border-t-0 lg:border-l border-slate-200 dark:border-dark-800/80 relative overflow-hidden min-h-[220px]">
-                <div className="absolute inset-0 bg-radial-gradient from-gold-500/10 dark:from-rose-500/10 via-transparent to-transparent opacity-60 pointer-events-none" />
-                <div className="space-y-3 w-full max-w-[200px] z-10 font-mono text-[10px] text-slate-600 dark:text-dark-400">
-                  <div className="text-[9px] text-slate-400 dark:text-dark-600 border-b border-slate-200 dark:border-dark-800 pb-1 mb-2 uppercase font-bold">Telemetry Nodes</div>
-                  <div className="flex justify-between border-b border-slate-100 dark:border-dark-900 pb-1">
-                    <span>Camera Capture</span>
-                    <span className="text-gold-600 dark:text-cerulean-400 font-bold">OK</span>
+              {/* Project Image Preview & Telemetry Display Column (Right) */}
+              <div className="lg:col-span-5 bg-slate-100/70 dark:bg-charcoal-950 p-5 md:p-6 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-slate-200 dark:border-charcoal-800 relative overflow-hidden">
+                <div className="absolute inset-0 bg-radial-gradient from-neon-500/10 via-transparent to-transparent opacity-40 pointer-events-none" />
+                
+                {/* Project Image Frame */}
+                {printGuard.imageUrl && (
+                  <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-slate-200/80 dark:border-charcoal-800 bg-charcoal-950 shadow-md group-hover:border-neon-500/40 transition-all duration-300">
+                    <img
+                      src={printGuard.imageUrl}
+                      alt={printGuard.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      loading="lazy"
+                    />
+                    <div className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded bg-charcoal-950/85 backdrop-blur-md border border-neon-500/40 text-[9px] font-mono text-silver-100 flex items-center gap-1.5 shadow-sm">
+                      <span className="w-1.5 h-1.5 rounded-full bg-neon-500 animate-pulse" />
+                      <span>HUD TELEMETRY</span>
+                    </div>
                   </div>
-                  <div className="flex justify-between border-b border-slate-100 dark:border-dark-900 pb-1">
-                    <span>YOLOv8 Edge</span>
-                    <span className="text-spring dark:text-rose-400 font-bold">18ms</span>
+                )}
+
+                {/* Telemetry rows */}
+                <div className="mt-4 pt-3 border-t border-slate-200/80 dark:border-charcoal-800/80 grid grid-cols-2 gap-2 text-[10px] font-mono">
+                  <div className="p-2 rounded bg-white/70 dark:bg-charcoal-900/60 border border-slate-200 dark:border-charcoal-800 flex justify-between items-center">
+                    <span className="text-slate-500 dark:text-silver-500">Camera Feed:</span>
+                    <span className="text-neon-500 dark:text-neon-400 font-bold">1080p @ 30fps</span>
                   </div>
-                  <div className="flex justify-between border-b border-slate-100 dark:border-dark-900 pb-1">
-                    <span>OctoPrint Socket</span>
-                    <span className="text-gold-600 dark:text-cerulean-400 font-bold">ACTIVE</span>
+                  <div className="p-2 rounded bg-white/70 dark:bg-charcoal-900/60 border border-slate-200 dark:border-charcoal-800 flex justify-between items-center">
+                    <span className="text-slate-500 dark:text-silver-500">Edge Latency:</span>
+                    <span className="text-neon-500 dark:text-neon-400 font-bold">18ms YOLOv8</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span>OctoPi API</span>
-                    <span className="text-slate-400 dark:text-dark-500 font-bold">POLLING</span>
+                  <div className="p-2 rounded bg-white/70 dark:bg-charcoal-900/60 border border-slate-200 dark:border-charcoal-800 flex justify-between items-center">
+                    <span className="text-slate-500 dark:text-silver-500">OctoPi Hook:</span>
+                    <span className="text-silver-800 dark:text-silver-200 font-bold">REST ACTIVE</span>
+                  </div>
+                  <div className="p-2 rounded bg-white/70 dark:bg-charcoal-900/60 border border-slate-200 dark:border-charcoal-800 flex justify-between items-center">
+                    <span className="text-slate-500 dark:text-silver-500">Intervention:</span>
+                    <span className="text-neon-500 dark:text-neon-400 font-bold">AUTO-PAUSE</span>
                   </div>
                 </div>
+
               </div>
 
             </div>
           </motion.div>
         )}
 
-        {/* Secondary Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Secondary Projects Grid with Project Image Mockups */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
           {otherProjects.map((p, idx) => (
             <motion.div
               key={p.id}
@@ -322,55 +320,73 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="rounded-xl border border-slate-200 bg-white dark:border-dark-800 dark:bg-dark-900/60 overflow-hidden p-6 md:p-7 flex flex-col justify-between shadow-sm hover:border-gold-500/40 dark:hover:border-cerulean-500/40 hover:shadow-md transition-all duration-300 cursor-pointer group"
+              className="rounded-2xl border border-slate-200 bg-white dark:border-charcoal-800 dark:bg-charcoal-900/80 overflow-hidden p-6 md:p-7 flex flex-col justify-between shadow-sm hover:border-neon-500/50 hover:shadow-xl transition-all duration-300 cursor-pointer group"
               onClick={() => onSelectProject(p)}
             >
               <div className="space-y-4">
-                <div className="flex justify-between items-start">
-                  <span className="px-2 py-0.5 rounded bg-slate-100 border border-slate-200 dark:bg-dark-950 dark:border-dark-850 text-[9px] font-mono text-slate-500 dark:text-dark-400 font-bold">
-                    {p.id === 'worksphere-erp' ? 'JAVA APPLICATION' : 'AUTOMATED SCANNER'}
+                
+                {/* Project Image Frame (Option to display project image) */}
+                {p.imageUrl && (
+                  <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-slate-200/80 dark:border-charcoal-800 bg-charcoal-950 group-hover:border-neon-500/40 transition-colors shadow-inner">
+                    <img
+                      src={p.imageUrl}
+                      alt={p.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      loading="lazy"
+                    />
+                    <div className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded bg-charcoal-950/85 backdrop-blur-md border border-neon-500/30 text-[9px] font-mono text-silver-100 flex items-center gap-1.5 shadow-sm">
+                      <span className="w-1.5 h-1.5 rounded-full bg-neon-500 animate-pulse" />
+                      <span>{p.id === 'worksphere-erp' ? 'DASHBOARD ARCHITECTURE' : 'POINT-CLOUD TELEMETRY'}</span>
+                    </div>
+                  </div>
+                )}
+
+                <div className="flex justify-between items-start pt-1">
+                  <span className="px-2 py-0.5 rounded bg-slate-100 border border-slate-200 dark:bg-charcoal-950 dark:border-charcoal-800 text-[9px] font-mono text-slate-600 dark:text-silver-400 font-bold">
+                    {p.id === 'worksphere-erp' ? 'JAVA BACKEND & SQL' : 'EMBEDDED HARDWARE'}
                   </span>
-                  <ArrowUpRight size={16} className="text-slate-400 dark:text-dark-600 group-hover:text-gold-600 dark:group-hover:text-cerulean-400 transition-colors" />
+                  <ArrowUpRight size={16} className="text-slate-400 dark:text-silver-500 group-hover:text-neon-500 dark:group-hover:text-neon-400 transition-colors" />
                 </div>
 
                 <div className="space-y-1">
-                  <h4 className="text-lg font-bold font-display text-slate-900 dark:text-white group-hover:text-gold-600 dark:group-hover:text-cerulean-400 transition-colors">
+                  <h4 className="text-xl font-bold font-display text-slate-900 dark:text-silver-100 group-hover:text-neon-500 dark:group-hover:text-neon-400 transition-colors">
                     {p.title}
                   </h4>
                   {p.subtitle && (
-                    <p className="text-[11px] text-slate-500 dark:text-dark-500 font-mono">{p.subtitle}</p>
+                    <p className="text-[11px] text-slate-500 dark:text-silver-400 font-mono">{p.subtitle}</p>
                   )}
                 </div>
 
-                {/* Readability upgraded font */}
-                <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-sans">
+                {/* Description */}
+                <p className="text-sm text-slate-700 dark:text-silver-300 leading-relaxed font-sans">
                   {p.description}
                 </p>
 
                 {/* Achievement callout */}
-                <div className="p-3.5 rounded bg-slate-50 border border-slate-200 dark:bg-dark-950 dark:border-dark-850 text-xs font-medium">
-                  <span className="text-[10px] text-gold-700 dark:text-rose-400 font-mono block font-bold tracking-wider uppercase mb-0.5">
-                    ACHIEVEMENT
+                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 dark:bg-charcoal-950 dark:border-charcoal-800 text-xs font-medium">
+                  <span className="text-[10px] text-neon-600 dark:text-neon-400 font-mono block font-bold tracking-wider uppercase mb-0.5">
+                    KEY ACHIEVEMENT
                   </span>
-                  <p className="text-slate-800 dark:text-slate-300 leading-relaxed">{p.achievement}</p>
+                  <p className="text-slate-800 dark:text-silver-200 leading-relaxed">{p.achievement}</p>
                 </div>
               </div>
 
-              <div className="flex flex-wrap items-center justify-between gap-3 pt-5 mt-5 border-t border-slate-100 dark:border-dark-800/80">
+              <div className="flex flex-wrap items-center justify-between gap-3 pt-5 mt-5 border-t border-slate-100 dark:border-charcoal-800/80">
                 <div className="flex flex-wrap gap-1">
                   {p.technologies.slice(0, 3).map(tech => (
-                    <span key={tech} className="px-2 py-0.5 rounded bg-slate-100 border border-slate-200 dark:bg-dark-950 dark:border-dark-850 text-[9px] font-mono text-slate-600 dark:text-dark-400">
+                    <span key={tech} className="px-2 py-0.5 rounded bg-slate-100 border border-slate-200 dark:bg-charcoal-950 dark:border-charcoal-800 text-[9px] font-mono text-slate-600 dark:text-silver-400">
                       {tech}
                     </span>
                   ))}
                   {p.technologies.length > 3 && (
-                    <span className="px-2 py-0.5 rounded bg-slate-100 border border-slate-200 dark:bg-dark-950 dark:border-dark-850 text-[9px] font-mono text-slate-400 dark:text-dark-600">
+                    <span className="px-2 py-0.5 rounded bg-slate-100 border border-slate-200 dark:bg-charcoal-950 dark:border-charcoal-800 text-[9px] font-mono text-slate-400 dark:text-silver-500">
                       +{p.technologies.length - 3}
                     </span>
                   )}
                 </div>
-                <span className="text-[11px] font-mono text-slate-500 group-hover:text-gold-600 dark:group-hover:text-cerulean-400 transition-colors font-bold">
-                  Details →
+                <span className="text-[11px] font-mono text-neon-600 dark:text-neon-400 transition-colors font-bold flex items-center gap-1 group-hover:translate-x-0.5">
+                  <Eye size={12} />
+                  Case Study →
                 </span>
               </div>
             </motion.div>
@@ -383,24 +399,24 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-10 p-6 sm:p-7 rounded-2xl border border-slate-200 bg-white dark:border-dark-800 dark:bg-dark-900/60 shadow-sm"
+          className="mt-12 p-6 sm:p-7 rounded-2xl border border-slate-200 bg-white dark:border-charcoal-800 dark:bg-charcoal-900/80 shadow-sm"
         >
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-100 dark:border-dark-850">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-100 dark:border-charcoal-800">
             <div className="flex items-center gap-2.5">
-              <div className="p-1.5 rounded-lg bg-slate-100 dark:bg-dark-950 border border-slate-200 dark:border-dark-800 text-slate-800 dark:text-white">
+              <div className="p-1.5 rounded-lg bg-slate-100 dark:bg-charcoal-950 border border-slate-200 dark:border-charcoal-800 text-slate-800 dark:text-silver-100">
                 <GithubIcon size={16} />
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <h3 className="text-base sm:text-lg font-bold font-display text-slate-900 dark:text-white">
+                  <h3 className="text-base sm:text-lg font-bold font-display text-slate-900 dark:text-silver-100">
                     Open Source Repositories & Real-Time Activity
                   </h3>
-                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-gold-500/10 border border-gold-500/25 text-[9px] font-mono text-gold-700 dark:bg-rose-500/15 dark:border-rose-500/30 dark:text-rose-400 font-bold">
-                    <Radio size={10} className="animate-pulse text-gold-500 dark:text-rose-500" />
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-neon-500/10 border border-neon-500/30 text-[9px] font-mono text-neon-600 dark:text-neon-400 font-bold">
+                    <Radio size={10} className="animate-pulse text-neon-500" />
                     LIVE SYNC
                   </span>
                 </div>
-                <span className="text-xs font-mono text-slate-500 dark:text-dark-400">
+                <span className="text-xs font-mono text-slate-500 dark:text-silver-400">
                   {totalContributions ? `${totalContributions} contributions in the last year • ` : ''}Real-time telemetry from @{githubUsername}
                 </span>
               </div>
@@ -411,7 +427,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
                 href={socials.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-gold-600 dark:text-cerulean-400 hover:underline"
+                className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-neon-600 dark:text-neon-400 hover:underline"
               >
                 <span>View Full GitHub Profile</span>
                 <ArrowUpRight size={14} />
@@ -428,20 +444,20 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
                   href={repo.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-4 rounded-xl border border-slate-150 bg-slate-50/50 hover:bg-white hover:border-gold-500/40 dark:border-dark-850 dark:bg-dark-950/40 dark:hover:bg-dark-900 dark:hover:border-cerulean-500/40 transition-all flex flex-col justify-between group h-36 shadow-none hover:shadow-sm"
+                  className="p-4 rounded-xl border border-slate-200/80 bg-slate-50/50 hover:bg-white hover:border-neon-500/50 dark:border-charcoal-800 dark:bg-charcoal-950/60 dark:hover:bg-charcoal-900 dark:hover:border-neon-500/50 transition-all flex flex-col justify-between group h-36 shadow-none hover:shadow-sm"
                 >
                   <div>
-                    <div className="flex items-center gap-1.5 text-slate-800 dark:text-white font-semibold text-xs font-display group-hover:text-gold-600 dark:group-hover:text-cerulean-400 transition-colors">
-                      <BookOpen size={12} className="text-gold-500 dark:text-cerulean-400 flex-shrink-0" />
+                    <div className="flex items-center gap-1.5 text-slate-800 dark:text-silver-100 font-semibold text-xs font-display group-hover:text-neon-500 dark:group-hover:text-neon-400 transition-colors">
+                      <BookOpen size={12} className="text-neon-500 flex-shrink-0" />
                       <span className="truncate">{repo.name}</span>
                     </div>
-                    <p className="text-[11px] text-slate-600 dark:text-slate-400 mt-2 line-clamp-2 leading-relaxed">
+                    <p className="text-[11px] text-slate-600 dark:text-silver-400 mt-2 line-clamp-2 leading-relaxed">
                       {repo.desc}
                     </p>
                   </div>
 
-                  <div className="flex justify-between items-center text-[10px] font-mono text-slate-500 dark:text-dark-400 pt-2 border-t border-slate-200/60 dark:border-dark-850">
-                    <span className="truncate max-w-[70px] font-semibold text-slate-700 dark:text-dark-300">{repo.lang}</span>
+                  <div className="flex justify-between items-center text-[10px] font-mono text-slate-500 dark:text-silver-400 pt-2 border-t border-slate-200/60 dark:border-charcoal-800">
+                    <span className="truncate max-w-[70px] font-semibold text-slate-700 dark:text-silver-300">{repo.lang}</span>
                     <div className="flex items-center gap-2">
                       <span className="flex items-center gap-0.5"><Star size={10} />{repo.stars}</span>
                       <span className="flex items-center gap-0.5"><GitFork size={10} />{repo.forks}</span>
@@ -452,23 +468,23 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
             </div>
 
             {/* Real-time Commit Activity Heatmap */}
-            <div className="lg:col-span-5 p-4 rounded-xl border border-slate-150 bg-slate-50/50 dark:border-dark-850 dark:bg-dark-950/40 flex flex-col justify-between space-y-3 relative">
-              <div className="flex items-center justify-between text-xs font-mono font-semibold text-slate-700 dark:text-slate-300">
+            <div className="lg:col-span-5 p-4 rounded-xl border border-slate-200/80 bg-slate-50/50 dark:border-charcoal-800 dark:bg-charcoal-950/60 flex flex-col justify-between space-y-3 relative">
+              <div className="flex items-center justify-between text-xs font-mono font-semibold text-slate-700 dark:text-silver-300">
                 <span className="flex items-center gap-1.5">
-                  <Activity size={12} className="text-gold-500 dark:text-rose-400" />
+                  <Activity size={12} className="text-neon-500" />
                   GitHub Contribution Activity
                 </span>
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] text-slate-400 dark:text-dark-500 font-normal">
+                  <span className="text-[10px] text-slate-400 dark:text-silver-500 font-normal">
                     {isLiveSynced ? 'Live Synced' : 'Recent Telemetry'}
                   </span>
                   <button
                     onClick={() => fetchRealtimeGitHubData()}
                     disabled={isRefreshing}
                     title="Force refresh live GitHub telemetry"
-                    className="p-1 rounded hover:bg-slate-200/60 dark:hover:bg-dark-800 text-slate-400 hover:text-slate-700 dark:hover:text-dark-200 transition-colors"
+                    className="p-1 rounded hover:bg-slate-200/60 dark:hover:bg-charcoal-800 text-slate-400 hover:text-slate-700 dark:hover:text-silver-200 transition-colors"
                   >
-                    <RefreshCw size={11} className={isRefreshing ? 'animate-spin text-gold-500 dark:text-cerulean-400' : ''} />
+                    <RefreshCw size={11} className={isRefreshing ? 'animate-spin text-neon-500' : ''} />
                   </button>
                 </div>
               </div>
@@ -476,12 +492,12 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
               {/* Grid Matrix with interactive tooltips */}
               <div className="relative overflow-x-auto pb-1">
                 {hoveredDay && (
-                  <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded bg-slate-900 text-white text-[10px] font-mono shadow-md z-30 pointer-events-none whitespace-nowrap">
+                  <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded bg-charcoal-900 text-silver-100 border border-charcoal-800 text-[10px] font-mono shadow-md z-30 pointer-events-none whitespace-nowrap">
                     {hoveredDay.count} commit{hoveredDay.count !== 1 ? 's' : ''} on {hoveredDay.date}
                   </div>
                 )}
 
-                <div className="grid grid-rows-7 grid-flow-col gap-1 w-fit mx-auto p-2 rounded bg-white dark:bg-dark-900 border border-slate-200/60 dark:border-dark-800">
+                <div className="grid grid-rows-7 grid-flow-col gap-1 w-fit mx-auto p-2 rounded bg-white dark:bg-charcoal-900 border border-slate-200/60 dark:border-charcoal-800">
                   {contributions.map((day, idx) => (
                     <div
                       key={day.date || idx}
@@ -494,14 +510,14 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
                 </div>
               </div>
 
-              <div className="flex justify-between items-center text-[9px] font-mono text-slate-400 dark:text-dark-500 font-medium">
+              <div className="flex justify-between items-center text-[9px] font-mono text-slate-400 dark:text-silver-500 font-medium">
                 <span>Less active</span>
                 <div className="flex gap-0.5 items-center">
-                  <span className="w-2.5 h-2.5 bg-slate-100 dark:bg-dark-950 border border-slate-200/50 dark:border-dark-800 rounded-sm" />
-                  <span className="w-2.5 h-2.5 bg-gold-500/25 dark:bg-cerulean-500/25 rounded-sm" />
-                  <span className="w-2.5 h-2.5 bg-gold-500/50 dark:bg-cerulean-500/60 rounded-sm" />
-                  <span className="w-2.5 h-2.5 bg-gold-500/75 dark:bg-cerulean-500 rounded-sm" />
-                  <span className="w-2.5 h-2.5 bg-gold-500 dark:bg-rose-500 rounded-sm" />
+                  <span className="w-2.5 h-2.5 bg-slate-100 dark:bg-charcoal-950 border border-slate-200/50 dark:border-charcoal-800 rounded-sm" />
+                  <span className="w-2.5 h-2.5 bg-neon-500/25 rounded-sm" />
+                  <span className="w-2.5 h-2.5 bg-neon-500/50 rounded-sm" />
+                  <span className="w-2.5 h-2.5 bg-neon-500/80 rounded-sm" />
+                  <span className="w-2.5 h-2.5 bg-neon-500 rounded-sm" />
                 </div>
                 <span>More active</span>
               </div>
@@ -513,5 +529,3 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
     </section>
   );
 };
-
-

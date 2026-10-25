@@ -23,6 +23,8 @@ export interface Project {
   achievement: string;
   githubUrl: string;
   liveUrl?: string;
+  imageUrl?: string;
+  screenshots?: string[];
   detailedDescription?: string;
   problem: string;
   solution: string;
@@ -134,6 +136,10 @@ export const portfolioData: PortfolioData = {
       achievement: "Successfully deploying real-time computer vision inference onto edge hardware using Raspberry Pi and automating print-failure detection to reduce material waste.",
       githubUrl: "https://github.com/warcraft433/printguard-ai",
       liveUrl: "",
+      imageUrl: "/projects/printguard-ai.svg",
+      screenshots: [
+        "/projects/printguard-ai.svg"
+      ],
       problem: "3D printing is a time-consuming process prone to sudden failure (e.g., spaghetti effect, detaching from build plate), leading to significant material waste and potential damage to equipment if left unmonitored.",
       solution: "Implemented an autonomous camera-monitoring system that runs real-time YOLOv8 object detection on a Raspberry Pi. It continuously infers the state of the print and triggers immediate pause signals via OctoPrint's REST API if failure anomalies are detected.",
       architectureNodes: [
@@ -165,6 +171,10 @@ export const portfolioData: PortfolioData = {
       achievement: "Designing an object-oriented schema and reliable database integration supporting structured CRUD operations and employee lifecycle management.",
       githubUrl: "https://github.com/warcraft433/worksphere-erp",
       liveUrl: "",
+      imageUrl: "/projects/worksphere-erp.svg",
+      screenshots: [
+        "/projects/worksphere-erp.svg"
+      ],
       problem: "Organizations require structured, reliable software to manage employee records, department allocations, and operational CRUD workflows efficiently with database integrity.",
       solution: "Developed a robust Java enterprise management application implementing core OOP principles, JDBC/MySQL database persistence, and efficient modular architecture for corporate workflow operations.",
       challenges: [
@@ -186,6 +196,10 @@ export const portfolioData: PortfolioData = {
       achievement: "Bridging embedded microcontroller hardware with precision stepper motor motion to capture and export point-cloud data (.xyz).",
       githubUrl: "https://github.com/warcraft433/ir-3d-scanner",
       liveUrl: "",
+      imageUrl: "/projects/ir-3d-scanner.svg",
+      screenshots: [
+        "/projects/ir-3d-scanner.svg"
+      ],
       problem: "Commercial 3D laser scanners are cost-prohibitive for hobbyists and educational spatial measurement applications.",
       solution: "Engineered an automated scanning platform utilizing an Arduino UNO, Sharp IR distance sensor, CNC Shield with A4988 motor drivers, and NEMA 17 stepper motors to systematically measure surface coordinates and log point-cloud files onto an SD card.",
       challenges: [

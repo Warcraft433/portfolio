@@ -32,22 +32,22 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
   };
 
   return (
-    <section id="contact" className="py-24 border-t border-slate-150 dark:border-dark-900 bg-slate-50/20 dark:bg-dark-950/20 relative">
+    <section id="contact" className="py-24 border-t border-slate-200/80 dark:border-charcoal-800 bg-slate-50/20 dark:bg-charcoal-950/40 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Title */}
         <div className="text-left mb-12">
-          <span className="text-xs text-gold-600 dark:text-cerulean-400 font-mono font-bold uppercase tracking-wider">05 // COMMUNICATIONS</span>
-          <h2 className="text-3xl md:text-4xl font-bold font-display text-slate-900 dark:text-white mt-1">Let's Build Something</h2>
-          <div className="h-0.5 w-12 bg-gold-500 dark:bg-cerulean-500 mt-2" />
+          <span className="text-xs text-neon-500 font-mono font-bold uppercase tracking-wider">05 // COMMUNICATIONS</span>
+          <h2 className="text-3xl md:text-4xl font-bold font-display text-slate-900 dark:text-silver-100 mt-1">Let's Build Something</h2>
+          <div className="h-0.5 w-12 bg-neon-500 mt-2 shadow-[0_0_8px_rgba(255,30,56,0.6)]" />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          {/* Left Side: Contact Cards & Info - Readability upgraded */}
+          {/* Left Side: Contact Cards & Info */}
           <div className="lg:col-span-5 space-y-6">
-            <p className="text-base text-slate-600 dark:text-dark-400 leading-relaxed font-sans font-medium">
-              I am open to discuss <strong className="text-slate-900 dark:text-white">Java Backend Developer</strong>, <strong className="text-slate-900 dark:text-white">Java Full Stack</strong>, and software engineering opportunities in Bengaluru and across India. Let's connect!
+            <p className="text-base text-slate-600 dark:text-silver-300 leading-relaxed font-sans font-medium">
+              I am open to discuss <strong className="text-slate-900 dark:text-silver-100">Java Backend Developer</strong>, <strong className="text-slate-900 dark:text-silver-100">Java Full Stack</strong>, and software engineering opportunities in Bengaluru and across India. Let's connect!
             </p>
 
             <div className="space-y-3 font-mono text-xs">
@@ -55,14 +55,14 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
               {socials.email && (
                 <a
                   href={socials.email}
-                  className="flex items-center gap-3 p-4 rounded-xl border border-slate-200 bg-white hover:border-gold-500/40 hover:bg-slate-50/50 dark:border-dark-800 dark:bg-dark-900/40 dark:hover:border-cerulean-500/40 dark:hover:bg-dark-900 transition-all duration-300 group shadow-sm"
+                  className="flex items-center gap-3 p-4 rounded-xl border border-slate-200 bg-white hover:border-neon-500/50 hover:bg-slate-50/50 dark:border-charcoal-800 dark:bg-charcoal-900/40 dark:hover:border-neon-500/50 dark:hover:bg-charcoal-900 transition-all duration-300 group shadow-sm"
                 >
-                  <div className="p-2 rounded bg-slate-50 border border-slate-200 dark:bg-dark-950 dark:border-dark-850 text-gold-600 dark:text-cerulean-400 group-hover:bg-gold-500 group-hover:text-slate-950 dark:group-hover:bg-cerulean-500 dark:group-hover:text-black transition-colors">
+                  <div className="p-2 rounded bg-slate-50 border border-slate-200 dark:bg-charcoal-950 dark:border-charcoal-800 text-neon-500 group-hover:bg-neon-500 group-hover:text-white transition-colors">
                     <Mail size={16} />
                   </div>
                   <div>
-                    <span className="text-[10px] text-slate-400 dark:text-dark-500 block font-bold">OFFICIAL EMAIL</span>
-                    <span className="text-slate-800 dark:text-white text-xs font-semibold">{socials.email.replace('mailto:', '')}</span>
+                    <span className="text-[10px] text-slate-400 dark:text-silver-500 block font-bold">OFFICIAL EMAIL</span>
+                    <span className="text-slate-800 dark:text-silver-200 text-xs font-semibold">{socials.email.replace('mailto:', '')}</span>
                   </div>
                 </a>
               )}
@@ -71,14 +71,14 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
               {socials.phone && (
                 <a
                   href={`tel:${socials.phone.replace(/\s+/g, '')}`}
-                  className="flex items-center gap-3 p-4 rounded-xl border border-slate-200 bg-white hover:border-gold-500/40 hover:bg-slate-50/50 dark:border-dark-800 dark:bg-dark-900/40 dark:hover:border-cerulean-500/40 dark:hover:bg-dark-900 transition-all duration-300 group shadow-sm"
+                  className="flex items-center gap-3 p-4 rounded-xl border border-slate-200 bg-white hover:border-neon-500/50 hover:bg-slate-50/50 dark:border-charcoal-800 dark:bg-charcoal-900/40 dark:hover:border-neon-500/50 dark:hover:bg-charcoal-900 transition-all duration-300 group shadow-sm"
                 >
-                  <div className="p-2 rounded bg-slate-50 border border-slate-200 dark:bg-dark-950 dark:border-dark-850 text-emerald-500 dark:text-cerulean-400 group-hover:bg-emerald-500 group-hover:text-white dark:group-hover:bg-cerulean-500 dark:group-hover:text-black transition-colors">
+                  <div className="p-2 rounded bg-slate-50 border border-slate-200 dark:bg-charcoal-950 dark:border-charcoal-800 text-silver-400 dark:text-silver-300 group-hover:bg-neon-500 group-hover:text-white transition-colors">
                     <Phone size={16} />
                   </div>
                   <div>
-                    <span className="text-[10px] text-slate-400 dark:text-dark-500 block font-bold">CONTACT PHONE</span>
-                    <span className="text-slate-800 dark:text-white text-xs font-semibold">{socials.phone}</span>
+                    <span className="text-[10px] text-slate-400 dark:text-silver-500 block font-bold">CONTACT PHONE</span>
+                    <span className="text-slate-800 dark:text-silver-200 text-xs font-semibold">{socials.phone}</span>
                   </div>
                 </a>
               )}
@@ -89,14 +89,14 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
                   href={socials.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-4 rounded-xl border border-slate-200 bg-white hover:border-gold-500/40 hover:bg-slate-50/50 dark:border-dark-800 dark:bg-dark-900/40 dark:hover:border-cerulean-500/40 dark:hover:bg-dark-900 transition-all duration-300 group shadow-sm"
+                  className="flex items-center gap-3 p-4 rounded-xl border border-slate-200 bg-white hover:border-neon-500/50 hover:bg-slate-50/50 dark:border-charcoal-800 dark:bg-charcoal-900/40 dark:hover:border-neon-500/50 dark:hover:bg-charcoal-900 transition-all duration-300 group shadow-sm"
                 >
-                  <div className="p-2 rounded bg-slate-50 border border-slate-200 dark:bg-dark-950 dark:border-dark-850 text-[#0077b5] dark:text-cerulean-400 group-hover:bg-[#0077b5] group-hover:text-white dark:group-hover:bg-cerulean-500 dark:group-hover:text-black transition-colors">
+                  <div className="p-2 rounded bg-slate-50 border border-slate-200 dark:bg-charcoal-950 dark:border-charcoal-800 text-silver-400 dark:text-silver-300 group-hover:bg-neon-500 group-hover:text-white transition-colors">
                     <LinkedinIcon size={16} />
                   </div>
                   <div>
-                    <span className="text-[10px] text-slate-400 dark:text-dark-500 block font-bold">PROFESSIONAL NETWORK</span>
-                    <span className="text-slate-800 dark:text-white text-xs font-semibold">linkedin.com/in/adarsh-ece</span>
+                    <span className="text-[10px] text-slate-400 dark:text-silver-500 block font-bold">PROFESSIONAL NETWORK</span>
+                    <span className="text-slate-800 dark:text-silver-200 text-xs font-semibold">linkedin.com/in/adarsh-ece</span>
                   </div>
                 </a>
               )}
@@ -107,14 +107,14 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
                   href={socials.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-4 rounded-xl border border-slate-200 bg-white hover:border-gold-500/40 hover:bg-slate-50/50 dark:border-dark-800 dark:bg-dark-900/40 dark:hover:border-cerulean-500/40 dark:hover:bg-dark-900 transition-all duration-300 group shadow-sm"
+                  className="flex items-center gap-3 p-4 rounded-xl border border-slate-200 bg-white hover:border-neon-500/50 hover:bg-slate-50/50 dark:border-charcoal-800 dark:bg-charcoal-900/40 dark:hover:border-neon-500/50 dark:hover:bg-charcoal-900 transition-all duration-300 group shadow-sm"
                 >
-                  <div className="p-2 rounded bg-slate-50 border border-slate-200 dark:bg-dark-950 dark:border-dark-850 text-slate-800 dark:text-white group-hover:bg-slate-800 group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-black transition-colors">
+                  <div className="p-2 rounded bg-slate-50 border border-slate-200 dark:bg-charcoal-950 dark:border-charcoal-800 text-silver-400 dark:text-silver-300 group-hover:bg-neon-500 group-hover:text-white transition-colors">
                     <GithubIcon size={16} />
                   </div>
                   <div>
-                    <span className="text-[10px] text-slate-400 dark:text-dark-500 block font-bold">CODE REPOSITORY</span>
-                    <span className="text-slate-800 dark:text-white text-xs font-semibold">github.com/warcraft433</span>
+                    <span className="text-[10px] text-slate-400 dark:text-silver-500 block font-bold">CODE REPOSITORY</span>
+                    <span className="text-slate-800 dark:text-silver-200 text-xs font-semibold">github.com/warcraft433</span>
                   </div>
                 </a>
               )}
@@ -125,14 +125,14 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
                   href={socials.leetcode}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-4 rounded-xl border border-slate-200 bg-white hover:border-gold-500/40 hover:bg-slate-50/50 dark:border-dark-800 dark:bg-dark-900/40 dark:hover:border-rose-500/40 dark:hover:bg-dark-900 transition-all duration-300 group shadow-sm"
+                  className="flex items-center gap-3 p-4 rounded-xl border border-slate-200 bg-white hover:border-neon-500/50 hover:bg-slate-50/50 dark:border-charcoal-800 dark:bg-charcoal-900/40 dark:hover:border-neon-500/50 dark:hover:bg-charcoal-900 transition-all duration-300 group shadow-sm"
                 >
-                  <div className="p-2 rounded bg-slate-50 border border-slate-200 dark:bg-dark-950 dark:border-dark-850 text-amber-500 dark:text-rose-400 group-hover:bg-amber-500 group-hover:text-white dark:group-hover:bg-rose-500 dark:group-hover:text-white transition-colors">
+                  <div className="p-2 rounded bg-slate-50 border border-slate-200 dark:bg-charcoal-950 dark:border-charcoal-800 text-neon-500 group-hover:bg-neon-500 group-hover:text-white transition-colors">
                     <Trophy size={16} />
                   </div>
                   <div>
-                    <span className="text-[10px] text-slate-400 dark:text-dark-500 block font-bold">PROBLEM SOLVING</span>
-                    <span className="text-slate-800 dark:text-white text-xs font-semibold">leetcode.com/u/warcarft433</span>
+                    <span className="text-[10px] text-slate-400 dark:text-silver-500 block font-bold">PROBLEM SOLVING</span>
+                    <span className="text-slate-800 dark:text-silver-200 text-xs font-semibold">leetcode.com/u/warcarft433</span>
                   </div>
                 </a>
               )}
@@ -142,14 +142,15 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
 
           {/* Right Side: Form */}
           <div className="lg:col-span-7">
-            <form onSubmit={handleSubmit} className="p-6 md:p-8 rounded-2xl border border-slate-200 bg-white dark:border-dark-800 dark:bg-dark-900/60 space-y-4 shadow-md">
-              <div className="text-xs text-slate-400 dark:text-dark-400 font-mono pb-2 border-b border-slate-100 dark:border-dark-800/80 mb-2 font-bold">
+            <form onSubmit={handleSubmit} className="p-6 md:p-8 rounded-2xl border border-slate-200 bg-white dark:border-charcoal-800 dark:bg-charcoal-900/60 space-y-4 shadow-md">
+              <div className="text-xs text-slate-400 dark:text-silver-400 font-mono pb-2 border-b border-slate-100 dark:border-charcoal-800/80 mb-2 font-bold flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-neon-500" />
                 RECIPROCAL ROUTING CONTACT PORT
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label htmlFor="name" className="text-[10px] font-mono text-slate-500 dark:text-dark-400 block uppercase font-bold">Name</label>
+                  <label htmlFor="name" className="text-[10px] font-mono text-slate-500 dark:text-silver-400 block uppercase font-bold">Name</label>
                   <input
                     type="text"
                     id="name"
@@ -157,12 +158,12 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
                     value={formState.name}
                     onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                     placeholder="Enter your name"
-                    className="w-full px-3 py-2.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-900 font-sans text-sm focus:outline-none focus:border-gold-500 dark:focus:border-cerulean-400 focus:bg-white dark:border-dark-800 dark:bg-dark-950 dark:text-white transition-all placeholder:text-slate-400 dark:placeholder:text-dark-600"
+                    className="w-full px-3 py-2.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-900 font-sans text-sm focus:outline-none focus:border-neon-500 focus:bg-white dark:border-charcoal-800 dark:bg-charcoal-950 dark:text-silver-100 transition-all placeholder:text-slate-400 dark:placeholder:text-silver-500"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label htmlFor="email" className="text-[10px] font-mono text-slate-500 dark:text-dark-400 block uppercase font-bold">Email Address</label>
+                  <label htmlFor="email" className="text-[10px] font-mono text-slate-500 dark:text-silver-400 block uppercase font-bold">Email Address</label>
                   <input
                     type="email"
                     id="email"
@@ -170,13 +171,13 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
                     value={formState.email}
                     onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                     placeholder="name@company.com"
-                    className="w-full px-3 py-2.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-900 font-sans text-sm focus:outline-none focus:border-gold-500 dark:focus:border-cerulean-400 focus:bg-white dark:border-dark-800 dark:bg-dark-950 dark:text-white transition-all placeholder:text-slate-400 dark:placeholder:text-dark-600"
+                    className="w-full px-3 py-2.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-900 font-sans text-sm focus:outline-none focus:border-neon-500 focus:bg-white dark:border-charcoal-800 dark:bg-charcoal-950 dark:text-silver-100 transition-all placeholder:text-slate-400 dark:placeholder:text-silver-500"
                   />
                 </div>
               </div>
 
               <div className="space-y-1">
-                <label htmlFor="message" className="text-[10px] font-mono text-slate-500 dark:text-dark-400 block uppercase font-bold">Message</label>
+                <label htmlFor="message" className="text-[10px] font-mono text-slate-500 dark:text-silver-400 block uppercase font-bold">Message</label>
                 <textarea
                   id="message"
                   required
@@ -184,14 +185,14 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
                   value={formState.message}
                   onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                   placeholder="Describe your project or role details..."
-                  className="w-full px-3 py-2.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-900 font-sans text-sm focus:outline-none focus:border-gold-500 dark:focus:border-cerulean-400 focus:bg-white dark:border-dark-800 dark:bg-dark-950 dark:text-white transition-all resize-none placeholder:text-slate-400 dark:placeholder:text-dark-600"
+                  className="w-full px-3 py-2.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-900 font-sans text-sm focus:outline-none focus:border-neon-500 focus:bg-white dark:border-charcoal-800 dark:bg-charcoal-950 dark:text-silver-100 transition-all resize-none placeholder:text-slate-400 dark:placeholder:text-silver-500"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={submitted}
-                className="w-full py-3 rounded-lg bg-gold-500 hover:bg-gold-600 text-slate-950 dark:bg-gradient-to-r dark:from-cerulean-500 dark:to-rose-500 dark:hover:from-cerulean-400 dark:hover:to-rose-400 dark:text-white font-mono text-xs font-bold tracking-wider transition-all flex items-center justify-center gap-2 disabled:bg-emerald-600 shadow-md shadow-gold-950/20 dark:shadow-rose-500/25"
+                className="w-full py-3 rounded-lg bg-neon-500 hover:bg-neon-600 text-white font-mono text-xs font-bold tracking-wider transition-all flex items-center justify-center gap-2 disabled:bg-neon-700 shadow-md shadow-neon-500/25"
               >
                 {submitted ? (
                   <>COMMS ROUTED SUCCESSFUL</>
@@ -213,13 +214,13 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mt-20 p-8 md:p-12 rounded-2xl border border-slate-200 bg-white dark:border-dark-800 dark:bg-dark-900/90 relative overflow-hidden group text-center space-y-6 shadow-md dark:shadow-2xl"
+          className="mt-20 p-8 md:p-12 rounded-2xl border border-slate-200 bg-white dark:border-charcoal-800 dark:bg-charcoal-900/90 relative overflow-hidden group text-center space-y-6 shadow-md dark:shadow-2xl"
         >
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] bg-gold-500/10 dark:bg-cerulean-500/15 rounded-full blur-[80px] pointer-events-none group-hover:scale-110 transition-transform duration-700" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] bg-neon-500/10 rounded-full blur-[80px] pointer-events-none group-hover:scale-110 transition-transform duration-700" />
           
           <div className="space-y-2 z-10 relative">
-            <h3 className="text-xl md:text-2xl font-mono text-gold-600 dark:text-cerulean-400 font-bold">Have a project or opportunity?</h3>
-            <p className="text-2xl md:text-4xl font-bold font-display text-slate-900 dark:text-white max-w-2xl mx-auto tracking-tight">
+            <h3 className="text-xl md:text-2xl font-mono text-neon-500 font-bold">Have a project or opportunity?</h3>
+            <p className="text-2xl md:text-4xl font-bold font-display text-slate-900 dark:text-silver-100 max-w-2xl mx-auto tracking-tight">
               Let's build something meaningful.
             </p>
           </div>
@@ -228,7 +229,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
             {/* View Projects */}
             <button
               onClick={() => handleScrollTo('#projects')}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold-500 hover:bg-gold-600 text-slate-950 dark:bg-cerulean-500 dark:hover:bg-cerulean-400 dark:text-black font-bold text-sm transition-all shadow-md shadow-gold-500/20 dark:shadow-cerulean-500/30 hover:-translate-y-0.5 active:translate-y-0"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-neon-500 hover:bg-neon-600 text-white font-bold text-sm transition-all shadow-md shadow-neon-500/25 hover:-translate-y-0.5 active:translate-y-0"
             >
               View Projects
               <ArrowRight size={16} />
@@ -237,16 +238,16 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
             {/* Open Resume */}
             <button
               onClick={onOpenResume}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white border border-slate-200 hover:border-gold-500/50 hover:bg-slate-50 text-slate-800 dark:bg-dark-900 dark:border-dark-800 dark:hover:border-rose-500/60 dark:hover:text-rose-400 dark:hover:bg-dark-800 dark:text-white font-bold text-sm transition-all shadow-sm"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white border border-slate-200 hover:border-neon-500/50 hover:bg-slate-50 text-slate-800 dark:bg-charcoal-900 dark:border-charcoal-800 dark:hover:border-neon-500/60 dark:hover:text-neon-400 dark:hover:bg-charcoal-850 dark:text-silver-100 font-bold text-sm transition-all shadow-sm"
             >
-              <FileText size={16} className="text-gold-500 dark:text-cerulean-400" />
+              <FileText size={16} className="text-neon-500" />
               Open Resume
             </button>
 
             {/* Direct Connect */}
             <a
               href={socials.email}
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-transparent border border-transparent text-slate-600 hover:text-gold-600 dark:text-dark-400 dark:hover:text-rose-400 font-bold text-sm transition-all"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-transparent border border-transparent text-slate-600 hover:text-neon-500 dark:text-silver-400 dark:hover:text-neon-400 font-bold text-sm transition-all"
             >
               Get In Touch
             </a>

@@ -3,15 +3,15 @@ import { motion } from 'framer-motion';
 
 export const ArchitectureViz: React.FC = () => {
   const nodes = [
-    { id: 'fe', x: 200, y: 30, label: 'Frontend', sub: 'React / TS', color: '#c59828' },
-    { id: 'api', x: 200, y: 110, label: 'REST API', sub: 'JSON / JWT', color: '#5580ba' },
-    { id: 'sb', x: 200, y: 190, label: 'Spring Boot', sub: 'Java Engine', color: '#059669' },
-    { id: 'db', x: 200, y: 270, label: 'Database', sub: 'PostgreSQL', color: '#22416b' },
+    { id: 'fe', x: 200, y: 30, label: 'Frontend', sub: 'React / TS', color: '#ff1e38' },
+    { id: 'api', x: 200, y: 110, label: 'REST API', sub: 'JSON / JWT', color: '#cbd5e1' },
+    { id: 'sb', x: 200, y: 190, label: 'Spring Boot', sub: 'Java Engine', color: '#ff1e38' },
+    { id: 'db', x: 200, y: 270, label: 'Database', sub: 'MySQL / JDBC', color: '#94a3b8' },
     // Secondary Nodes
-    { id: 'ai', x: 60, y: 110, label: 'AI Inference', sub: 'YOLOv8 / Python', color: '#d97706', side: 'left' },
-    { id: 'emb', x: 60, y: 190, label: 'Embedded C', sub: 'Hardware/Sensors', color: '#10b981', side: 'left' },
-    { id: 'git', x: 340, y: 30, label: 'Git / CI', sub: 'GitHub Actions', color: '#2b4670', side: 'right' },
-    { id: 'cloud', x: 340, y: 270, label: 'Vercel / Cloud', sub: 'Deployment', color: '#a855f7', side: 'right' }
+    { id: 'ai', x: 60, y: 110, label: 'AI Inference', sub: 'YOLOv8 / Python', color: '#ff1e38', side: 'left' },
+    { id: 'emb', x: 60, y: 190, label: 'Embedded C', sub: 'Hardware/Sensors', color: '#cbd5e1', side: 'left' },
+    { id: 'git', x: 340, y: 30, label: 'Git / CI', sub: 'GitHub Actions', color: '#94a3b8', side: 'right' },
+    { id: 'cloud', x: 340, y: 270, label: 'Vercel / Cloud', sub: 'Deployment', color: '#ff1e38', side: 'right' }
   ];
 
   const connections = [
@@ -30,15 +30,18 @@ export const ArchitectureViz: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full max-w-[420px] mx-auto p-4 sm:p-5 rounded-2xl border border-slate-200 bg-white/90 dark:border-dark-800 dark:bg-dark-900/90 backdrop-blur-md shadow-lg dark:shadow-2xl overflow-hidden group">
+    <div className="relative w-full max-w-[420px] mx-auto p-4 sm:p-5 rounded-2xl border border-slate-200 bg-white/90 dark:border-charcoal-800 dark:bg-charcoal-900/90 backdrop-blur-md shadow-lg dark:shadow-2xl overflow-hidden group">
       {/* Background radial glow */}
-      <div className="absolute -inset-10 bg-radial-gradient from-gold-500/10 dark:from-cerulean-500/15 via-transparent to-transparent opacity-50 pointer-events-none group-hover:opacity-80 transition-opacity duration-700" />
+      <div className="absolute -inset-10 bg-radial-gradient from-neon-500/10 dark:from-neon-500/15 via-transparent to-transparent opacity-50 pointer-events-none group-hover:opacity-80 transition-opacity duration-700" />
       
-      <div className="text-[10px] sm:text-[11px] text-slate-600 dark:text-dark-400 font-mono font-semibold mb-3 sm:mb-4 border-b border-slate-150 dark:border-dark-800 pb-2 flex justify-between items-center">
-        <span>CORE ARCHITECTURE ENGINE</span>
+      <div className="text-[10px] sm:text-[11px] text-slate-600 dark:text-silver-400 font-mono font-semibold mb-3 sm:mb-4 border-b border-slate-150 dark:border-charcoal-800 pb-2 flex justify-between items-center">
+        <span className="flex items-center gap-1.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-neon-500" />
+          CORE ARCHITECTURE ENGINE
+        </span>
         <span className="flex h-2 w-2 relative">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 dark:bg-rose-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500 dark:bg-rose-500"></span>
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-neon-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-neon-500"></span>
         </span>
       </div>
 
@@ -49,14 +52,14 @@ export const ArchitectureViz: React.FC = () => {
             <feComposite in="SourceGraphic" in2="blur" operator="over" />
           </filter>
           <linearGradient id="line-grad-light" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#c59828" stopOpacity="0.4" />
-            <stop offset="50%" stopColor="#d4af37" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="#071221" stopOpacity="0.4" />
+            <stop offset="0%" stopColor="#0f172a" stopOpacity="0.4" />
+            <stop offset="50%" stopColor="#ff1e38" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="#64748b" stopOpacity="0.4" />
           </linearGradient>
           <linearGradient id="line-grad-dark" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#00a6ed" stopOpacity="0.6" />
-            <stop offset="50%" stopColor="#38bdf8" stopOpacity="0.9" />
-            <stop offset="100%" stopColor="#ff1a75" stopOpacity="0.6" />
+            <stop offset="0%" stopColor="#cbd5e1" stopOpacity="0.6" />
+            <stop offset="50%" stopColor="#ff1e38" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#cbd5e1" stopOpacity="0.6" />
           </linearGradient>
         </defs>
 
@@ -72,7 +75,7 @@ export const ArchitectureViz: React.FC = () => {
                 y1={fromCoords.y}
                 x2={toCoords.x}
                 y2={toCoords.y}
-                className="stroke-slate-200 dark:stroke-dark-800"
+                className="stroke-slate-200 dark:stroke-charcoal-800"
                 strokeWidth="2"
               />
               {/* Glowing animated line (Light mode) */}
@@ -94,7 +97,7 @@ export const ArchitectureViz: React.FC = () => {
                   ease: 'linear'
                 }}
               />
-              {/* Glowing animated line (Dark mode: Cerulean to Neon Rose) */}
+              {/* Glowing animated line (Dark mode: Moonlit Silver to Single Red Neon) */}
               <motion.line
                 x1={fromCoords.x}
                 y1={fromCoords.y}
@@ -113,10 +116,10 @@ export const ArchitectureViz: React.FC = () => {
                   ease: 'linear'
                 }}
               />
-              {/* Flow particle */}
+              {/* Flow particle in Single Red Neon */}
               <motion.circle
                 r="3"
-                className="fill-gold-500 dark:fill-rose-500"
+                className="fill-neon-500"
                 filter="url(#glow-filter)"
                 animate={{
                   cx: [fromCoords.x, toCoords.x],
@@ -135,7 +138,7 @@ export const ArchitectureViz: React.FC = () => {
         {/* Draw nodes */}
         {nodes.map((node) => {
           const isMain = ['fe', 'api', 'sb', 'db'].includes(node.id);
-          const nodeColor = node.id === 'git' ? '#4b5563' : node.color; // adjust git badge color for light mode readability
+          const nodeColor = node.color;
           return (
             <g key={node.id} className="cursor-default">
               {isMain && (
@@ -146,7 +149,7 @@ export const ArchitectureViz: React.FC = () => {
                   fill="transparent"
                   stroke={nodeColor}
                   strokeWidth="1"
-                  strokeOpacity="0.15"
+                  strokeOpacity="0.2"
                   className="animate-pulse"
                 />
               )}
@@ -158,10 +161,10 @@ export const ArchitectureViz: React.FC = () => {
                 width="110"
                 height="36"
                 rx="6"
-                className="fill-white dark:fill-dark-900"
+                className="fill-white dark:fill-charcoal-900"
                 stroke={nodeColor}
                 strokeWidth="1.2"
-                strokeOpacity={isMain ? 0.7 : 0.4}
+                strokeOpacity={isMain ? 0.8 : 0.4}
               />
 
               {/* Node label */}
@@ -169,7 +172,7 @@ export const ArchitectureViz: React.FC = () => {
                 x={node.x}
                 y={node.y - 3}
                 textAnchor="middle"
-                className="fill-slate-900 dark:fill-white"
+                className="fill-slate-900 dark:fill-silver-100"
                 fontSize="9.5"
                 fontWeight="700"
                 fontFamily="Outfit"
@@ -182,7 +185,7 @@ export const ArchitectureViz: React.FC = () => {
                 x={node.x}
                 y={node.y + 9}
                 textAnchor="middle"
-                className="fill-slate-500 dark:fill-dark-400"
+                className="fill-slate-500 dark:fill-silver-400"
                 fontSize="7.5"
                 fontFamily="JetBrains Mono"
               >

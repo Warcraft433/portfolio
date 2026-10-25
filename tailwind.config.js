@@ -8,133 +8,150 @@ export default {
   theme: {
     extend: {
       colors: {
-        // LIGHT MODE PALETTE: Ivory, Gold, and Deep Atlas Navy
-        ivory: {
-          50: "#fdfcf9", // Canvas light ivory
-          100: "#faf6eb", // Warm soft ivory surface
-          150: "#f5efe1", // Light panel background
-          200: "#ece3cf", // Warm ivory border
-          250: "#e1d5be", // Active ivory border
-          300: "#d5c6aa",
-          400: "#b5a281",
-          500: "#8f7e5f",
-          DEFAULT: "#faf6eb",
-        },
-        gold: {
-          50: "#fdfbf4",
-          100: "#f8f3dc",
-          200: "#efe4b2",
-          300: "#e3cf80",
-          400: "#d7ba52",
-          500: "#c59828", // Rich warm gold
-          600: "#a97e1a", // Deep antique gold
-          700: "#876212",
-          800: "#694b0d",
-          900: "#4c3508",
-          DEFAULT: "#c59828",
-          light: "#d4af37",
-          glow: "rgba(197, 152, 40, 0.22)",
-        },
-        navy: {
-          950: "#03070e",
-          900: "#07111f",
-          850: "#0b192c",
-          800: "#10223b",
-          750: "#152945",
-          700: "#183050",
-          600: "#22416b",
-          500: "#335b91",
-          400: "#5580ba",
-          300: "#84a6d6",
-          200: "#bad0ee",
-          100: "#e0eaf6",
-          50: "#f0f5fb",
-          DEFAULT: "#07111f",
-        },
-        // Harmonized Slate for Light Mode (Ivory canvas/borders and Deep Atlas Navy text)
-        slate: {
-          50: "#faf7f0", // Light background ivory
-          100: "#f3ede0", // Slightly deeper ivory for chips/inputs
-          150: "#ede3d0",
-          200: "#e4d8c2", // Ivory borders
-          250: "#d7c9ae",
-          300: "#c7b597",
-          350: "#af9b7b",
-          400: "#8b7b62", // Taupe-ivory muted
-          500: "#5a6e87", // Atlas navy mid-tone
-          600: "#3a4e69", // Deep Atlas navy subtext
-          700: "#21344e", // Deep Atlas navy body text
-          800: "#13233b", // Deep Atlas navy bold
-          850: "#0c182b",
-          900: "#071221", // Deep Atlas navy headings
-          950: "#040913",
+        // CHARCOAL GRAY SCALE
+        charcoal: {
+          950: "#080b0f", // Deepest technical charcoal canvas
+          900: "#0e1219", // Primary card and container background
+          850: "#131922", // Elevated surfaces and headers
+          800: "#1c2432", // Charcoal borders and dividers
+          750: "#242f40", // Hover borders and accents
+          700: "#2e3a4e",
+          600: "#43526c",
+          500: "#5f718f",
+          400: "#8294b0",
+          300: "#a8b8cf",
+          200: "#cbd5e1",
+          100: "#e2e8f0",
+          50: "#f1f5f9",
+          DEFAULT: "#0e1219",
         },
 
-        // DARK MODE PALETTE: Jet-Black, Cerulean Blue, and Neon Rose
-        cerulean: {
-          50: "#f0f9ff",
-          100: "#e0f2fe",
-          200: "#bae6fd",
-          300: "#7dd3fc",
-          400: "#38bdf8",
-          500: "#00a6ed", // Pure vivid Cerulean Blue
-          600: "#0284c7",
-          700: "#0369a1",
-          800: "#075985",
-          900: "#0c4a6e",
-          DEFAULT: "#00a6ed",
-          glow: "rgba(0, 166, 237, 0.25)",
+        // MOONLIT SILVER SCALE
+        silver: {
+          50: "#ffffff",
+          100: "#f8fafc",
+          200: "#f1f5f9",
+          300: "#e2e8f0",
+          400: "#cbd5e1",
+          500: "#94a3b8",
+          600: "#64748b",
+          700: "#475569",
+          800: "#334155",
+          900: "#1e293b",
+          DEFAULT: "#f8fafc",
+          glow: "rgba(248, 250, 252, 0.25)",
+        },
+
+        // SINGLE RED NEON SCALE
+        neon: {
+          50: "#fff0f2",
+          100: "#ffe0e4",
+          200: "#ffc2cb",
+          300: "#ff94a2",
+          400: "#ff4d64",
+          500: "#ff1e38", // The signature Single Red Neon
+          600: "#e50b25",
+          700: "#bd041b",
+          800: "#9b071a",
+          900: "#7f0c1b",
+          950: "#48010b",
+          DEFAULT: "#ff1e38",
+          glow: "rgba(255, 30, 56, 0.4)",
+          subtle: "rgba(255, 30, 56, 0.12)",
+        },
+
+        // Standardized Slate (Moonlit Silver tint for light mode)
+        slate: {
+          50: "#f8fafc", // Crisp light silver background
+          100: "#f1f5f9", // Silver input/badge surface
+          150: "#e9edf3",
+          200: "#e2e8f0", // Clean silver border
+          250: "#d7e0ea",
+          300: "#cbd5e1",
+          350: "#b4c3d4",
+          400: "#94a3b8", // Muted subtext
+          500: "#64748b",
+          600: "#475569", // Dark charcoal subtext
+          700: "#334155", // Charcoal body text
+          800: "#1e293b", // Deep charcoal text
+          850: "#141c2b",
+          900: "#0f172a", // Charcoal heading text
+          950: "#020617",
+        },
+
+        // Dark Theme tokens mapping directly to Charcoal & Moonlit Silver
+        dark: {
+          950: "#080b0f", // Deepest Charcoal Canvas
+          900: "#0e1219", // Charcoal card base
+          850: "#131922", // Elevated surface
+          800: "#1c2432", // Charcoal border
+          750: "#242f40", // Hover border
+          700: "#2e3a4e",
+          600: "#43526c",
+          500: "#64748b",
+          400: "#94a3b8", // Moonlit silver muted text
+          300: "#cbd5e1", // Moonlit silver secondary text
+          200: "#e2e8f0", // Moonlit silver high-contrast text
+          100: "#f8fafc", // Crisp moonlit silver headings
+        },
+
+        // Primary Accent: Single Red Neon
+        primary: {
+          DEFAULT: "#ff1e38",
+          50: "#fff0f2",
+          100: "#ffe0e4",
+          200: "#ffc2cb",
+          300: "#ff94a2",
+          400: "#ff4d64",
+          500: "#ff1e38",
+          600: "#e50b25",
+          700: "#bd041b",
+          800: "#9b071a",
+          900: "#0e1219",
+          glow: "rgba(255, 30, 56, 0.35)",
+        },
+
+        // Legacy alias maps to avoid broken references
+        gold: {
+          500: "#ff1e38", // Aliased to single red neon
+          600: "#e50b25",
+          700: "#bd041b",
+          DEFAULT: "#ff1e38",
+          light: "#ff4d64",
+          glow: "rgba(255, 30, 56, 0.25)",
         },
         rose: {
-          50: "#fff1f4",
-          100: "#ffe4e8",
-          200: "#fecdd6",
-          300: "#fda4b4",
-          400: "#fb718b",
-          500: "#ff1a75", // Vivid Neon Rose
-          600: "#e6005c",
-          700: "#be0049",
-          800: "#9f073d",
-          900: "#830d36",
-          DEFAULT: "#ff1a75",
-          glow: "rgba(255, 26, 117, 0.25)",
+          400: "#ff4d64",
+          500: "#ff1e38",
+          600: "#e50b25",
+          DEFAULT: "#ff1e38",
+          glow: "rgba(255, 30, 56, 0.35)",
         },
-        // Jet-Black Scale for Dark Mode
-        dark: {
-          950: "#000000", // Pure Jet-Black canvas
-          900: "#080808", // Card background Jet-Black
-          850: "#0f0f0f", // Elevated card surface
-          800: "#181818", // Dark card border stroke
-          750: "#1f1f1f",
-          700: "#262626", // Dark border hover
-          600: "#363636", // Subtle lines
-          500: "#52525b",
-          400: "#a1a1aa", // Secondary muted text
-          300: "#d4d4d8", // Bright secondary text
-          200: "#f4f4f5", // High-contrast text
+        cerulean: {
+          300: "#e2e8f0", // Moonlit silver
+          400: "#cbd5e1", // Moonlit silver highlight
+          500: "#ff1e38", // Primary neon red
+          DEFAULT: "#ff1e38",
+          glow: "rgba(255, 30, 56, 0.25)",
         },
-
-        // Primary: Gold in light mode, dynamically accented with Cerulean in dark mode
-        primary: {
-          DEFAULT: "#c59828",
-          50: "#fdfbf4",
-          100: "#f8f3dc",
-          200: "#efe4b2",
-          300: "#e3cf80",
-          400: "#d7ba52",
-          500: "#c59828",
-          600: "#a97e1a",
-          700: "#876212",
-          800: "#694b0d",
-          900: "#07111f",
+        ivory: {
+          50: "#f8fafc",
+          100: "#f1f5f9",
+          DEFAULT: "#f8fafc",
+        },
+        navy: {
+          500: "#43526c",
+          600: "#2e3a4e",
+          900: "#0e1219",
+          DEFAULT: "#0e1219",
         },
         java: {
-          DEFAULT: "#f59e0b",
-          glow: "rgba(245, 158, 11, 0.2)",
+          DEFAULT: "#ff4d64",
+          glow: "rgba(255, 77, 100, 0.2)",
         },
         spring: {
-          DEFAULT: "#10b981",
-          glow: "rgba(16, 185, 129, 0.2)",
+          DEFAULT: "#ff1e38",
+          glow: "rgba(255, 30, 56, 0.2)",
         }
       },
       fontFamily: {
@@ -145,11 +162,16 @@ export default {
       animation: {
         "pulse-slow": "pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         "glow-slow": "glow 10s ease-in-out infinite",
+        "laser-pulse": "laser 2s ease-in-out infinite",
       },
       keyframes: {
         glow: {
           "0%, 100%": { opacity: 0.15, transform: "scale(1)" },
           "50%": { opacity: 0.35, transform: "scale(1.06) translate(10px, -10px)" },
+        },
+        laser: {
+          "0%, 100%": { opacity: 0.8 },
+          "50%": { opacity: 0.4 },
         }
       }
     },

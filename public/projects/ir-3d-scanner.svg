@@ -1,0 +1,195 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0c10" />
+      <stop offset="50%" stop-color="#12161f" />
+      <stop offset="100%" stop-color="#07080b" />
+    </linearGradient>
+
+    <!-- Neon Red Gradient -->
+    <linearGradient id="neonRedGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff1e38" />
+      <stop offset="100%" stop-color="#ff5964" />
+    </linearGradient>
+
+    <!-- Laser Beam Gradient -->
+    <linearGradient id="laserGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff1e38" stop-opacity="0.9" />
+      <stop offset="50%" stop-color="#ff1e38" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#ff1e38" stop-opacity="0.05" />
+    </linearGradient>
+
+    <!-- Moonlit Silver Gradient -->
+    <linearGradient id="silverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc" />
+      <stop offset="100%" stop-color="#94a3b8" />
+    </linearGradient>
+
+    <!-- Filters for Glow -->
+    <filter id="neonGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6" result="blur1" />
+      <feGaussianBlur stdDeviation="2" result="blur2" />
+      <feMerge>
+        <feMergeNode in="blur1" />
+        <feMergeNode in="blur2" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="450" fill="url(#bgGrad)" />
+
+  <!-- Technical Grid -->
+  <g stroke="#ffffff" stroke-opacity="0.04" stroke-width="1">
+    <line x1="0" y1="50" x2="800" y2="50" />
+    <line x1="0" y1="100" x2="800" y2="100" />
+    <line x1="0" y1="150" x2="800" y2="150" />
+    <line x1="0" y1="200" x2="800" y2="200" />
+    <line x1="0" y1="250" x2="800" y2="250" />
+    <line x1="0" y1="300" x2="800" y2="300" />
+    <line x1="0" y1="350" x2="800" y2="350" />
+    <line x1="0" y1="400" x2="800" y2="400" />
+
+    <line x1="100" y1="0" x2="100" y2="450" />
+    <line x1="200" y1="0" x2="200" y2="450" />
+    <line x1="300" y1="0" x2="300" y2="450" />
+    <line x1="400" y1="0" x2="400" y2="450" />
+    <line x1="500" y1="0" x2="500" y2="450" />
+    <line x1="600" y1="0" x2="600" y2="450" />
+    <line x1="700" y1="0" x2="700" y2="450" />
+  </g>
+
+  <!-- Circular Scanning Reticle Overlay in center-left -->
+  <g transform="translate(320, 230)">
+    <!-- Concentric radar circles -->
+    <circle r="140" fill="none" stroke="#ff1e38" stroke-opacity="0.12" stroke-width="1" stroke-dasharray="4,6" />
+    <circle r="105" fill="none" stroke="#94a3b8" stroke-opacity="0.15" stroke-width="1" />
+    <circle r="70" fill="none" stroke="#ff1e38" stroke-opacity="0.25" stroke-width="1" stroke-dasharray="6,4" />
+    <circle r="35" fill="none" stroke="#cbd5e1" stroke-opacity="0.2" stroke-width="1" />
+
+    <!-- Crosshairs -->
+    <line x1="-155" y1="0" x2="155" y2="0" stroke="#cbd5e1" stroke-opacity="0.2" stroke-width="1" />
+    <line x1="0" y1="-155" x2="0" y2="155" stroke="#cbd5e1" stroke-opacity="0.2" stroke-width="1" />
+
+    <!-- Turntable platform / Scanner base 3D perspective -->
+    <ellipse cx="0" cy="90" rx="130" ry="32" fill="#141720" stroke="#ff1e38" stroke-opacity="0.5" stroke-width="1.5" />
+    <ellipse cx="0" cy="85" rx="110" ry="26" fill="#1a1e29" stroke="#94a3b8" stroke-opacity="0.3" stroke-width="1" />
+
+    <!-- 3D Object Point Cloud (Vase / Mesh representation in Silver & Neon Red) -->
+    <!-- Point Cloud Cluster -->
+    <g fill="#cbd5e1" opacity="0.85">
+      <circle cx="-15" cy="55" r="2.5" />
+      <circle cx="15" cy="55" r="2.5" />
+      <circle cx="-30" cy="40" r="2.2" />
+      <circle cx="0" cy="42" r="2.2" />
+      <circle cx="30" cy="40" r="2.2" />
+      <circle cx="-42" cy="18" r="2.5" />
+      <circle cx="-20" cy="20" r="2.2" />
+      <circle cx="20" cy="20" r="2.2" />
+      <circle cx="42" cy="18" r="2.5" />
+      <circle cx="-35" cy="-5" r="2.5" />
+      <circle cx="0" cy="-2" r="2.2" />
+      <circle cx="35" cy="-5" r="2.5" />
+      <circle cx="-25" cy="-30" r="2.5" />
+      <circle cx="25" cy="-30" r="2.5" />
+      <circle cx="-18" cy="-55" r="2.5" />
+      <circle cx="0" cy="-58" r="2.2" />
+      <circle cx="18" cy="-55" r="2.5" />
+      <circle cx="-28" cy="-75" r="2.5" />
+      <circle cx="28" cy="-75" r="2.5" />
+      <circle cx="0" cy="-80" r="2.5" />
+    </g>
+
+    <!-- Point cloud polygon wire connections -->
+    <path d="M -28 -75 L 0 -80 L 28 -75 L 18 -55 L 25 -30 L 35 -5 L 42 18 L 30 40 L 15 55 L -15 55 L -30 40 L -42 18 L -35 -5 L -25 -30 L -18 -55 Z" 
+          fill="#ff1e38" fill-opacity="0.08" stroke="#ff1e38" stroke-width="1.2" stroke-dasharray="3,3" />
+
+    <!-- Active Hit Vertex in Neon Red -->
+    <circle cx="35" cy="-5" r="5" fill="#ff1e38" filter="url(#neonGlow)" />
+    <circle cx="35" cy="-5" r="8" fill="none" stroke="#ff1e38" stroke-width="1.5" />
+  </g>
+
+  <!-- Sharp IR Sensor Mast / Scanning Arm on Right -->
+  <g transform="translate(520, 110)">
+    <!-- Vertical rail -->
+    <rect x="0" y="0" width="12" height="240" rx="3" fill="#181c26" stroke="#94a3b8" stroke-opacity="0.4" stroke-width="1" />
+    <!-- Distance measurement ticks -->
+    <line x1="12" y1="30" x2="18" y2="30" stroke="#cbd5e1" stroke-width="1" />
+    <line x1="12" y1="60" x2="22" y2="60" stroke="#ff1e38" stroke-width="1.5" />
+    <line x1="12" y1="90" x2="18" y2="90" stroke="#cbd5e1" stroke-width="1" />
+    <line x1="12" y1="120" x2="22" y2="120" stroke="#cbd5e1" stroke-width="1.5" />
+    <line x1="12" y1="150" x2="18" y2="150" stroke="#cbd5e1" stroke-width="1" />
+    <line x1="12" y1="180" x2="22" y2="180" stroke="#cbd5e1" stroke-width="1.5" />
+
+    <!-- Stepper carriage moving on rail -->
+    <rect x="-8" y="105" width="28" height="30" rx="4" fill="#222735" stroke="#ff1e38" stroke-width="1.5" filter="url(#neonGlow)" />
+    <text x="32" y="125" font-family="'JetBrains Mono', monospace" font-size="10" fill="#f8fafc" font-weight="600">Z: 142.8mm</text>
+
+    <!-- IR Sensor Lens -->
+    <circle cx="-12" cy="120" r="5" fill="#ff1e38" filter="url(#neonGlow)" />
+    <circle cx="-20" cy="120" r="5" fill="#141720" stroke="#cbd5e1" stroke-width="1" />
+
+    <!-- Active Laser Scan Beam pointing to target -->
+    <polygon points="-12,120 -165,115 -165,118" fill="url(#laserGrad)" filter="url(#neonGlow)" />
+    <line x1="-12" y1="120" x2="-165" y2="115" stroke="#ff1e38" stroke-width="1.8" filter="url(#neonGlow)" />
+  </g>
+
+  <!-- Top Status Bar -->
+  <rect x="30" y="25" width="740" height="42" rx="8" fill="#12161f" fill-opacity="0.85" stroke="#ffffff" stroke-opacity="0.1" stroke-width="1" />
+  
+  <!-- System Indicator -->
+  <circle cx="52" cy="46" r="5" fill="#ff1e38" filter="url(#neonGlow)" />
+  <text x="68" y="50" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#f8fafc" letter-spacing="1">
+    IR-3D-SCANNER // POINT CLOUD TELEMETRY
+  </text>
+  
+  <!-- Sampling rate & State -->
+  <rect x="520" y="34" width="105" height="24" rx="4" fill="#191e2b" stroke="#cbd5e1" stroke-opacity="0.2" stroke-width="1" />
+  <text x="532" y="50" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="#cbd5e1">RES: 0.15mm</text>
+
+  <rect x="635" y="34" width="120" height="24" rx="4" fill="#ff1e38" fill-opacity="0.15" stroke="#ff1e38" stroke-width="1" />
+  <text x="652" y="50" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="700" fill="#ff1e38">ACQUIRING</text>
+
+  <!-- Left Telemetry Panel -->
+  <rect x="30" y="85" width="190" height="335" rx="8" fill="#12161f" fill-opacity="0.85" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1" />
+  
+  <text x="46" y="112" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#f8fafc">
+    SENSOR FEED
+  </text>
+  <line x1="46" y1="122" x2="204" y2="122" stroke="#ffffff" stroke-opacity="0.1" stroke-width="1" />
+
+  <text x="46" y="145" font-family="'JetBrains Mono', monospace" font-size="10" fill="#94a3b8">HARDWARE</text>
+  <text x="46" y="162" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600" fill="#cbd5e1">Arduino Mega 2560</text>
+
+  <text x="46" y="195" font-family="'JetBrains Mono', monospace" font-size="10" fill="#94a3b8">OPTICAL SENSOR</text>
+  <text x="46" y="212" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600" fill="#cbd5e1">Sharp GP2Y0A02YK0F</text>
+
+  <text x="46" y="245" font-family="'JetBrains Mono', monospace" font-size="10" fill="#94a3b8">AZIMUTH STEP</text>
+  <text x="46" y="262" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600" fill="#ff1e38">theta = 148.5 deg</text>
+
+  <text x="46" y="295" font-family="'JetBrains Mono', monospace" font-size="10" fill="#94a3b8">ELEVATION (Z)</text>
+  <text x="46" y="312" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600" fill="#cbd5e1">142.80 mm</text>
+
+  <text x="46" y="345" font-family="'JetBrains Mono', monospace" font-size="10" fill="#94a3b8">TOTAL VERTICES</text>
+  <text x="46" y="362" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="700" fill="#f8fafc">48,290 PTS</text>
+
+  <rect x="46" y="380" width="158" height="26" rx="4" fill="#1a1e2b" stroke="#ff1e38" stroke-opacity="0.4" stroke-width="1" />
+  <text x="56" y="397" font-family="'JetBrains Mono', monospace" font-size="10" fill="#cbd5e1">EXPORT: .XYZ / .PLY</text>
+
+  <!-- Bottom Coordinate Data Terminal -->
+  <rect x="235" y="365" width="535" height="55" rx="8" fill="#0d1017" fill-opacity="0.9" stroke="#ff1e38" stroke-opacity="0.25" stroke-width="1" />
+  <text x="250" y="386" font-family="'JetBrains Mono', monospace" font-size="10" fill="#94a3b8">
+    STREAM [X, Y, Z]:
+  </text>
+  <text x="355" y="386" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="#f8fafc">
+    +34.821, -12.449, +142.800
+  </text>
+  <text x="535" y="386" font-family="'JetBrains Mono', monospace" font-size="10" fill="#ff1e38" font-weight="600">
+    CALIBRATED (R-SQ: 0.998)
+  </text>
+  <text x="250" y="405" font-family="'JetBrains Mono', monospace" font-size="9.5" fill="#cbd5e1" opacity="0.6">
+    Triangulation latency: 4.2ms | Dual-stepper bipolar driver A4988 synchronized
+  </text>
+</svg>
