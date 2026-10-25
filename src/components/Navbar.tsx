@@ -89,7 +89,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
     <nav
       className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
         scrolled
-          ? 'py-3 bg-white/90 dark:bg-dark-950/80 backdrop-blur-lg border-b border-slate-200/80 dark:border-dark-800/80 shadow-md'
+          ? 'py-3 bg-white/90 dark:bg-dark-950/85 backdrop-blur-lg border-b border-slate-200/80 dark:border-dark-800/80 shadow-md'
           : 'py-5 bg-transparent border-b border-transparent'
       }`}
     >
@@ -102,7 +102,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
             onClick={(e) => handleLinkClick(e, '#home')}
             className="flex items-center gap-2 group font-display"
           >
-            <div className="p-1.5 rounded bg-primary/10 border border-primary/20 text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+            <div className="p-1.5 rounded bg-gold-500/10 border border-gold-500/25 text-gold-600 dark:text-gold-400 group-hover:bg-gold-500 group-hover:text-slate-950 transition-colors duration-300">
               <Terminal size={16} />
             </div>
             <div>
@@ -124,7 +124,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
                 onClick={(e) => handleLinkClick(e, item.href)}
                 className={`px-3 py-1.5 rounded-md text-sm font-semibold font-mono border transition-all duration-200 ${
                   activeSection === item.id
-                    ? 'text-slate-900 bg-slate-100 border-slate-250 dark:text-white dark:bg-dark-800 dark:border-dark-700'
+                    ? 'text-slate-900 bg-gold-500/10 border-gold-500/40 dark:text-gold-300 dark:bg-gold-500/15 dark:border-gold-500/40 shadow-sm'
                     : 'text-slate-600 dark:text-dark-400 hover:text-slate-950 dark:hover:text-white border-transparent hover:bg-slate-100 dark:hover:bg-dark-900/50'
                 }`}
               >
@@ -135,7 +135,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
             {/* Theme Toggle Button */}
             <button
               onClick={toggleTheme}
-              className="p-1.5 ml-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-100 text-slate-600 dark:border-dark-800 dark:bg-dark-950 dark:hover:bg-dark-800 dark:text-dark-400 dark:hover:text-white transition-colors"
+              className="p-1.5 ml-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-100 text-slate-600 dark:border-dark-800 dark:bg-dark-950 dark:hover:bg-dark-800 dark:text-dark-400 dark:hover:text-gold-400 transition-colors"
               aria-label="Toggle Theme"
             >
               {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
@@ -144,7 +144,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
             {/* Quick Resume Button */}
             <button
               onClick={onOpenResume}
-              className="ml-3 px-4 py-1.5 rounded-md text-sm font-mono font-bold bg-primary hover:bg-primary-600 text-white transition-all shadow-md shadow-primary-900/20"
+              className="ml-3 px-4 py-1.5 rounded-md text-sm font-mono font-bold bg-gold-500 hover:bg-gold-600 text-slate-950 dark:text-dark-950 transition-all shadow-md shadow-gold-500/20 hover:shadow-gold-500/35 hover:-translate-y-0.5 active:translate-y-0"
             >
               Resume
             </button>
@@ -183,7 +183,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
               onClick={(e) => handleLinkClick(e, item.href)}
               className={`px-4 py-2.5 rounded-lg text-sm font-semibold font-mono border transition-all ${
                 activeSection === item.id
-                  ? 'text-slate-900 bg-slate-100 border-slate-250 dark:text-white dark:bg-dark-800 dark:border-dark-700'
+                  ? 'text-slate-900 bg-gold-500/10 border-gold-500/40 dark:text-gold-300 dark:bg-gold-500/15 dark:border-gold-500/40'
                   : 'text-slate-600 dark:text-dark-400 hover:text-slate-950 dark:hover:text-white border-transparent hover:bg-slate-100 dark:hover:bg-dark-900/40'
               }`}
             >
@@ -195,7 +195,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
               setIsOpen(false);
               onOpenResume();
             }}
-            className="w-full mt-2 py-3 rounded-lg text-sm font-bold font-mono text-center bg-primary hover:bg-primary-600 text-white transition-all"
+            className="w-full mt-2 py-3 rounded-lg text-sm font-bold font-mono text-center bg-gold-500 hover:bg-gold-600 text-slate-950 dark:text-dark-950 transition-all shadow-md shadow-gold-500/20"
           >
             Open Resume
           </button>

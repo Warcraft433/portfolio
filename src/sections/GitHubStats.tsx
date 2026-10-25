@@ -108,11 +108,11 @@ export const GitHubStats: React.FC = () => {
   const generateSimulatedGrid = () => {
     const squares = [];
     const colors = [
-      'bg-slate-100 dark:bg-dark-900 border-slate-200/50 dark:border-dark-950', // 0 commits
-      'bg-emerald-500/10 dark:bg-emerald-950/40 border-transparent', // light commits
-      'bg-emerald-500/30 dark:bg-emerald-900/60 border-transparent', // medium commits
-      'bg-emerald-500/60 dark:bg-emerald-700/80 border-transparent', // busy commits
-      'bg-emerald-500 dark:bg-emerald-500 border-transparent' // heavy commits
+      'bg-slate-100 dark:bg-dark-950 border-slate-200/50 dark:border-dark-800', // 0 commits
+      'bg-gold-500/25 dark:bg-gold-900/60 border-transparent', // light commits
+      'bg-gold-500/50 dark:bg-gold-700/60 border-transparent', // medium commits
+      'bg-gold-500/75 dark:bg-gold-600/80 border-transparent', // busy commits
+      'bg-gold-500 dark:bg-gold-500 border-transparent' // heavy commits
     ];
     
     for (let i = 0; i < 16 * 7; i++) {
@@ -223,11 +223,11 @@ export const GitHubStats: React.FC = () => {
               <div className="flex justify-between items-center text-[9px] font-mono text-slate-400 dark:text-dark-600 font-bold">
                 <span>Less</span>
                 <div className="flex gap-0.5">
-                  <span className="w-2.5 h-2.5 bg-slate-100 dark:bg-dark-900 border border-slate-200/50 dark:border-dark-950 rounded-sm" />
-                  <span className="w-2.5 h-2.5 bg-emerald-500/10 dark:bg-emerald-950/40 rounded-sm" />
-                  <span className="w-2.5 h-2.5 bg-emerald-500/30 dark:bg-emerald-900/60 rounded-sm" />
-                  <span className="w-2.5 h-2.5 bg-emerald-500/60 dark:bg-emerald-700/80 rounded-sm" />
-                  <span className="w-2.5 h-2.5 bg-emerald-500 dark:bg-emerald-500 rounded-sm" />
+                  <span className="w-2.5 h-2.5 bg-slate-100 dark:bg-dark-950 border border-slate-200/50 dark:border-dark-800 rounded-sm" />
+                  <span className="w-2.5 h-2.5 bg-gold-500/25 dark:bg-gold-900/60 rounded-sm" />
+                  <span className="w-2.5 h-2.5 bg-gold-500/50 dark:bg-gold-700/60 rounded-sm" />
+                  <span className="w-2.5 h-2.5 bg-gold-500/75 dark:bg-gold-600/80 rounded-sm" />
+                  <span className="w-2.5 h-2.5 bg-gold-500 dark:bg-gold-500 rounded-sm" />
                 </div>
                 <span>More</span>
               </div>

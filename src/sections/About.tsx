@@ -72,7 +72,7 @@ export const About: React.FC = () => {
             {highlights.map((h, i) => (
               <div
                 key={i}
-                className="p-5 rounded-xl border border-slate-200 bg-white hover:border-slate-300 dark:border-dark-800 dark:bg-dark-900/50 dark:hover:border-dark-700 dark:hover:bg-dark-900 hover:shadow-sm transition-all duration-200 flex items-start gap-4"
+                className="p-5 rounded-xl border border-slate-200 bg-white hover:border-gold-500/40 dark:border-dark-800 dark:bg-dark-900/50 dark:hover:border-gold-500/40 dark:hover:bg-dark-900 hover:shadow-sm transition-all duration-200 flex items-start gap-4"
               >
                 <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-200 dark:bg-dark-950 dark:border-dark-800 flex-shrink-0">
                   {h.icon}

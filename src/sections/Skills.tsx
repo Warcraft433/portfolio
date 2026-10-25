@@ -36,10 +36,10 @@ export const Skills: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.08 }}
-              className="p-6 rounded-xl border border-slate-200 bg-white hover:border-slate-300 dark:border-dark-800 dark:bg-dark-900/60 dark:hover:border-dark-700/80 hover:shadow-md transition-all duration-300 relative group"
+              className="p-6 rounded-xl border border-slate-200 bg-white hover:border-gold-500/40 dark:border-dark-800 dark:bg-dark-900/60 dark:hover:border-gold-500/30 hover:shadow-md transition-all duration-300 relative group"
             >
               {/* Corner Glow Effect */}
-              <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-primary/5 to-transparent rounded-tr-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+              <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-gold-500/10 to-transparent rounded-tr-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
               {/* Title & Icon */}
               <div className="flex items-center gap-2 mb-4 border-b border-slate-200 dark:border-dark-800/60 pb-3">
@@ -60,7 +60,7 @@ export const Skills: React.FC = () => {
                       key={skill}
                       className={`px-3 py-1.5 rounded text-xs font-semibold font-mono border transition-colors ${
                         isSpecial
-                          ? 'bg-primary/10 border-primary/30 text-primary dark:bg-primary/5 dark:border-primary/20 dark:text-white hover:border-primary/50'
+                          ? 'bg-gold-500/10 border-gold-500/35 text-gold-700 dark:bg-gold-500/10 dark:border-gold-500/30 dark:text-gold-300 hover:border-gold-500/60'
                           : 'bg-slate-50 border-slate-200 text-slate-600 hover:text-slate-900 dark:bg-dark-950 dark:border-dark-800/80 dark:text-dark-400 dark:hover:text-white dark:hover:border-dark-700'
                       }`}
                     >

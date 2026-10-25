@@ -28,15 +28,17 @@ export const BackgroundParticles: React.FC = () => {
       radius: number;
       baseAlpha: number;
       alpha: number;
+      isGold: boolean;
 
       constructor(w: number, h: number) {
         this.x = Math.random() * w;
         this.y = Math.random() * h;
         this.vx = (Math.random() - 0.5) * 0.15; // Slow movement
         this.vy = (Math.random() - 0.5) * 0.15;
-        this.radius = Math.random() * 1.5 + 0.5; // Very small
-        this.baseAlpha = Math.random() * 0.15 + 0.05; // Almost invisible
+        this.radius = Math.random() * 1.5 + 0.6; // Small, refined particle
+        this.baseAlpha = Math.random() * 0.15 + 0.06;
         this.alpha = this.baseAlpha;
+        this.isGold = Math.random() > 0.45;
       }
 
       update(w: number, h: number) {
@@ -55,7 +57,7 @@ export const BackgroundParticles: React.FC = () => {
         if (dist < mouse.radius) {
           // Increase opacity and repel slightly
           const force = (mouse.radius - dist) / mouse.radius;
-          this.alpha = Math.min(0.4, this.baseAlpha + force * 0.25);
+          this.alpha = Math.min(0.55, this.baseAlpha + force * 0.35);
           
           // Repel force
           this.x -= (dx / dist) * force * 0.4;
@@ -71,10 +73,15 @@ export const BackgroundParticles: React.FC = () => {
       draw(c: CanvasRenderingContext2D, isDark: boolean) {
         c.beginPath();
         c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        // Slate-600 color for light mode, neutral-400 for dark mode
-        c.fillStyle = isDark
-          ? `rgba(163, 163, 163, ${this.alpha})`
-          : `rgba(71, 85, 105, ${this.alpha})`;
+        if (isDark) {
+          c.fillStyle = this.isGold
+            ? `rgba(212, 175, 55, ${Math.min(1, this.alpha * 1.8)})` // luminous gold
+            : `rgba(246, 243, 235, ${Math.min(1, this.alpha * 1.4)})`; // starlight ivory
+        } else {
+          c.fillStyle = this.isGold
+            ? `rgba(180, 135, 30, ${Math.min(1, this.alpha * 1.6)})` // antique gold
+            : `rgba(15, 28, 48, ${Math.min(1, this.alpha * 1.3)})`; // deep Atlas navy
+        }
         c.fill();
       }
     }
@@ -134,8 +141,8 @@ export const BackgroundParticles: React.FC = () => {
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.strokeStyle = isDark
-              ? `rgba(163, 163, 163, ${alpha})`
-              : `rgba(71, 85, 105, ${alpha})`;
+              ? `rgba(212, 175, 55, ${alpha * 1.6})`
+              : `rgba(18, 34, 59, ${alpha * 1.3})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }

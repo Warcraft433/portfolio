@@ -191,15 +191,15 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
   const getLevelColorClass = (level: number) => {
     switch (level) {
       case 4:
-        return 'bg-emerald-500 border-emerald-400';
+        return 'bg-gold-500 border-gold-400';
       case 3:
-        return 'bg-emerald-500/70 dark:bg-emerald-600/80 border-transparent';
+        return 'bg-gold-500/75 dark:bg-gold-600/80 border-transparent';
       case 2:
-        return 'bg-emerald-500/45 dark:bg-emerald-800/70 border-transparent';
+        return 'bg-gold-500/50 dark:bg-gold-700/60 border-transparent';
       case 1:
-        return 'bg-emerald-500/20 dark:bg-emerald-950/60 border-transparent';
+        return 'bg-gold-500/25 dark:bg-gold-900/60 border-transparent';
       default:
-        return 'bg-slate-100 dark:bg-dark-900 border-slate-200/50 dark:border-dark-950';
+        return 'bg-slate-100 dark:bg-dark-950 border-slate-200/50 dark:border-dark-800';
     }
   };
 
@@ -209,9 +209,9 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
         
         {/* Section Title */}
         <div className="text-left mb-12">
-          <span className="text-xs text-primary font-mono font-bold uppercase tracking-wider">03 // ENGINEERING PROOFS</span>
+          <span className="text-xs text-gold-600 dark:text-gold-400 font-mono font-bold uppercase tracking-wider">03 // ENGINEERING PROOFS</span>
           <h2 className="text-3xl md:text-4xl font-bold font-display text-slate-900 dark:text-white mt-1">Featured Projects</h2>
-          <div className="h-0.5 w-12 bg-primary mt-2" />
+          <div className="h-0.5 w-12 bg-gold-500 mt-2" />
         </div>
 
         {/* Featured Project - PrintGuard AI (Visually Dominant) */}
@@ -221,7 +221,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="mb-8 rounded-2xl border border-slate-200 bg-white dark:border-dark-800 dark:bg-dark-900/60 overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/30 transition-all duration-300 group cursor-pointer"
+            className="mb-8 rounded-2xl border border-slate-200 bg-white dark:border-dark-800 dark:bg-dark-900/60 overflow-hidden shadow-sm hover:shadow-xl hover:border-gold-500/40 transition-all duration-300 group cursor-pointer"
             onClick={() => onSelectProject(printGuard)}
           >
             <div className="grid grid-cols-1 lg:grid-cols-12">
@@ -230,16 +230,16 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
               <div className="p-6 md:p-8 lg:col-span-8 flex flex-col justify-between space-y-6">
                 <div>
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="px-2.5 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-[10px] font-mono text-primary font-bold">
+                    <span className="px-2.5 py-0.5 rounded-full bg-gold-500/10 border border-gold-500/30 text-[10px] font-mono text-gold-700 dark:text-gold-300 font-bold">
                       FEATURED SYSTEM
                     </span>
                     <span className="text-slate-300 dark:text-dark-600 text-xs">•</span>
                     <span className="text-xs font-mono text-slate-500 dark:text-dark-400">AI / Computer Vision / Edge IoT</span>
                   </div>
 
-                  <h3 className="text-2xl md:text-3xl font-bold font-display text-slate-900 dark:text-white group-hover:text-primary transition-colors flex items-center gap-2">
+                  <h3 className="text-2xl md:text-3xl font-bold font-display text-slate-900 dark:text-white group-hover:text-gold-600 dark:group-hover:text-gold-400 transition-colors flex items-center gap-2">
                     {printGuard.title}
-                    <ArrowUpRight size={20} className="text-slate-400 dark:text-dark-600 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                    <ArrowUpRight size={20} className="text-slate-400 dark:text-dark-600 group-hover:text-gold-600 dark:group-hover:text-gold-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                   </h3>
                   
                   {printGuard.subtitle && (
@@ -252,12 +252,12 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
                   </p>
 
                   {/* Achievement Highlight */}
-                  <div className="mt-5 p-4 rounded-xl border border-primary/10 bg-primary/5 dark:bg-primary/5 flex gap-3">
-                    <div className="p-1 rounded bg-primary/10 text-primary h-fit">
+                  <div className="mt-5 p-4 rounded-xl border border-gold-500/20 bg-gold-500/5 dark:bg-gold-500/10 flex gap-3">
+                    <div className="p-1 rounded bg-gold-500/15 text-gold-600 dark:text-gold-400 h-fit">
                       <Cpu size={16} />
                     </div>
                     <div>
-                      <h4 className="text-xs font-mono text-primary font-bold uppercase tracking-wider">ENGINEERING HIGHLIGHT</h4>
+                      <h4 className="text-xs font-mono text-gold-700 dark:text-gold-400 font-bold uppercase tracking-wider">ENGINEERING HIGHLIGHT</h4>
                       <p className="text-sm text-slate-800 dark:text-slate-200 mt-0.5 leading-relaxed font-medium">{printGuard.achievement}</p>
                     </div>
                   </div>
@@ -278,7 +278,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
                     )}
                   </div>
                   
-                  <span className="text-xs font-mono text-primary font-semibold group-hover:underline flex items-center gap-1">
+                  <span className="text-xs font-mono text-gold-600 dark:text-gold-400 font-semibold group-hover:underline flex items-center gap-1">
                     Explore detailed Case Study →
                   </span>
                 </div>
@@ -287,12 +287,12 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
 
               {/* Decorative Architecture Visual Column (Right) */}
               <div className="lg:col-span-4 bg-slate-50/50 dark:bg-dark-950/60 p-6 flex flex-col justify-center items-center border-t lg:border-t-0 lg:border-l border-slate-200 dark:border-dark-800/80 relative overflow-hidden min-h-[220px]">
-                <div className="absolute inset-0 bg-radial-gradient from-primary/5 via-transparent to-transparent opacity-60 pointer-events-none" />
+                <div className="absolute inset-0 bg-radial-gradient from-gold-500/10 via-transparent to-transparent opacity-60 pointer-events-none" />
                 <div className="space-y-3 w-full max-w-[200px] z-10 font-mono text-[10px] text-slate-600 dark:text-dark-400">
                   <div className="text-[9px] text-slate-400 dark:text-dark-600 border-b border-slate-200 dark:border-dark-800 pb-1 mb-2 uppercase font-bold">Telemetry Nodes</div>
                   <div className="flex justify-between border-b border-slate-100 dark:border-dark-900 pb-1">
                     <span>Camera Capture</span>
-                    <span className="text-primary font-bold">OK</span>
+                    <span className="text-gold-600 dark:text-gold-400 font-bold">OK</span>
                   </div>
                   <div className="flex justify-between border-b border-slate-100 dark:border-dark-900 pb-1">
                     <span>YOLOv8 Edge</span>
@@ -300,7 +300,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
                   </div>
                   <div className="flex justify-between border-b border-slate-100 dark:border-dark-900 pb-1">
                     <span>OctoPrint Socket</span>
-                    <span className="text-primary font-bold">ACTIVE</span>
+                    <span className="text-gold-600 dark:text-gold-400 font-bold">ACTIVE</span>
                   </div>
                   <div className="flex justify-between">
                     <span>OctoPi API</span>
@@ -322,7 +322,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="rounded-xl border border-slate-200 bg-white dark:border-dark-800 dark:bg-dark-900/60 overflow-hidden p-6 md:p-7 flex flex-col justify-between shadow-sm hover:border-slate-350 hover:shadow-md dark:hover:border-dark-700/80 transition-all duration-300 cursor-pointer group"
+              className="rounded-xl border border-slate-200 bg-white dark:border-dark-800 dark:bg-dark-900/60 overflow-hidden p-6 md:p-7 flex flex-col justify-between shadow-sm hover:border-gold-500/40 hover:shadow-md dark:hover:border-gold-500/30 transition-all duration-300 cursor-pointer group"
               onClick={() => onSelectProject(p)}
             >
               <div className="space-y-4">
@@ -330,11 +330,11 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
                   <span className="px-2 py-0.5 rounded bg-slate-100 border border-slate-200 dark:bg-dark-950 dark:border-dark-850 text-[9px] font-mono text-slate-500 dark:text-dark-400 font-bold">
                     {p.id === 'worksphere-erp' ? 'JAVA APPLICATION' : 'AUTOMATED SCANNER'}
                   </span>
-                  <ArrowUpRight size={16} className="text-slate-400 dark:text-dark-600 group-hover:text-slate-900 dark:group-hover:text-white transition-colors" />
+                  <ArrowUpRight size={16} className="text-slate-400 dark:text-dark-600 group-hover:text-gold-600 dark:group-hover:text-gold-400 transition-colors" />
                 </div>
 
                 <div className="space-y-1">
-                  <h4 className="text-lg font-bold font-display text-slate-900 dark:text-white group-hover:text-primary transition-colors">
+                  <h4 className="text-lg font-bold font-display text-slate-900 dark:text-white group-hover:text-gold-600 dark:group-hover:text-gold-400 transition-colors">
                     {p.title}
                   </h4>
                   {p.subtitle && (
@@ -349,7 +349,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
 
                 {/* Achievement callout */}
                 <div className="p-3.5 rounded bg-slate-50 border border-slate-200 dark:bg-dark-950 dark:border-dark-850 text-xs font-medium">
-                  <span className="text-[10px] text-primary font-mono block font-bold tracking-wider uppercase mb-0.5">
+                  <span className="text-[10px] text-gold-700 dark:text-gold-400 font-mono block font-bold tracking-wider uppercase mb-0.5">
                     ACHIEVEMENT
                   </span>
                   <p className="text-slate-800 dark:text-slate-300 leading-relaxed">{p.achievement}</p>
@@ -369,7 +369,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
                     </span>
                   )}
                 </div>
-                <span className="text-[11px] font-mono text-slate-500 group-hover:text-primary transition-colors font-bold">
+                <span className="text-[11px] font-mono text-slate-500 group-hover:text-gold-600 dark:group-hover:text-gold-400 transition-colors font-bold">
                   Details →
                 </span>
               </div>
@@ -395,8 +395,8 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
                   <h3 className="text-base sm:text-lg font-bold font-display text-slate-900 dark:text-white">
                     Open Source Repositories & Real-Time Activity
                   </h3>
-                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[9px] font-mono text-emerald-600 dark:text-emerald-400 font-bold">
-                    <Radio size={10} className="animate-pulse text-emerald-500" />
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-gold-500/10 border border-gold-500/25 text-[9px] font-mono text-gold-700 dark:text-gold-300 font-bold">
+                    <Radio size={10} className="animate-pulse text-gold-500" />
                     LIVE SYNC
                   </span>
                 </div>
@@ -411,7 +411,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
                 href={socials.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-primary hover:underline"
+                className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-gold-600 dark:text-gold-400 hover:underline"
               >
                 <span>View Full GitHub Profile</span>
                 <ArrowUpRight size={14} />
@@ -428,11 +428,11 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
                   href={repo.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-4 rounded-xl border border-slate-150 bg-slate-50/50 hover:bg-white hover:border-slate-300 dark:border-dark-850 dark:bg-dark-950/40 dark:hover:bg-dark-900 dark:hover:border-dark-700 transition-all flex flex-col justify-between group h-36 shadow-none hover:shadow-sm"
+                  className="p-4 rounded-xl border border-slate-150 bg-slate-50/50 hover:bg-white hover:border-gold-500/40 dark:border-dark-850 dark:bg-dark-950/40 dark:hover:bg-dark-900 dark:hover:border-gold-500/30 transition-all flex flex-col justify-between group h-36 shadow-none hover:shadow-sm"
                 >
                   <div>
-                    <div className="flex items-center gap-1.5 text-slate-800 dark:text-white font-semibold text-xs font-display group-hover:text-primary transition-colors">
-                      <BookOpen size={12} className="text-primary flex-shrink-0" />
+                    <div className="flex items-center gap-1.5 text-slate-800 dark:text-white font-semibold text-xs font-display group-hover:text-gold-600 dark:group-hover:text-gold-400 transition-colors">
+                      <BookOpen size={12} className="text-gold-500 flex-shrink-0" />
                       <span className="truncate">{repo.name}</span>
                     </div>
                     <p className="text-[11px] text-slate-600 dark:text-slate-400 mt-2 line-clamp-2 leading-relaxed">
@@ -455,7 +455,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
             <div className="lg:col-span-5 p-4 rounded-xl border border-slate-150 bg-slate-50/50 dark:border-dark-850 dark:bg-dark-950/40 flex flex-col justify-between space-y-3 relative">
               <div className="flex items-center justify-between text-xs font-mono font-semibold text-slate-700 dark:text-slate-300">
                 <span className="flex items-center gap-1.5">
-                  <Activity size={12} className="text-emerald-500" />
+                  <Activity size={12} className="text-gold-500" />
                   GitHub Contribution Activity
                 </span>
                 <div className="flex items-center gap-2">
@@ -468,7 +468,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
                     title="Force refresh live GitHub telemetry"
                     className="p-1 rounded hover:bg-slate-200/60 dark:hover:bg-dark-800 text-slate-400 hover:text-slate-700 dark:hover:text-dark-200 transition-colors"
                   >
-                    <RefreshCw size={11} className={isRefreshing ? 'animate-spin text-primary' : ''} />
+                    <RefreshCw size={11} className={isRefreshing ? 'animate-spin text-gold-500' : ''} />
                   </button>
                 </div>
               </div>
@@ -497,11 +497,11 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
               <div className="flex justify-between items-center text-[9px] font-mono text-slate-400 dark:text-dark-500 font-medium">
                 <span>Less active</span>
                 <div className="flex gap-0.5 items-center">
-                  <span className="w-2.5 h-2.5 bg-slate-100 dark:bg-dark-900 border border-slate-200/50 dark:border-dark-950 rounded-sm" />
-                  <span className="w-2.5 h-2.5 bg-emerald-500/20 dark:bg-emerald-950/60 rounded-sm" />
-                  <span className="w-2.5 h-2.5 bg-emerald-500/45 dark:bg-emerald-800/70 rounded-sm" />
-                  <span className="w-2.5 h-2.5 bg-emerald-500/70 dark:bg-emerald-600/80 rounded-sm" />
-                  <span className="w-2.5 h-2.5 bg-emerald-500 dark:bg-emerald-500 rounded-sm" />
+                  <span className="w-2.5 h-2.5 bg-slate-100 dark:bg-dark-950 border border-slate-200/50 dark:border-dark-800 rounded-sm" />
+                  <span className="w-2.5 h-2.5 bg-gold-500/25 dark:bg-gold-900/60 rounded-sm" />
+                  <span className="w-2.5 h-2.5 bg-gold-500/50 dark:bg-gold-700/60 rounded-sm" />
+                  <span className="w-2.5 h-2.5 bg-gold-500/75 dark:bg-gold-600/80 rounded-sm" />
+                  <span className="w-2.5 h-2.5 bg-gold-500 dark:bg-gold-500 rounded-sm" />
                 </div>
                 <span>More active</span>
               </div>

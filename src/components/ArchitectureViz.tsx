@@ -3,14 +3,14 @@ import { motion } from 'framer-motion';
 
 export const ArchitectureViz: React.FC = () => {
   const nodes = [
-    { id: 'fe', x: 200, y: 30, label: 'Frontend', sub: 'React / TS', color: '#0070f3' },
-    { id: 'api', x: 200, y: 110, label: 'REST API', sub: 'JSON / JWT', color: '#6b7280' },
-    { id: 'sb', x: 200, y: 190, label: 'Spring Boot', sub: 'Java Engine', color: '#6db33f' },
-    { id: 'db', x: 200, y: 270, label: 'Database', sub: 'PostgreSQL', color: '#336791' },
+    { id: 'fe', x: 200, y: 30, label: 'Frontend', sub: 'React / TS', color: '#c59828' },
+    { id: 'api', x: 200, y: 110, label: 'REST API', sub: 'JSON / JWT', color: '#5580ba' },
+    { id: 'sb', x: 200, y: 190, label: 'Spring Boot', sub: 'Java Engine', color: '#059669' },
+    { id: 'db', x: 200, y: 270, label: 'Database', sub: 'PostgreSQL', color: '#22416b' },
     // Secondary Nodes
-    { id: 'ai', x: 60, y: 110, label: 'AI Inference', sub: 'YOLOv8 / Python', color: '#f89820', side: 'left' },
+    { id: 'ai', x: 60, y: 110, label: 'AI Inference', sub: 'YOLOv8 / Python', color: '#d97706', side: 'left' },
     { id: 'emb', x: 60, y: 190, label: 'Embedded C', sub: 'Hardware/Sensors', color: '#10b981', side: 'left' },
-    { id: 'git', x: 340, y: 30, label: 'Git / CI', sub: 'GitHub Actions', color: '#000000', side: 'right' },
+    { id: 'git', x: 340, y: 30, label: 'Git / CI', sub: 'GitHub Actions', color: '#2b4670', side: 'right' },
     { id: 'cloud', x: 340, y: 270, label: 'Vercel / Cloud', sub: 'Deployment', color: '#a855f7', side: 'right' }
   ];
 
@@ -32,7 +32,7 @@ export const ArchitectureViz: React.FC = () => {
   return (
     <div className="relative w-full max-w-[420px] mx-auto p-4 sm:p-5 rounded-2xl border border-slate-200 bg-white/90 dark:border-dark-800 dark:bg-dark-900/80 backdrop-blur-md shadow-lg dark:shadow-2xl overflow-hidden group">
       {/* Background radial glow */}
-      <div className="absolute -inset-10 bg-radial-gradient from-primary/5 via-transparent to-transparent opacity-50 pointer-events-none group-hover:opacity-75 transition-opacity duration-700" />
+      <div className="absolute -inset-10 bg-radial-gradient from-gold-500/10 via-transparent to-transparent opacity-50 pointer-events-none group-hover:opacity-80 transition-opacity duration-700" />
       
       <div className="text-[10px] sm:text-[11px] text-slate-600 dark:text-dark-400 font-mono font-semibold mb-3 sm:mb-4 border-b border-slate-150 dark:border-dark-800 pb-2 flex justify-between items-center">
         <span>CORE ARCHITECTURE ENGINE</span>
@@ -86,7 +86,7 @@ export const ArchitectureViz: React.FC = () => {
               {/* Flow particle */}
               <motion.circle
                 r="3"
-                className="fill-slate-700 dark:fill-white"
+                className="fill-gold-500 dark:fill-gold-400"
                 filter="url(#glow-filter)"
                 animate={{
                   cx: [fromCoords.x, toCoords.x],
@@ -103,9 +103,9 @@ export const ArchitectureViz: React.FC = () => {
         })}
 
         <linearGradient id="line-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#0070f3" stopOpacity="0.3" />
-          <stop offset="50%" stopColor="#6db33f" stopOpacity="0.7" />
-          <stop offset="100%" stopColor="#f89820" stopOpacity="0.3" />
+          <stop offset="0%" stopColor="#c59828" stopOpacity="0.4" />
+          <stop offset="50%" stopColor="#d4af37" stopOpacity="0.8" />
+          <stop offset="100%" stopColor="#335b91" stopOpacity="0.4" />
         </linearGradient>
 
         {/* Draw nodes */}
