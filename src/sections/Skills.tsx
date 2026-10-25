@@ -8,12 +8,12 @@ export const Skills: React.FC = () => {
 
   const getCategoryIcon = (title: string) => {
     const lowercaseTitle = title.toLowerCase();
-    if (lowercaseTitle.includes('programming')) return <Terminal size={18} className="text-primary" />;
-    if (lowercaseTitle.includes('java') || lowercaseTitle.includes('backend')) return <Code2 size={18} className="text-spring" />;
-    if (lowercaseTitle.includes('front')) return <Monitor size={18} className="text-primary" />;
-    if (lowercaseTitle.includes('ai') || lowercaseTitle.includes('vision')) return <Cpu size={18} className="text-primary" />;
-    if (lowercaseTitle.includes('tool')) return <Settings size={18} className="text-spring" />;
-    return <Layers size={18} className="text-primary" />;
+    if (lowercaseTitle.includes('programming')) return <Terminal size={18} className="text-gold-600 dark:text-cerulean-400" />;
+    if (lowercaseTitle.includes('java') || lowercaseTitle.includes('backend')) return <Code2 size={18} className="text-navy-600 dark:text-rose-400" />;
+    if (lowercaseTitle.includes('front')) return <Monitor size={18} className="text-gold-600 dark:text-cerulean-400" />;
+    if (lowercaseTitle.includes('ai') || lowercaseTitle.includes('vision')) return <Cpu size={18} className="text-navy-600 dark:text-rose-400" />;
+    if (lowercaseTitle.includes('tool')) return <Settings size={18} className="text-gold-600 dark:text-cerulean-400" />;
+    return <Layers size={18} className="text-gold-600 dark:text-rose-400" />;
   };
 
   return (
@@ -22,9 +22,9 @@ export const Skills: React.FC = () => {
         
         {/* Section Title */}
         <div className="text-left mb-12">
-          <span className="text-xs text-primary font-mono font-bold uppercase tracking-wider">02 // TECH STACK</span>
+          <span className="text-xs text-gold-600 dark:text-cerulean-400 font-mono font-bold uppercase tracking-wider">02 // TECH STACK</span>
           <h2 className="text-3xl md:text-4xl font-bold font-display text-slate-900 dark:text-white mt-1">Skills & Expertises</h2>
-          <div className="h-0.5 w-12 bg-primary mt-2" />
+          <div className="h-0.5 w-12 bg-gold-500 dark:bg-cerulean-500 mt-2" />
         </div>
 
         {/* Skills Cards Grid */}
@@ -36,10 +36,10 @@ export const Skills: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.08 }}
-              className="p-6 rounded-xl border border-slate-200 bg-white hover:border-gold-500/40 dark:border-dark-800 dark:bg-dark-900/60 dark:hover:border-gold-500/30 hover:shadow-md transition-all duration-300 relative group"
+              className="p-6 rounded-xl border border-slate-200 bg-white hover:border-gold-500/40 dark:border-dark-800 dark:bg-dark-900/60 dark:hover:border-cerulean-500/50 hover:shadow-md transition-all duration-300 relative group"
             >
               {/* Corner Glow Effect */}
-              <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-gold-500/10 to-transparent rounded-tr-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+              <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-gold-500/10 dark:from-cerulean-500/20 to-transparent rounded-tr-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
               {/* Title & Icon */}
               <div className="flex items-center gap-2 mb-4 border-b border-slate-200 dark:border-dark-800/60 pb-3">
@@ -60,8 +60,8 @@ export const Skills: React.FC = () => {
                       key={skill}
                       className={`px-3 py-1.5 rounded text-xs font-semibold font-mono border transition-colors ${
                         isSpecial
-                          ? 'bg-gold-500/10 border-gold-500/35 text-gold-700 dark:bg-gold-500/10 dark:border-gold-500/30 dark:text-gold-300 hover:border-gold-500/60'
-                          : 'bg-slate-50 border-slate-200 text-slate-600 hover:text-slate-900 dark:bg-dark-950 dark:border-dark-800/80 dark:text-dark-400 dark:hover:text-white dark:hover:border-dark-700'
+                          ? 'bg-gold-500/10 border-gold-500/35 text-gold-700 dark:bg-cerulean-500/15 dark:border-cerulean-500/40 dark:text-cerulean-300 dark:hover:border-rose-500/60 hover:border-gold-500/60'
+                          : 'bg-slate-50 border-slate-200 text-slate-600 hover:text-slate-900 dark:bg-dark-950 dark:border-dark-800/80 dark:text-dark-400 dark:hover:text-white dark:hover:border-cerulean-500/40'
                       }`}
                     >
                       {skill}

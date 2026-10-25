@@ -48,12 +48,12 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onC
             {/* Header */}
             <div className="sticky top-0 bg-white/95 dark:bg-dark-900/90 backdrop-blur-md px-6 py-4 border-b border-slate-200 dark:border-dark-800 flex items-center justify-between z-20">
               <div>
-                <span className="text-xs text-gold-600 dark:text-gold-400 font-mono font-bold uppercase tracking-wider">PROJECT CASE STUDY</span>
+                <span className="text-xs text-gold-600 dark:text-cerulean-400 font-mono font-bold uppercase tracking-wider">PROJECT CASE STUDY</span>
                 <h3 className="text-xl md:text-2xl font-bold font-display text-slate-900 dark:text-white mt-0.5">{project.title}</h3>
               </div>
               <button
                 onClick={onClose}
-                className="p-1.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-500 hover:text-slate-900 dark:border-dark-800 dark:bg-dark-950 dark:text-dark-400 dark:hover:text-gold-400 dark:hover:bg-dark-800 transition-colors"
+                className="p-1.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-500 hover:text-slate-900 dark:border-dark-800 dark:bg-dark-950 dark:text-dark-400 dark:hover:text-rose-400 dark:hover:bg-dark-800 transition-colors"
                 aria-label="Close modal"
               >
                 <X size={20} />
@@ -85,7 +85,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onC
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold font-mono rounded-lg bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:border-gold-500/40 text-slate-800 dark:bg-dark-950 dark:border-dark-800 dark:hover:border-gold-500/40 dark:hover:bg-dark-800 dark:text-white transition-all shadow-sm"
+                      className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold font-mono rounded-lg bg-slate-100 border border-slate-200 hover:bg-slate-200 hover:border-gold-500/40 text-slate-800 dark:bg-dark-950 dark:border-dark-800 dark:hover:border-cerulean-500/50 dark:hover:bg-dark-800 dark:text-white transition-all shadow-sm"
                     >
                       <GithubIcon size={16} />
                       Code Repository
@@ -95,12 +95,12 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onC
               </div>
 
               {/* Achievement Callout - Readability Upgrade */}
-              <div className="flex gap-4 p-4 rounded-xl border border-gold-500/25 bg-gold-500/10 dark:bg-gold-500/10">
-                <div className="p-2 rounded bg-gold-500/15 text-gold-600 dark:text-gold-400 h-fit">
+              <div className="flex gap-4 p-4 rounded-xl border border-gold-500/25 bg-gold-500/10 dark:border-rose-500/30 dark:bg-rose-500/10">
+                <div className="p-2 rounded bg-gold-500/15 text-gold-600 dark:bg-rose-500/20 dark:text-rose-400 h-fit">
                   <Award size={20} />
                 </div>
                 <div>
-                  <h4 className="text-xs font-mono text-gold-700 dark:text-gold-400 font-bold uppercase tracking-wider">KEY ENGINEERING ACHIEVEMENT</h4>
+                  <h4 className="text-xs font-mono text-gold-700 dark:text-rose-400 font-bold uppercase tracking-wider">KEY ENGINEERING ACHIEVEMENT</h4>
                   <p className="text-sm md:text-base text-slate-800 dark:text-dark-200 mt-1 leading-relaxed font-semibold">{project.achievement}</p>
                 </div>
               </div>
@@ -128,7 +128,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onC
               {project.id === 'printguard-ai' && project.architectureNodes && (
                 <div className="p-5 rounded-xl border border-slate-200 bg-slate-50/20 dark:border-dark-800 dark:bg-dark-950/20 space-y-4">
                   <h4 className="text-base font-bold font-display text-slate-900 dark:text-white flex items-center gap-2">
-                    <Workflow size={18} className="text-gold-500" />
+                    <Workflow size={18} className="text-gold-500 dark:text-cerulean-400" />
                     Data Flow & Hardware Architecture
                   </h4>
                   <p className="text-xs text-slate-500 dark:text-dark-400 font-bold">
@@ -168,7 +168,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onC
                   <ul className="space-y-3 font-sans text-sm md:text-base text-slate-600 dark:text-dark-400">
                     {project.challenges.map((challenge, idx) => (
                       <li key={idx} className="flex gap-2 items-start font-medium leading-relaxed">
-                        <span className="text-gold-600 dark:text-gold-400 font-mono mt-0.5 font-bold">0{idx + 1}.</span>
+                        <span className="text-gold-600 dark:text-cerulean-400 font-mono mt-0.5 font-bold">0{idx + 1}.</span>
                         <span>{challenge}</span>
                       </li>
                     ))}
@@ -177,13 +177,13 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onC
 
                 <div>
                   <h4 className="text-base font-bold font-display text-slate-900 dark:text-white mb-3 flex items-center gap-1.5">
-                    <Lightbulb size={18} className="text-yellow-500" />
+                    <Lightbulb size={18} className="text-yellow-500 dark:text-rose-400" />
                     Key Learnings
                   </h4>
                   <ul className="space-y-3 font-sans text-sm md:text-base text-slate-600 dark:text-dark-400">
                     {project.learnings.map((learning, idx) => (
                       <li key={idx} className="flex gap-2 items-start font-medium leading-relaxed">
-                        <span className="text-emerald-500 font-mono mt-0.5 font-bold">✔</span>
+                        <span className="text-emerald-500 dark:text-rose-400 font-mono mt-0.5 font-bold">✔</span>
                         <span>{learning}</span>
                       </li>
                     ))}

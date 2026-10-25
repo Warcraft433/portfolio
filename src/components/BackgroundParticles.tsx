@@ -74,13 +74,15 @@ export const BackgroundParticles: React.FC = () => {
         c.beginPath();
         c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         if (isDark) {
+          // Dark mode: Electric Cerulean Blue and Neon Rose on Jet-Black
           c.fillStyle = this.isGold
-            ? `rgba(212, 175, 55, ${Math.min(1, this.alpha * 1.8)})` // luminous gold
-            : `rgba(246, 243, 235, ${Math.min(1, this.alpha * 1.4)})`; // starlight ivory
+            ? `rgba(0, 166, 237, ${Math.min(1, this.alpha * 1.8)})` // Cerulean Blue
+            : `rgba(255, 26, 117, ${Math.min(1, this.alpha * 1.7)})`; // Neon Rose
         } else {
+          // Light mode: Warm Gold and Deep Atlas Navy on Ivory
           c.fillStyle = this.isGold
-            ? `rgba(180, 135, 30, ${Math.min(1, this.alpha * 1.6)})` // antique gold
-            : `rgba(15, 28, 48, ${Math.min(1, this.alpha * 1.3)})`; // deep Atlas navy
+            ? `rgba(197, 152, 40, ${Math.min(1, this.alpha * 1.6)})` // Gold
+            : `rgba(7, 18, 33, ${Math.min(1, this.alpha * 1.3)})`; // Deep Atlas Navy
         }
         c.fill();
       }
@@ -141,8 +143,8 @@ export const BackgroundParticles: React.FC = () => {
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.strokeStyle = isDark
-              ? `rgba(212, 175, 55, ${alpha * 1.6})`
-              : `rgba(18, 34, 59, ${alpha * 1.3})`;
+              ? `rgba(0, 166, 237, ${alpha * 1.5})`
+              : `rgba(7, 18, 33, ${alpha * 1.2})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }

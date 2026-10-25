@@ -32,7 +32,7 @@ export const Footer: React.FC = () => {
               href={socials.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-gold-600 dark:hover:text-gold-400 transition-colors"
+              className="hover:text-gold-600 dark:hover:text-white transition-colors"
               aria-label="GitHub link"
             >
               <GithubIcon size={16} />
@@ -43,7 +43,7 @@ export const Footer: React.FC = () => {
               href={socials.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-gold-600 dark:hover:text-gold-400 transition-colors"
+              className="hover:text-gold-600 dark:hover:text-cerulean-400 transition-colors"
               aria-label="LinkedIn link"
             >
               <LinkedinIcon size={16} />
@@ -52,7 +52,7 @@ export const Footer: React.FC = () => {
           {socials.email && (
             <a
               href={socials.email}
-              className="hover:text-gold-600 dark:hover:text-gold-400 transition-colors"
+              className="hover:text-gold-600 dark:hover:text-rose-400 transition-colors"
               aria-label="Email link"
             >
               <Mail size={16} />

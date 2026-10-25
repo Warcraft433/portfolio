@@ -37,9 +37,9 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
         
         {/* Section Title */}
         <div className="text-left mb-12">
-          <span className="text-xs text-gold-600 dark:text-gold-400 font-mono font-bold uppercase tracking-wider">05 // COMMUNICATIONS</span>
+          <span className="text-xs text-gold-600 dark:text-cerulean-400 font-mono font-bold uppercase tracking-wider">05 // COMMUNICATIONS</span>
           <h2 className="text-3xl md:text-4xl font-bold font-display text-slate-900 dark:text-white mt-1">Let's Build Something</h2>
-          <div className="h-0.5 w-12 bg-gold-500 mt-2" />
+          <div className="h-0.5 w-12 bg-gold-500 dark:bg-cerulean-500 mt-2" />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
@@ -55,9 +55,9 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
               {socials.email && (
                 <a
                   href={socials.email}
-                  className="flex items-center gap-3 p-4 rounded-xl border border-slate-200 bg-white hover:border-primary/40 hover:bg-slate-50/50 dark:border-dark-800 dark:bg-dark-900/40 dark:hover:border-primary/40 dark:hover:bg-dark-900 transition-all duration-300 group shadow-sm"
+                  className="flex items-center gap-3 p-4 rounded-xl border border-slate-200 bg-white hover:border-gold-500/40 hover:bg-slate-50/50 dark:border-dark-800 dark:bg-dark-900/40 dark:hover:border-cerulean-500/40 dark:hover:bg-dark-900 transition-all duration-300 group shadow-sm"
                 >
-                  <div className="p-2 rounded bg-slate-50 border border-slate-200 dark:bg-dark-950 dark:border-dark-850 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                  <div className="p-2 rounded bg-slate-50 border border-slate-200 dark:bg-dark-950 dark:border-dark-850 text-gold-600 dark:text-cerulean-400 group-hover:bg-gold-500 group-hover:text-slate-950 dark:group-hover:bg-cerulean-500 dark:group-hover:text-black transition-colors">
                     <Mail size={16} />
                   </div>
                   <div>
@@ -71,9 +71,9 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
               {socials.phone && (
                 <a
                   href={`tel:${socials.phone.replace(/\s+/g, '')}`}
-                  className="flex items-center gap-3 p-4 rounded-xl border border-slate-200 bg-white hover:border-primary/40 hover:bg-slate-50/50 dark:border-dark-800 dark:bg-dark-900/40 dark:hover:border-primary/40 dark:hover:bg-dark-900 transition-all duration-300 group shadow-sm"
+                  className="flex items-center gap-3 p-4 rounded-xl border border-slate-200 bg-white hover:border-gold-500/40 hover:bg-slate-50/50 dark:border-dark-800 dark:bg-dark-900/40 dark:hover:border-cerulean-500/40 dark:hover:bg-dark-900 transition-all duration-300 group shadow-sm"
                 >
-                  <div className="p-2 rounded bg-slate-50 border border-slate-200 dark:bg-dark-950 dark:border-dark-850 text-emerald-500 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
+                  <div className="p-2 rounded bg-slate-50 border border-slate-200 dark:bg-dark-950 dark:border-dark-850 text-emerald-500 dark:text-cerulean-400 group-hover:bg-emerald-500 group-hover:text-white dark:group-hover:bg-cerulean-500 dark:group-hover:text-black transition-colors">
                     <Phone size={16} />
                   </div>
                   <div>
@@ -89,9 +89,9 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
                   href={socials.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-4 rounded-xl border border-slate-200 bg-white hover:border-primary/40 hover:bg-slate-50/50 dark:border-dark-800 dark:bg-dark-900/40 dark:hover:border-primary/40 dark:hover:bg-dark-900 transition-all duration-300 group shadow-sm"
+                  className="flex items-center gap-3 p-4 rounded-xl border border-slate-200 bg-white hover:border-gold-500/40 hover:bg-slate-50/50 dark:border-dark-800 dark:bg-dark-900/40 dark:hover:border-cerulean-500/40 dark:hover:bg-dark-900 transition-all duration-300 group shadow-sm"
                 >
-                  <div className="p-2 rounded bg-slate-50 border border-slate-200 dark:bg-dark-950 dark:border-dark-850 text-[#0077b5] group-hover:bg-[#0077b5] group-hover:text-white transition-colors">
+                  <div className="p-2 rounded bg-slate-50 border border-slate-200 dark:bg-dark-950 dark:border-dark-850 text-[#0077b5] dark:text-cerulean-400 group-hover:bg-[#0077b5] group-hover:text-white dark:group-hover:bg-cerulean-500 dark:group-hover:text-black transition-colors">
                     <LinkedinIcon size={16} />
                   </div>
                   <div>
@@ -107,9 +107,9 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
                   href={socials.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-4 rounded-xl border border-slate-200 bg-white hover:border-primary/40 hover:bg-slate-50/50 dark:border-dark-800 dark:bg-dark-900/40 dark:hover:border-primary/40 dark:hover:bg-dark-900 transition-all duration-300 group shadow-sm"
+                  className="flex items-center gap-3 p-4 rounded-xl border border-slate-200 bg-white hover:border-gold-500/40 hover:bg-slate-50/50 dark:border-dark-800 dark:bg-dark-900/40 dark:hover:border-cerulean-500/40 dark:hover:bg-dark-900 transition-all duration-300 group shadow-sm"
                 >
-                  <div className="p-2 rounded bg-slate-50 border border-slate-200 dark:bg-dark-950 dark:border-dark-850 text-slate-800 dark:text-white group-hover:bg-slate-800 group-hover:text-white transition-colors">
+                  <div className="p-2 rounded bg-slate-50 border border-slate-200 dark:bg-dark-950 dark:border-dark-850 text-slate-800 dark:text-white group-hover:bg-slate-800 group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-black transition-colors">
                     <GithubIcon size={16} />
                   </div>
                   <div>
@@ -125,9 +125,9 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
                   href={socials.leetcode}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-4 rounded-xl border border-slate-200 bg-white hover:border-primary/40 hover:bg-slate-50/50 dark:border-dark-800 dark:bg-dark-900/40 dark:hover:border-primary/40 dark:hover:bg-dark-900 transition-all duration-300 group shadow-sm"
+                  className="flex items-center gap-3 p-4 rounded-xl border border-slate-200 bg-white hover:border-gold-500/40 hover:bg-slate-50/50 dark:border-dark-800 dark:bg-dark-900/40 dark:hover:border-rose-500/40 dark:hover:bg-dark-900 transition-all duration-300 group shadow-sm"
                 >
-                  <div className="p-2 rounded bg-slate-50 border border-slate-200 dark:bg-dark-950 dark:border-dark-850 text-amber-500 group-hover:bg-amber-500 group-hover:text-white transition-colors">
+                  <div className="p-2 rounded bg-slate-50 border border-slate-200 dark:bg-dark-950 dark:border-dark-850 text-amber-500 dark:text-rose-400 group-hover:bg-amber-500 group-hover:text-white dark:group-hover:bg-rose-500 dark:group-hover:text-white transition-colors">
                     <Trophy size={16} />
                   </div>
                   <div>
@@ -157,7 +157,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
                     value={formState.name}
                     onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                     placeholder="Enter your name"
-                    className="w-full px-3 py-2.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-900 font-sans text-sm focus:outline-none focus:border-gold-500 focus:bg-white dark:border-dark-800 dark:bg-dark-950 dark:text-white transition-all placeholder:text-slate-400 dark:placeholder:text-dark-600"
+                    className="w-full px-3 py-2.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-900 font-sans text-sm focus:outline-none focus:border-gold-500 dark:focus:border-cerulean-400 focus:bg-white dark:border-dark-800 dark:bg-dark-950 dark:text-white transition-all placeholder:text-slate-400 dark:placeholder:text-dark-600"
                   />
                 </div>
 
@@ -170,7 +170,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
                     value={formState.email}
                     onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                     placeholder="name@company.com"
-                    className="w-full px-3 py-2.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-900 font-sans text-sm focus:outline-none focus:border-gold-500 focus:bg-white dark:border-dark-800 dark:bg-dark-950 dark:text-white transition-all placeholder:text-slate-400 dark:placeholder:text-dark-600"
+                    className="w-full px-3 py-2.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-900 font-sans text-sm focus:outline-none focus:border-gold-500 dark:focus:border-cerulean-400 focus:bg-white dark:border-dark-800 dark:bg-dark-950 dark:text-white transition-all placeholder:text-slate-400 dark:placeholder:text-dark-600"
                   />
                 </div>
               </div>
@@ -184,14 +184,14 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
                   value={formState.message}
                   onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                   placeholder="Describe your project or role details..."
-                  className="w-full px-3 py-2.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-900 font-sans text-sm focus:outline-none focus:border-gold-500 focus:bg-white dark:border-dark-800 dark:bg-dark-950 dark:text-white transition-all resize-none placeholder:text-slate-400 dark:placeholder:text-dark-600"
+                  className="w-full px-3 py-2.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-900 font-sans text-sm focus:outline-none focus:border-gold-500 dark:focus:border-cerulean-400 focus:bg-white dark:border-dark-800 dark:bg-dark-950 dark:text-white transition-all resize-none placeholder:text-slate-400 dark:placeholder:text-dark-600"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={submitted}
-                className="w-full py-3 rounded-lg bg-gold-500 hover:bg-gold-600 text-slate-950 font-mono text-xs font-bold tracking-wider transition-all flex items-center justify-center gap-2 disabled:bg-emerald-600 shadow-md shadow-gold-950/20 hover:shadow-gold-500/25"
+                className="w-full py-3 rounded-lg bg-gold-500 hover:bg-gold-600 text-slate-950 dark:bg-gradient-to-r dark:from-cerulean-500 dark:to-rose-500 dark:hover:from-cerulean-400 dark:hover:to-rose-400 dark:text-white font-mono text-xs font-bold tracking-wider transition-all flex items-center justify-center gap-2 disabled:bg-emerald-600 shadow-md shadow-gold-950/20 dark:shadow-rose-500/25"
               >
                 {submitted ? (
                   <>COMMS ROUTED SUCCESSFUL</>
@@ -213,12 +213,12 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mt-20 p-8 md:p-12 rounded-2xl border border-slate-200 bg-white dark:border-dark-800 dark:bg-gradient-to-r dark:from-dark-900 dark:to-dark-950 relative overflow-hidden group text-center space-y-6 shadow-md dark:shadow-2xl"
+          className="mt-20 p-8 md:p-12 rounded-2xl border border-slate-200 bg-white dark:border-dark-800 dark:bg-dark-900/90 relative overflow-hidden group text-center space-y-6 shadow-md dark:shadow-2xl"
         >
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] bg-gold-500/10 dark:bg-gold-500/15 rounded-full blur-[80px] pointer-events-none group-hover:scale-110 transition-transform duration-700" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] bg-gold-500/10 dark:bg-cerulean-500/15 rounded-full blur-[80px] pointer-events-none group-hover:scale-110 transition-transform duration-700" />
           
           <div className="space-y-2 z-10 relative">
-            <h3 className="text-xl md:text-2xl font-mono text-gold-600 dark:text-gold-400 font-bold">Have a project or opportunity?</h3>
+            <h3 className="text-xl md:text-2xl font-mono text-gold-600 dark:text-cerulean-400 font-bold">Have a project or opportunity?</h3>
             <p className="text-2xl md:text-4xl font-bold font-display text-slate-900 dark:text-white max-w-2xl mx-auto tracking-tight">
               Let's build something meaningful.
             </p>
@@ -228,7 +228,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
             {/* View Projects */}
             <button
               onClick={() => handleScrollTo('#projects')}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold-500 hover:bg-gold-600 text-slate-950 font-bold text-sm transition-all shadow-md shadow-gold-500/20 hover:shadow-gold-500/35 hover:-translate-y-0.5 active:translate-y-0"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold-500 hover:bg-gold-600 text-slate-950 dark:bg-cerulean-500 dark:hover:bg-cerulean-400 dark:text-black font-bold text-sm transition-all shadow-md shadow-gold-500/20 dark:shadow-cerulean-500/30 hover:-translate-y-0.5 active:translate-y-0"
             >
               View Projects
               <ArrowRight size={16} />
@@ -237,16 +237,16 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
             {/* Open Resume */}
             <button
               onClick={onOpenResume}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white border border-slate-200 hover:border-gold-500/50 hover:bg-slate-50 text-slate-800 dark:bg-dark-900 dark:border-dark-800 dark:hover:border-gold-500/50 dark:hover:bg-dark-800 dark:text-white font-bold text-sm transition-all shadow-sm"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white border border-slate-200 hover:border-gold-500/50 hover:bg-slate-50 text-slate-800 dark:bg-dark-900 dark:border-dark-800 dark:hover:border-rose-500/60 dark:hover:text-rose-400 dark:hover:bg-dark-800 dark:text-white font-bold text-sm transition-all shadow-sm"
             >
-              <FileText size={16} className="text-gold-500" />
+              <FileText size={16} className="text-gold-500 dark:text-cerulean-400" />
               Open Resume
             </button>
 
             {/* Direct Connect */}
             <a
               href={socials.email}
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-transparent border border-transparent text-slate-600 hover:text-gold-600 dark:text-dark-400 dark:hover:text-gold-400 font-bold text-sm transition-all"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-transparent border border-transparent text-slate-600 hover:text-gold-600 dark:text-dark-400 dark:hover:text-rose-400 font-bold text-sm transition-all"
             >
               Get In Touch
             </a>

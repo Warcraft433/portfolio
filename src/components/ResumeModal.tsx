@@ -44,7 +44,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose, pdfUr
             {/* Header */}
             <div className="bg-white/95 dark:bg-dark-900/90 backdrop-blur-md px-6 py-4 border-b border-slate-200 dark:border-dark-800 flex items-center justify-between z-20">
               <div className="flex items-center gap-2.5">
-                <div className="p-1.5 rounded bg-gold-500/10 text-gold-600 dark:text-gold-400">
+                <div className="p-1.5 rounded bg-gold-500/10 text-gold-600 dark:bg-cerulean-500/15 dark:text-cerulean-400">
                   <FileText size={18} />
                 </div>
                 <div>
@@ -56,14 +56,14 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose, pdfUr
                 <a
                   href={pdfUrl}
                   download="ADARSH_A_RESUME.pdf"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-gold-500 hover:bg-gold-600 text-slate-950 font-bold transition-all shadow-md shadow-gold-500/20"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-gold-500 hover:bg-gold-600 text-slate-950 dark:bg-cerulean-500 dark:hover:bg-cerulean-400 dark:text-black font-bold transition-all shadow-md shadow-gold-500/20 dark:shadow-cerulean-500/30"
                 >
                   <Download size={14} />
                   Download
                 </a>
                 <button
                   onClick={onClose}
-                  className="p-1.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-500 hover:text-slate-900 dark:border-dark-800 dark:bg-dark-950 dark:text-dark-400 dark:hover:text-gold-400 dark:hover:bg-dark-800 transition-colors"
+                  className="p-1.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-500 hover:text-slate-900 dark:border-dark-800 dark:bg-dark-950 dark:text-dark-400 dark:hover:text-rose-400 dark:hover:bg-dark-800 transition-colors"
                   aria-label="Close modal"
                 >
                   <X size={18} />

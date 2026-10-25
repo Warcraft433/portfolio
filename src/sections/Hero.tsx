@@ -59,8 +59,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
       className="relative min-h-screen pt-28 pb-16 flex items-center justify-center overflow-hidden"
     >
       {/* Glow Effects */}
-      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[380px] h-[380px] rounded-full bg-gold-500/10 dark:bg-gold-500/15 blur-[110px] pointer-events-none animate-glow-slow" />
-      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[420px] h-[420px] rounded-full bg-navy-600/10 dark:bg-navy-800/25 blur-[120px] pointer-events-none animate-glow-slow" style={{ animationDelay: '-5s' }} />
+      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[380px] h-[380px] rounded-full bg-gold-500/10 dark:bg-cerulean-500/15 blur-[110px] pointer-events-none animate-glow-slow" />
+      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[420px] h-[420px] rounded-full bg-navy-600/10 dark:bg-rose-500/15 blur-[120px] pointer-events-none animate-glow-slow" style={{ animationDelay: '-5s' }} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
@@ -73,7 +73,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
         >
           {/* Location Badge */}
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-slate-200 text-slate-700 dark:bg-dark-900 dark:border-dark-800 text-xs font-mono dark:text-dark-400 shadow-sm">
-            <MapPin size={12} className="text-gold-500 animate-pulse" />
+            <MapPin size={12} className="text-gold-500 dark:text-cerulean-400 animate-pulse" />
             {location}
           </div>
 
@@ -85,9 +85,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
             
             {/* Dynamic typing role sub-headline */}
             <div className="h-8 md:h-10 flex items-center">
-              <span className="text-xl md:text-3xl font-mono text-gold-600 dark:text-gold-400 font-bold flex items-center gap-1">
+              <span className="text-xl md:text-3xl font-mono text-gold-600 dark:text-cerulean-400 font-bold flex items-center gap-1">
                 &gt; {subText}
-                <span className="inline-block w-1.5 h-6 bg-gold-500 animate-pulse" />
+                <span className="inline-block w-1.5 h-6 bg-gold-500 dark:bg-rose-500 animate-pulse" />
               </span>
             </div>
           </div>
@@ -102,7 +102,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
             {/* View Projects - Prominent Primary CTA */}
             <button
               onClick={() => handleScrollTo('#projects')}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-slate-900 text-ivory-50 hover:bg-slate-800 dark:bg-gold-500 dark:hover:bg-gold-600 dark:text-dark-950 font-bold text-sm transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 group active:translate-y-0"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-slate-900 text-ivory-50 hover:bg-slate-800 dark:bg-cerulean-500 dark:hover:bg-cerulean-400 dark:text-black font-bold text-sm transition-all duration-200 shadow-md hover:shadow-lg dark:shadow-cerulean-500/25 hover:-translate-y-0.5 group active:translate-y-0"
             >
               View Projects
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -111,16 +111,16 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
             {/* View Resume - Clean Secondary CTA */}
             <button
               onClick={onOpenResume}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-white border-2 border-slate-200 text-slate-800 hover:border-gold-500/50 hover:bg-slate-50 dark:bg-dark-900 dark:border-dark-700 dark:hover:border-gold-500/50 dark:hover:bg-dark-800 dark:text-white font-semibold text-sm transition-all duration-200 shadow-sm hover:-translate-y-0.5 active:translate-y-0"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-white border-2 border-slate-200 text-slate-800 hover:border-gold-500/50 hover:bg-slate-50 dark:bg-dark-900 dark:border-dark-700 dark:hover:border-rose-500/60 dark:hover:text-rose-400 dark:hover:bg-dark-800 dark:text-white font-semibold text-sm transition-all duration-200 shadow-sm hover:-translate-y-0.5 active:translate-y-0"
             >
-              <FileText size={16} className="text-gold-500" />
+              <FileText size={16} className="text-gold-500 dark:text-cerulean-400" />
               View Resume
             </button>
 
             {/* Let's Connect */}
             <button
               onClick={() => handleScrollTo('#contact')}
-              className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-slate-600 hover:text-slate-900 dark:text-dark-400 dark:hover:text-white font-medium text-sm transition-colors hover:bg-slate-100 dark:hover:bg-dark-900/60"
+              className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-slate-600 hover:text-slate-900 dark:text-dark-400 dark:hover:text-rose-400 font-medium text-sm transition-colors hover:bg-slate-100 dark:hover:bg-dark-900/60"
             >
               <Send size={14} />
               Let's Connect
@@ -133,14 +133,14 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
             <span className="flex items-center gap-1 hover:text-slate-900 dark:hover:text-white transition-colors cursor-default">
               <span className="w-2 h-2 rounded-full bg-java" /> Core Java & OOP
             </span>
-            <span className="flex items-center gap-1 hover:text-slate-900 dark:hover:text-white transition-colors cursor-default">
-              <span className="w-2 h-2 rounded-full bg-navy-500 dark:bg-navy-400" /> SQL & JDBC
+            <span className="flex items-center gap-1 hover:text-slate-900 dark:hover:text-cerulean-400 transition-colors cursor-default">
+              <span className="w-2 h-2 rounded-full bg-navy-500 dark:bg-cerulean-400" /> SQL & JDBC
             </span>
             <span className="flex items-center gap-1 hover:text-slate-900 dark:hover:text-white transition-colors cursor-default">
               <span className="w-2 h-2 rounded-full bg-spring" /> Spring Boot
             </span>
-            <span className="flex items-center gap-1 hover:text-slate-900 dark:hover:text-white transition-colors cursor-default">
-              <span className="w-2 h-2 rounded-full bg-gold-500" /> REST APIs
+            <span className="flex items-center gap-1 hover:text-slate-900 dark:hover:text-rose-400 transition-colors cursor-default">
+              <span className="w-2 h-2 rounded-full bg-gold-500 dark:bg-rose-500" /> REST APIs
             </span>
           </div>
         </motion.div>
@@ -154,7 +154,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
         >
           {/* Circular profile image container with glow border */}
           <div className="relative group">
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-gold-500 via-primary to-navy-600 rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-200" />
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-gold-500 via-primary to-navy-600 dark:from-cerulean-500 dark:via-cerulean-400 dark:to-rose-500 rounded-2xl blur opacity-30 dark:opacity-40 group-hover:opacity-60 dark:group-hover:opacity-80 transition duration-1000 group-hover:duration-200" />
             <div className="relative w-44 h-44 sm:w-48 sm:h-48 rounded-2xl overflow-hidden border border-slate-200 bg-white dark:border-dark-800 dark:bg-dark-950 flex justify-center items-center p-1 shadow-md">
               <img
                 src={profileImg}
@@ -164,7 +164,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
             </div>
             {/* Embedded Microchips tag */}
             <div className="absolute -bottom-2 -right-2 px-3 py-1 rounded bg-white border border-slate-200 dark:bg-dark-950 dark:border-dark-800 text-[10px] font-mono text-slate-600 dark:text-dark-400 flex items-center gap-1 shadow-lg">
-              <Terminal size={10} className="text-gold-500" />
+              <Terminal size={10} className="text-gold-500 dark:text-rose-400" />
               <span>B.Tech KTU</span>
             </div>
           </div>

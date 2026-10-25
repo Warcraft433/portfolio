@@ -30,15 +30,15 @@ export const ArchitectureViz: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full max-w-[420px] mx-auto p-4 sm:p-5 rounded-2xl border border-slate-200 bg-white/90 dark:border-dark-800 dark:bg-dark-900/80 backdrop-blur-md shadow-lg dark:shadow-2xl overflow-hidden group">
+    <div className="relative w-full max-w-[420px] mx-auto p-4 sm:p-5 rounded-2xl border border-slate-200 bg-white/90 dark:border-dark-800 dark:bg-dark-900/90 backdrop-blur-md shadow-lg dark:shadow-2xl overflow-hidden group">
       {/* Background radial glow */}
-      <div className="absolute -inset-10 bg-radial-gradient from-gold-500/10 via-transparent to-transparent opacity-50 pointer-events-none group-hover:opacity-80 transition-opacity duration-700" />
+      <div className="absolute -inset-10 bg-radial-gradient from-gold-500/10 dark:from-cerulean-500/15 via-transparent to-transparent opacity-50 pointer-events-none group-hover:opacity-80 transition-opacity duration-700" />
       
       <div className="text-[10px] sm:text-[11px] text-slate-600 dark:text-dark-400 font-mono font-semibold mb-3 sm:mb-4 border-b border-slate-150 dark:border-dark-800 pb-2 flex justify-between items-center">
         <span>CORE ARCHITECTURE ENGINE</span>
         <span className="flex h-2 w-2 relative">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 dark:bg-rose-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500 dark:bg-rose-500"></span>
         </span>
       </div>
 
@@ -48,6 +48,16 @@ export const ArchitectureViz: React.FC = () => {
             <feGaussianBlur stdDeviation="3" result="blur" />
             <feComposite in="SourceGraphic" in2="blur" operator="over" />
           </filter>
+          <linearGradient id="line-grad-light" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#c59828" stopOpacity="0.4" />
+            <stop offset="50%" stopColor="#d4af37" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="#071221" stopOpacity="0.4" />
+          </linearGradient>
+          <linearGradient id="line-grad-dark" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#00a6ed" stopOpacity="0.6" />
+            <stop offset="50%" stopColor="#38bdf8" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#ff1a75" stopOpacity="0.6" />
+          </linearGradient>
         </defs>
 
         {/* Draw connection lines */}
@@ -65,13 +75,33 @@ export const ArchitectureViz: React.FC = () => {
                 className="stroke-slate-200 dark:stroke-dark-800"
                 strokeWidth="2"
               />
-              {/* Glowing animated line */}
+              {/* Glowing animated line (Light mode) */}
               <motion.line
                 x1={fromCoords.x}
                 y1={fromCoords.y}
                 x2={toCoords.x}
                 y2={toCoords.y}
-                stroke="url(#line-grad)"
+                stroke="url(#line-grad-light)"
+                className="dark:hidden"
+                strokeWidth="1.5"
+                strokeDasharray="8 12"
+                animate={{
+                  strokeDashoffset: [-40, 0]
+                }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 4,
+                  ease: 'linear'
+                }}
+              />
+              {/* Glowing animated line (Dark mode: Cerulean to Neon Rose) */}
+              <motion.line
+                x1={fromCoords.x}
+                y1={fromCoords.y}
+                x2={toCoords.x}
+                y2={toCoords.y}
+                stroke="url(#line-grad-dark)"
+                className="hidden dark:block"
                 strokeWidth="1.5"
                 strokeDasharray="8 12"
                 animate={{
@@ -86,7 +116,7 @@ export const ArchitectureViz: React.FC = () => {
               {/* Flow particle */}
               <motion.circle
                 r="3"
-                className="fill-gold-500 dark:fill-gold-400"
+                className="fill-gold-500 dark:fill-rose-500"
                 filter="url(#glow-filter)"
                 animate={{
                   cx: [fromCoords.x, toCoords.x],
@@ -101,12 +131,6 @@ export const ArchitectureViz: React.FC = () => {
             </g>
           );
         })}
-
-        <linearGradient id="line-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#c59828" stopOpacity="0.4" />
-          <stop offset="50%" stopColor="#d4af37" stopOpacity="0.8" />
-          <stop offset="100%" stopColor="#335b91" stopOpacity="0.4" />
-        </linearGradient>
 
         {/* Draw nodes */}
         {nodes.map((node) => {

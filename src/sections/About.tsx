@@ -8,17 +8,17 @@ export const About: React.FC = () => {
 
   const highlights = [
     {
-      icon: <Code2 size={20} className="text-primary" />,
+      icon: <Code2 size={20} className="text-gold-600 dark:text-cerulean-400" />,
       title: "Java Backend Engineering",
       text: "Writing clean, modular Core Java with OOP, JDBC, Servlets, and Spring Boot REST APIs."
     },
     {
-      icon: <Database size={20} className="text-spring" />,
+      icon: <Database size={20} className="text-navy-600 dark:text-cerulean-300" />,
       title: "Database & SQL Systems",
       text: "Designing normalized MySQL schemas, handling structured CRUD operations, and writing optimized queries."
     },
     {
-      icon: <ShieldCheck size={20} className="text-primary" />,
+      icon: <ShieldCheck size={20} className="text-gold-600 dark:text-rose-400" />,
       title: "AI & Computer Vision",
       text: "Deploying edge inference scripts using YOLOv8 & OpenCV pipelines for automated defect detection."
     }
@@ -30,9 +30,9 @@ export const About: React.FC = () => {
         
         {/* Section Title */}
         <div className="text-left mb-12">
-          <span className="text-xs text-primary font-mono font-bold uppercase tracking-wider">01 // PROFILE</span>
+          <span className="text-xs text-gold-600 dark:text-cerulean-400 font-mono font-bold uppercase tracking-wider">01 // PROFILE</span>
           <h2 className="text-3xl md:text-4xl font-bold font-display text-slate-900 dark:text-white mt-1">About Me</h2>
-          <div className="h-0.5 w-12 bg-primary mt-2" />
+          <div className="h-0.5 w-12 bg-gold-500 dark:bg-cerulean-500 mt-2" />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
@@ -56,7 +56,7 @@ export const About: React.FC = () => {
             </p>
             
             <div className="p-4 rounded-xl border border-slate-200 bg-white dark:border-dark-800 dark:bg-dark-900/60 flex items-center gap-3 font-mono text-xs shadow-sm">
-              <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse flex-shrink-0" />
+              <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 dark:bg-rose-500 animate-pulse flex-shrink-0" />
               <span className="text-slate-800 dark:text-dark-200 font-semibold">Actively seeking Java Backend Developer & Full Stack opportunities.</span>
             </div>
           </motion.div>
@@ -72,7 +72,7 @@ export const About: React.FC = () => {
             {highlights.map((h, i) => (
               <div
                 key={i}
-                className="p-5 rounded-xl border border-slate-200 bg-white hover:border-gold-500/40 dark:border-dark-800 dark:bg-dark-900/50 dark:hover:border-gold-500/40 dark:hover:bg-dark-900 hover:shadow-sm transition-all duration-200 flex items-start gap-4"
+                className="p-5 rounded-xl border border-slate-200 bg-white hover:border-gold-500/40 dark:border-dark-800 dark:bg-dark-900/50 dark:hover:border-cerulean-500/40 dark:hover:bg-dark-900 hover:shadow-sm transition-all duration-200 flex items-start gap-4"
               >
                 <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-200 dark:bg-dark-950 dark:border-dark-800 flex-shrink-0">
                   {h.icon}

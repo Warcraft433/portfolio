@@ -6,23 +6,24 @@
 
 @layer base {
   body {
-    @apply bg-[#faf7f0] text-[#071221] dark:bg-[#050b14] dark:text-[#f6f3eb] font-sans antialiased selection:bg-gold-500/30 selection:text-[#071221] dark:selection:bg-gold-500/35 dark:selection:text-gold-200 overflow-x-hidden;
+    /* Light mode: Warm Ivory background with Deep Atlas Navy typography */
+    @apply bg-[#faf7f0] text-[#071221] dark:bg-[#000000] dark:text-[#f4f4f5] font-sans antialiased selection:bg-gold-500/30 selection:text-[#071221] dark:selection:bg-rose-500/40 dark:selection:text-white overflow-x-hidden;
     line-height: 1.65;
     letter-spacing: -0.011em;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
   
   .dark body {
-    background-color: #050b14;
-    color: #f6f3eb;
+    background-color: #000000;
+    color: #f4f4f5;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display text-[#071221] dark:text-[#fdfcf9] tracking-tight;
+    @apply font-display text-[#071221] dark:text-[#ffffff] tracking-tight;
   }
 
   p {
-    @apply leading-relaxed text-[#21344e] dark:text-[#8fa9cc];
+    @apply leading-relaxed text-[#21344e] dark:text-[#a1a1aa];
   }
 }
 
@@ -32,19 +33,19 @@
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  @apply bg-[#f4eee1] dark:bg-[#050b14];
+  @apply bg-[#f3ede0] dark:bg-[#000000];
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-[#d7c9ae] dark:bg-[#142540];
+  @apply bg-[#d7c9ae] dark:bg-[#222222];
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-[#c59828] dark:bg-[#1e3557];
+  @apply bg-[#c59828] dark:bg-cerulean-500;
 }
 
 /* Custom Utilities */
 .glass-panel {
-  @apply bg-[#fffdfa]/85 border-[#e4d8c2] dark:bg-[#091322]/85 dark:border-[#142540];
+  @apply bg-[#fffdfa]/85 border-[#e4d8c2] dark:bg-[#080808]/85 dark:border-[#1c1c1c];
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-width: 1px;
@@ -57,7 +58,7 @@
 }
 
 .dark .text-gradient {
-  background: linear-gradient(135deg, #ffffff 25%, #f6eed0 60%, #c59828 100%);
+  background: linear-gradient(135deg, #00a6ed 0%, #38bdf8 40%, #ff1a75 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -67,7 +68,7 @@
 }
 
 .dark .text-glow {
-  text-shadow: 0 0 18px rgba(212, 175, 55, 0.3);
+  text-shadow: 0 0 20px rgba(0, 166, 237, 0.35);
 }
 
 .border-glow {
@@ -75,5 +76,5 @@
 }
 
 .dark .border-glow {
-  box-shadow: 0 0 25px rgba(212, 175, 55, 0.12);
+  box-shadow: 0 0 25px rgba(0, 166, 237, 0.15);
 }
