@@ -65,7 +65,7 @@ function App() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#f8fafc] text-slate-900 dark:bg-[#080b0f] dark:text-silver-100 selection:bg-neon-500/25 selection:text-neon-700 dark:selection:bg-neon-500/35 dark:selection:text-white overflow-x-hidden font-sans transition-colors duration-300">
+    <div className="relative min-h-screen bg-[#E8E2D8] text-[#19191F] dark:bg-[#101014] dark:text-[#F7F5F0] selection:bg-[#D6B77A]/30 selection:text-[#101014] dark:selection:bg-[#D6B77A]/30 dark:selection:text-[#F7F5F0] overflow-x-hidden font-sans transition-colors duration-300">
       {/* Background Interactive Particles Canvas */}
       <BackgroundParticles />
 

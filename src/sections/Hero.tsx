@@ -27,7 +27,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
         setTypingSpeed(80);
         
         if (subText === fullText) {
-          setTypingSpeed(2000);
+          setTypingSpeed(2200);
           setIsDeleting(true);
         }
       } else {
@@ -58,9 +58,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
       id="home"
       className="relative min-h-screen pt-28 pb-16 flex items-center justify-center overflow-hidden"
     >
-      {/* Background Glow Effects - Charcoal, Moonlit Silver & Single Red Neon */}
-      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[380px] h-[380px] rounded-full bg-neon-500/10 blur-[110px] pointer-events-none animate-glow-slow" />
-      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[420px] h-[420px] rounded-full bg-charcoal-700/20 dark:bg-silver-400/10 blur-[120px] pointer-events-none animate-glow-slow" style={{ animationDelay: '-5s' }} />
+      {/* Background Glows — Understated Champagne Gold & Obsidian Mist */}
+      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full bg-[#D6B77A]/08 blur-[130px] pointer-events-none animate-glow-slow" />
+      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[380px] h-[380px] rounded-full bg-[#303038]/30 dark:bg-[#22222A]/40 blur-[140px] pointer-events-none animate-glow-slow" style={{ animationDelay: '-5s' }} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
@@ -72,55 +72,55 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
           className="lg:col-span-7 space-y-6 text-left"
         >
           {/* Location Badge */}
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-slate-200 text-slate-700 dark:bg-charcoal-900 dark:border-charcoal-800 text-xs font-mono dark:text-silver-300 shadow-sm">
-            <MapPin size={12} className="text-neon-500 animate-pulse" />
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#FAF8F5] border border-[#D0C8BC] text-[#36363E] dark:bg-[#19191F] dark:border-[#303038] text-xs font-mono dark:text-[#C8C6C0] shadow-sm">
+            <MapPin size={12} className="text-[#D6B77A]" />
             {location}
           </div>
 
           {/* Name & Titles */}
           <div className="space-y-3">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-display tracking-tight text-slate-900 dark:text-silver-100 leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-display tracking-tight text-[#19191F] dark:text-[#F7F5F0] leading-tight">
               {name}
             </h1>
             
             {/* Dynamic typing role sub-headline */}
             <div className="h-8 md:h-10 flex items-center">
-              <span className="text-xl md:text-3xl font-mono text-slate-800 dark:text-silver-100 font-bold flex items-center gap-1">
-                &gt; {subText}
-                <span className="inline-block w-1.5 h-6 bg-neon-500 animate-pulse" />
+              <span className="text-xl md:text-3xl font-mono text-[#19191F] dark:text-[#F7F5F0] font-bold flex items-center gap-1.5">
+                <span className="text-[#D6B77A]">&gt;</span> {subText}
+                <span className="inline-block w-1.5 h-6 bg-[#D6B77A] animate-pulse" />
               </span>
             </div>
           </div>
 
           {/* Tagline */}
-          <p className="text-base sm:text-lg md:text-xl text-slate-700 dark:text-silver-400 font-sans leading-relaxed max-w-2xl font-medium">
+          <p className="text-base sm:text-lg md:text-xl text-[#4B4B54] dark:text-[#9E9EAA] font-sans leading-relaxed max-w-2xl font-normal">
             {tagline}
           </p>
 
           {/* CTAs */}
           <div className="flex flex-wrap items-center gap-3.5 pt-4">
-            {/* View Projects - Prominent Primary CTA in Single Red Neon */}
+            {/* View Projects — Champagne Gold Accent */}
             <button
               onClick={() => handleScrollTo('#projects')}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-neon-500 hover:bg-neon-600 text-white font-bold text-sm transition-all duration-200 shadow-md shadow-neon-500/25 hover:shadow-neon-500/40 hover:-translate-y-0.5 group active:translate-y-0"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-[#D6B77A] hover:bg-[#C5A566] text-[#101014] font-bold text-sm transition-all duration-200 shadow-md shadow-[#D6B77A]/20 hover:shadow-[#D6B77A]/30 hover:-translate-y-0.5 group active:translate-y-0"
             >
               View Projects
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </button>
 
-            {/* View Resume - Secondary CTA */}
+            {/* View Resume — Refined Secondary Button */}
             <button
               onClick={onOpenResume}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-white border-2 border-slate-200 text-slate-800 hover:border-neon-500/50 hover:bg-slate-50 dark:bg-charcoal-900 dark:border-charcoal-800 dark:hover:border-neon-500/60 dark:hover:text-neon-400 dark:hover:bg-charcoal-850 dark:text-silver-100 font-semibold text-sm transition-all duration-200 shadow-sm hover:-translate-y-0.5 active:translate-y-0"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-[#FAF8F5] border border-[#D0C8BC] text-[#19191F] hover:border-[#D6B77A]/60 hover:bg-[#F4F0E8] dark:bg-[#19191F] dark:border-[#303038] dark:hover:border-[#D6B77A]/50 dark:hover:text-[#D6B77A] dark:hover:bg-[#22222A] dark:text-[#F7F5F0] font-semibold text-sm transition-all duration-200 shadow-sm hover:-translate-y-0.5 active:translate-y-0"
             >
-              <FileText size={16} className="text-neon-500" />
+              <FileText size={16} className="text-[#D6B77A]" />
               View Resume
             </button>
 
             {/* Let's Connect */}
             <button
               onClick={() => handleScrollTo('#contact')}
-              className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-slate-600 hover:text-slate-900 dark:text-silver-400 dark:hover:text-neon-400 font-medium text-sm transition-colors hover:bg-slate-100 dark:hover:bg-charcoal-900/60"
+              className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-[#5A5A66] hover:text-[#19191F] dark:text-[#777783] dark:hover:text-[#D6B77A] font-medium text-sm transition-colors hover:bg-[#FAF8F5] dark:hover:bg-[#19191F]"
             >
               <Send size={14} />
               Let's Connect
@@ -128,34 +128,34 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
           </div>
 
           {/* Inline Micro-Skills Banner */}
-          <div className="pt-6 border-t border-slate-200 dark:border-charcoal-800/80 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs text-slate-500 dark:text-silver-400 font-mono">
-            <span className="text-slate-400 dark:text-silver-500 font-bold">CORE STACK:</span>
-            <span className="flex items-center gap-1 hover:text-slate-900 dark:hover:text-silver-100 transition-colors cursor-default">
-              <span className="w-2 h-2 rounded-full bg-neon-500" /> Core Java & OOP
+          <div className="pt-6 border-t border-[#D0C8BC] dark:border-[#303038] flex flex-wrap items-center gap-x-6 gap-y-3 text-xs text-[#5A5A66] dark:text-[#777783] font-mono">
+            <span className="text-[#36363E] dark:text-[#C8C6C0] font-bold">CORE STACK:</span>
+            <span className="flex items-center gap-1.5 hover:text-[#19191F] dark:hover:text-[#F7F5F0] transition-colors cursor-default">
+              <span className="w-2 h-2 rounded-full bg-[#D6B77A]" /> Core Java & OOP
             </span>
-            <span className="flex items-center gap-1 hover:text-slate-900 dark:hover:text-silver-100 transition-colors cursor-default">
-              <span className="w-2 h-2 rounded-full bg-silver-400" /> SQL & JDBC
+            <span className="flex items-center gap-1.5 hover:text-[#19191F] dark:hover:text-[#F7F5F0] transition-colors cursor-default">
+              <span className="w-2 h-2 rounded-full bg-[#777783]" /> SQL & JDBC
             </span>
-            <span className="flex items-center gap-1 hover:text-slate-900 dark:hover:text-silver-100 transition-colors cursor-default">
-              <span className="w-2 h-2 rounded-full bg-neon-400" /> Spring Boot
+            <span className="flex items-center gap-1.5 hover:text-[#19191F] dark:hover:text-[#F7F5F0] transition-colors cursor-default">
+              <span className="w-2 h-2 rounded-full bg-[#D6B77A]" /> Spring Boot
             </span>
-            <span className="flex items-center gap-1 hover:text-slate-900 dark:hover:text-neon-400 transition-colors cursor-default">
-              <span className="w-2 h-2 rounded-full bg-neon-500" /> REST APIs
+            <span className="flex items-center gap-1.5 hover:text-[#19191F] dark:hover:text-[#F7F5F0] transition-colors cursor-default">
+              <span className="w-2 h-2 rounded-full bg-[#DECBA1]" /> REST APIs
             </span>
           </div>
         </motion.div>
 
-        {/* Right Side: Photo and Interactive SVG Architecture Visual */}
+        {/* Right Side: Photo and Interactive Architecture Visual */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="lg:col-span-5 flex flex-col items-center gap-6 justify-center w-full"
         >
-          {/* Circular profile image container with glow border */}
+          {/* Profile image with subtle Champagne Gold rim */}
           <div className="relative group">
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-neon-500 via-silver-300 to-neon-600 rounded-2xl blur opacity-30 dark:opacity-45 group-hover:opacity-75 transition duration-1000 group-hover:duration-200" />
-            <div className="relative w-44 h-44 sm:w-48 sm:h-48 rounded-2xl overflow-hidden border border-slate-200 bg-white dark:border-charcoal-800 dark:bg-charcoal-950 flex justify-center items-center p-1 shadow-md">
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-[#D6B77A] via-[#DECBA1] to-[#D6B77A] rounded-2xl blur opacity-20 dark:opacity-30 group-hover:opacity-50 transition duration-1000 group-hover:duration-300" />
+            <div className="relative w-44 h-44 sm:w-48 sm:h-48 rounded-2xl overflow-hidden border border-[#D0C8BC] bg-[#FAF8F5] dark:border-[#303038] dark:bg-[#19191F] flex justify-center items-center p-1.5 shadow-md">
               <img
                 src={profileImg}
                 alt="Adarsh A Portrait"
@@ -163,13 +163,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
               />
             </div>
             {/* Embedded Microchips tag */}
-            <div className="absolute -bottom-2 -right-2 px-3 py-1 rounded bg-white border border-slate-200 dark:bg-charcoal-950 dark:border-charcoal-800 text-[10px] font-mono text-slate-600 dark:text-silver-400 flex items-center gap-1 shadow-lg">
-              <Terminal size={10} className="text-neon-500" />
+            <div className="absolute -bottom-2 -right-2 px-3 py-1 rounded bg-[#FAF8F5] border border-[#D0C8BC] dark:bg-[#19191F] dark:border-[#303038] text-[10px] font-mono text-[#36363E] dark:text-[#C8C6C0] flex items-center gap-1.5 shadow-lg">
+              <Terminal size={10} className="text-[#D6B77A]" />
               <span>B.Tech KTU</span>
             </div>
           </div>
 
-          {/* Architecture flow visualization: responsive on all screens */}
+          {/* Architecture flow visualization */}
           <div className="w-full max-w-sm sm:max-w-md">
             <ArchitectureViz />
           </div>

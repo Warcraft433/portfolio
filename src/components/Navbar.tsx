@@ -89,7 +89,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
     <nav
       className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
         scrolled
-          ? 'py-3 bg-white/90 dark:bg-charcoal-950/90 backdrop-blur-lg border-b border-slate-200/80 dark:border-charcoal-800 shadow-md'
+          ? 'py-3 bg-[#FAF8F5]/90 dark:bg-[#101014]/90 backdrop-blur-xl border-b border-[#D0C8BC] dark:border-[#303038] shadow-sm dark:shadow-[0_4px_24px_rgba(0,0,0,0.5)]'
           : 'py-5 bg-transparent border-b border-transparent'
       }`}
     >
@@ -102,15 +102,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
             onClick={(e) => handleLinkClick(e, '#home')}
             className="flex items-center gap-2 group font-display"
           >
-            <div className="p-1.5 rounded-lg bg-neon-500/10 border border-neon-500/25 text-neon-500 group-hover:bg-neon-500 group-hover:text-white transition-colors duration-300 shadow-sm">
-              <Terminal size={16} />
+            <div className="p-1.5 rounded-lg bg-[#D6B77A]/12 border border-[#D6B77A]/30 text-[#D6B77A] group-hover:bg-[#D6B77A] group-hover:text-[#101014] transition-colors duration-300 shadow-sm">
+              <Terminal size={15} />
             </div>
             <div>
-              <span className="text-sm md:text-base font-bold text-slate-900 dark:text-silver-100 tracking-wide block leading-none">
+              <span className="text-sm md:text-base font-bold text-[#19191F] dark:text-[#F7F5F0] tracking-wide block leading-none">
                 ADARSH A
               </span>
-              <span className="text-[10px] text-slate-500 dark:text-silver-400 font-mono tracking-tight block mt-0.5">
-                Java Engineer
+              <span className="text-[10px] text-[#777783] font-mono tracking-tight block mt-0.5">
+                Java Backend Engineer
               </span>
             </div>
           </a>
@@ -124,8 +124,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
                 onClick={(e) => handleLinkClick(e, item.href)}
                 className={`px-3 py-1.5 rounded-md text-sm font-semibold font-mono border transition-all duration-200 ${
                   activeSection === item.id
-                    ? 'text-neon-600 bg-neon-500/10 border-neon-500/40 dark:text-silver-100 dark:bg-neon-500/15 dark:border-neon-500/40 shadow-sm'
-                    : 'text-slate-600 dark:text-silver-400 hover:text-slate-950 dark:hover:text-silver-100 border-transparent hover:bg-slate-100 dark:hover:bg-charcoal-800/60'
+                    ? 'text-[#101014] bg-[#D6B77A]/20 border-[#D6B77A]/50 dark:text-[#D6B77A] dark:bg-[#D6B77A]/10 dark:border-[#D6B77A]/40 shadow-sm'
+                    : 'text-[#5A5A66] dark:text-[#777783] hover:text-[#101014] dark:hover:text-[#F7F5F0] border-transparent hover:bg-[#FAF8F5] dark:hover:bg-[#19191F]'
                 }`}
               >
                 {item.label}
@@ -135,16 +135,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
             {/* Theme Toggle Button */}
             <button
               onClick={toggleTheme}
-              className="p-1.5 ml-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-100 text-slate-600 dark:border-charcoal-800 dark:bg-charcoal-900 dark:hover:bg-charcoal-800 dark:text-silver-400 dark:hover:text-neon-400 transition-colors"
+              className="p-1.5 ml-2 rounded-lg border border-[#D0C8BC] bg-[#FAF8F5] hover:bg-[#F4F0E8] text-[#5A5A66] dark:border-[#303038] dark:bg-[#19191F] dark:hover:bg-[#22222A] dark:text-[#777783] dark:hover:text-[#D6B77A] transition-colors"
               aria-label="Toggle Theme"
             >
               {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
             </button>
 
-            {/* Quick Resume Button - Single Red Neon Accent */}
+            {/* Quick Resume Button — Champagne Gold */}
             <button
               onClick={onOpenResume}
-              className="ml-3 px-4 py-1.5 rounded-md text-sm font-mono font-bold bg-neon-500 hover:bg-neon-600 text-white transition-all shadow-md shadow-neon-500/25 hover:shadow-neon-500/40 hover:-translate-y-0.5 active:translate-y-0"
+              className="ml-3 px-4 py-1.5 rounded-md text-sm font-mono font-bold bg-[#D6B77A] hover:bg-[#C5A566] text-[#101014] transition-all shadow-md shadow-[#D6B77A]/20 hover:shadow-[#D6B77A]/30 hover:-translate-y-0.5 active:translate-y-0"
             >
               Resume
             </button>
@@ -155,7 +155,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
             {/* Theme Toggle Button Mobile */}
             <button
               onClick={toggleTheme}
-              className="p-1.5 rounded-lg border border-slate-200 bg-white text-slate-600 dark:border-charcoal-800 dark:bg-charcoal-900 dark:text-silver-400 transition-colors"
+              className="p-1.5 rounded-lg border border-[#D0C8BC] bg-[#FAF8F5] text-[#5A5A66] dark:border-[#303038] dark:bg-[#19191F] dark:text-[#777783] transition-colors"
               aria-label="Toggle Theme"
             >
               {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
@@ -163,7 +163,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-1.5 rounded-lg border border-slate-200 bg-white text-slate-600 dark:border-charcoal-800 dark:bg-charcoal-900 dark:text-silver-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-charcoal-800 transition-colors"
+              className="p-1.5 rounded-lg border border-[#D0C8BC] bg-[#FAF8F5] text-[#5A5A66] dark:border-[#303038] dark:bg-[#19191F] dark:text-[#777783] hover:text-[#19191F] dark:hover:text-[#F7F5F0] transition-colors"
               aria-label="Toggle Menu"
             >
               {isOpen ? <X size={18} /> : <Menu size={18} />}
@@ -175,7 +175,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
 
       {/* Mobile Menu Panel */}
       {isOpen && (
-        <div className="lg:hidden absolute top-full left-0 w-full bg-white/95 dark:bg-charcoal-950/95 border-b border-slate-200 dark:border-charcoal-800 backdrop-blur-xl shadow-2xl py-4 px-4 flex flex-col space-y-1">
+        <div className="lg:hidden absolute top-full left-0 w-full bg-[#FAF8F5]/98 dark:bg-[#101014]/98 border-b border-[#D0C8BC] dark:border-[#303038] backdrop-blur-2xl shadow-xl py-4 px-4 flex flex-col space-y-1">
           {navItems.map((item) => (
             <a
               key={item.id}
@@ -183,8 +183,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
               onClick={(e) => handleLinkClick(e, item.href)}
               className={`px-4 py-2.5 rounded-lg text-sm font-semibold font-mono border transition-all ${
                 activeSection === item.id
-                  ? 'text-neon-600 bg-neon-500/10 border-neon-500/40 dark:text-silver-100 dark:bg-neon-500/15 dark:border-neon-500/40'
-                  : 'text-slate-600 dark:text-silver-400 hover:text-slate-950 dark:hover:text-silver-100 border-transparent hover:bg-slate-100 dark:hover:bg-charcoal-900/60'
+                  ? 'text-[#101014] bg-[#D6B77A]/20 border-[#D6B77A]/50 dark:text-[#D6B77A] dark:bg-[#D6B77A]/12 dark:border-[#D6B77A]/40'
+                  : 'text-[#5A5A66] dark:text-[#777783] hover:text-[#101014] dark:hover:text-[#F7F5F0] border-transparent hover:bg-[#F4F0E8] dark:hover:bg-[#19191F]'
               }`}
             >
               {item.label}
@@ -195,7 +195,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
               setIsOpen(false);
               onOpenResume();
             }}
-            className="w-full mt-2 py-3 rounded-lg text-sm font-bold font-mono text-center bg-neon-500 hover:bg-neon-600 text-white transition-all shadow-md shadow-neon-500/25"
+            className="w-full mt-2 py-3 rounded-lg text-sm font-bold font-mono text-center bg-[#D6B77A] hover:bg-[#C5A566] text-[#101014] transition-all shadow-md shadow-[#D6B77A]/20"
           >
             Open Resume
           </button>

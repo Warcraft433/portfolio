@@ -74,15 +74,15 @@ export const BackgroundParticles: React.FC = () => {
         c.beginPath();
         c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         if (isDark) {
-          // Dark mode: Moonlit Silver and Single Red Neon on Charcoal Gray
+          // Dark mode: Champagne Gold and Graphite Grey on Obsidian Black
           c.fillStyle = this.isGold
-            ? `rgba(203, 213, 225, ${Math.min(1, this.alpha * 1.8)})` // Moonlit Silver
-            : `rgba(255, 30, 56, ${Math.min(1, this.alpha * 1.9)})`; // Single Red Neon
+            ? `rgba(214, 183, 122, ${Math.min(0.65, this.alpha * 1.6)})` // Champagne Gold
+            : `rgba(119, 119, 131, ${Math.min(0.5, this.alpha * 1.3)})`; // Graphite Grey
         } else {
-          // Light mode: Single Red Neon and Charcoal Gray on Moonlit Silver Canvas
+          // Light mode: Champagne Gold and Graphite Grey on Warm Ivory Canvas
           c.fillStyle = this.isGold
-            ? `rgba(255, 30, 56, ${Math.min(1, this.alpha * 1.6)})` // Single Red Neon
-            : `rgba(15, 23, 42, ${Math.min(1, this.alpha * 1.3)})`; // Charcoal Gray
+            ? `rgba(195, 161, 95, ${Math.min(0.6, this.alpha * 1.5)})` // Warm Gold
+            : `rgba(96, 96, 107, ${Math.min(0.45, this.alpha * 1.2)})`; // Graphite Grey
         }
         c.fill();
       }
@@ -143,8 +143,8 @@ export const BackgroundParticles: React.FC = () => {
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.strokeStyle = isDark
-              ? `rgba(203, 213, 225, ${alpha * 1.6})`
-              : `rgba(15, 23, 42, ${alpha * 1.2})`;
+              ? `rgba(214, 183, 122, ${alpha * 1.2})`
+              : `rgba(96, 96, 107, ${alpha * 0.9})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
