@@ -9,30 +9,30 @@ export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="py-8 bg-[#FAF8F5] border-t border-[#D0C8BC] dark:bg-[#101014] dark:border-[#303038]">
+    <footer className="py-8 bg-white border-t border-[#dbe0eb] dark:bg-[#08080b] dark:border-[#252733]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
         
         {/* Left: Branding */}
         <div className="text-center md:text-left space-y-1">
-          <p className="text-sm font-bold text-[#19191F] dark:text-[#F7F5F0] font-display">ADARSH A</p>
-          <p className="text-[10px] text-[#777783] font-mono">
+          <p className="text-sm font-bold text-[#12141c] dark:text-[#f4f5f8] font-display">ADARSH A</p>
+          <p className="text-[10px] text-[#71758c] font-mono">
             Java Backend Developer / Full Stack Software Engineer
           </p>
         </div>
 
         {/* Center: Build footnote */}
-        <p className="text-[10px] text-[#777783] font-mono text-center font-medium">
+        <p className="text-[10px] text-[#71758c] font-mono text-center font-medium">
           © {currentYear} Adarsh A. Built with React + TypeScript + Tailwind
         </p>
 
         {/* Right: Quick Links */}
-        <div className="flex items-center gap-4 text-[#777783]">
+        <div className="flex items-center gap-4 text-[#71758c]">
           {socials.github && (
             <a
               href={socials.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[#D6B77A] transition-colors"
+              className="hover:text-[#ff1744] transition-colors"
               aria-label="GitHub link"
             >
               <GithubIcon size={16} />
@@ -43,7 +43,7 @@ export const Footer: React.FC = () => {
               href={socials.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[#D6B77A] transition-colors"
+              className="hover:text-[#00e5ff] transition-colors"
               aria-label="LinkedIn link"
             >
               <LinkedinIcon size={16} />
@@ -52,7 +52,7 @@ export const Footer: React.FC = () => {
           {socials.email && (
             <a
               href={socials.email}
-              className="hover:text-[#D6B77A] transition-colors"
+              className="hover:text-[#ff1744] transition-colors"
               aria-label="Email link"
             >
               <Mail size={16} />

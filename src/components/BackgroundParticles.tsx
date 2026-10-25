@@ -28,7 +28,7 @@ export const BackgroundParticles: React.FC = () => {
       radius: number;
       baseAlpha: number;
       alpha: number;
-      isGold: boolean;
+      colorType: 'red' | 'blue' | 'gray';
 
       constructor(w: number, h: number) {
         this.x = Math.random() * w;
@@ -38,7 +38,8 @@ export const BackgroundParticles: React.FC = () => {
         this.radius = Math.random() * 1.5 + 0.6; // Small, refined particle
         this.baseAlpha = Math.random() * 0.15 + 0.06;
         this.alpha = this.baseAlpha;
-        this.isGold = Math.random() > 0.45;
+        const rand = Math.random();
+        this.colorType = rand > 0.45 ? 'red' : rand > 0.22 ? 'gray' : 'blue';
       }
 
       update(w: number, h: number) {
@@ -57,7 +58,7 @@ export const BackgroundParticles: React.FC = () => {
         if (dist < mouse.radius) {
           // Increase opacity and repel slightly
           const force = (mouse.radius - dist) / mouse.radius;
-          this.alpha = Math.min(0.55, this.baseAlpha + force * 0.35);
+          this.alpha = Math.min(0.65, this.baseAlpha + force * 0.4);
           
           // Repel force
           this.x -= (dx / dist) * force * 0.4;
@@ -74,15 +75,23 @@ export const BackgroundParticles: React.FC = () => {
         c.beginPath();
         c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         if (isDark) {
-          // Dark mode: Champagne Gold and Graphite Grey on Obsidian Black
-          c.fillStyle = this.isGold
-            ? `rgba(214, 183, 122, ${Math.min(0.65, this.alpha * 1.6)})` // Champagne Gold
-            : `rgba(119, 119, 131, ${Math.min(0.5, this.alpha * 1.3)})`; // Graphite Grey
+          // Dark mode: Electric Neon Red (#ff1744), Neon Blue (#00e5ff), and Cool Gray on Black/Charcoal
+          if (this.colorType === 'red') {
+            c.fillStyle = `rgba(255, 23, 68, ${Math.min(0.85, this.alpha * 2.0)})`;
+          } else if (this.colorType === 'blue') {
+            c.fillStyle = `rgba(0, 229, 255, ${Math.min(0.85, this.alpha * 2.0)})`;
+          } else {
+            c.fillStyle = `rgba(157, 161, 181, ${Math.min(0.45, this.alpha * 1.3)})`;
+          }
         } else {
-          // Light mode: Champagne Gold and Graphite Grey on Warm Ivory Canvas
-          c.fillStyle = this.isGold
-            ? `rgba(195, 161, 95, ${Math.min(0.6, this.alpha * 1.5)})` // Warm Gold
-            : `rgba(96, 96, 107, ${Math.min(0.45, this.alpha * 1.2)})`; // Graphite Grey
+          // Light mode: Vibrant Neon Red, Electric Blue, and Slate Gray on Light Canvas
+          if (this.colorType === 'red') {
+            c.fillStyle = `rgba(229, 9, 53, ${Math.min(0.8, this.alpha * 1.8)})`;
+          } else if (this.colorType === 'blue') {
+            c.fillStyle = `rgba(0, 180, 216, ${Math.min(0.8, this.alpha * 1.8)})`;
+          } else {
+            c.fillStyle = `rgba(78, 81, 102, ${Math.min(0.4, this.alpha * 1.2)})`;
+          }
         }
         c.fill();
       }
@@ -143,8 +152,8 @@ export const BackgroundParticles: React.FC = () => {
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.strokeStyle = isDark
-              ? `rgba(214, 183, 122, ${alpha * 1.2})`
-              : `rgba(96, 96, 107, ${alpha * 0.9})`;
+              ? `rgba(113, 117, 140, ${alpha * 1.1})`
+              : `rgba(113, 117, 140, ${alpha * 0.8})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
